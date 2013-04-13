@@ -12,7 +12,7 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchema</DefaultFileStructure>
     <DeployToDatabaseAddToServerExplorer>True</DeployToDatabaseAddToServerExplorer>
@@ -20,7 +20,7 @@
     <CatalogPropertiesFile>Properties\Database.sqlsettings</CatalogPropertiesFile>
     <LoadSqlClrTypes>True</LoadSqlClrTypes>
     <RootNamespace>SqlServer</RootNamespace>
-    <DefaultSchema>dbo</DefaultSchema>
+    <DefaultSchema>T4SQL</DefaultSchema>
     <PreviousProjectVersion>4.0</PreviousProjectVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>
@@ -44,16 +44,15 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
+    <TargetConnectionString>Data Source=.\SQLEXPRESS;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetDatabase>T4SQLDB</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>
     <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
     <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
-    <DeployToDatabase>False</DeployToDatabase>
+    <DeployToDatabase>True</DeployToDatabase>
+    <DeployScriptFileName>T4SQLDB.sql</DeployScriptFileName>
   </PropertyGroup>
   <!--Import the settings-->
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\TeamData\Microsoft.Data.Schema.SqlTasks.targets" />
@@ -121,6 +120,28 @@
     <Folder Include="Schema Objects\Database Level Objects\Storage\Full Text Catalogs\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Defaults\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Rules\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Types\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Types\User Defined Data Types\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Types\User Defined Types CLR\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Types\User Defined Table Types\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Programmability\Types\XML Schema Collections\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Synonyms\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\Constraints\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\Keys\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Tables\Statistics\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Views\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Views\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Views\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\T4SQL\Views\Statistics\" />
   </ItemGroup>
   <ItemGroup>
     <PropertiesFile Include="Properties\Database.sqlsettings">
@@ -141,5 +162,84 @@
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\T4SQL.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.ENGINE_CONFIG.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.ENGINE_SERVER.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.TEMPLATE_CLASS.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.TEMPLATE_SPEC.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.EVENT_LOG.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_LOG_SYS_ERROR.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\T4SQL.ENGINE_GET_POLL_INTERVAL.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_SERVICE_PING.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_STANDBY_PING.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_SERVICE_RESTART.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_REGISTER_TEMPLATE.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_CONFIG.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_PRIMARY_PING.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_LIST_COLUMN.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.WORKSPACE_ENTRY.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.SEED_WORKITEM.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.SEED_PROPERTY.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\Triggers\T4SQL.WORKSPACE_ENTRY.TRG_WORKSPACE_ENTRY_INS.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\Triggers\T4SQL.WORKSPACE_ENTRY.TRG_WORKSPACE_ENTRY_DEL.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\T4SQL.MATCH_TABLE_DEFINITION.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <NotInBuild Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\2-T4SQL.WORKSPACE_ENTRY.data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="C:\Program Files\Microsoft Visual Studio 10.0\VSTSDB\Extensions\SqlServer\2008\DBSchemas\master.dbschema">
+      <HintPath>C:\Program Files\Microsoft Visual Studio 10.0\VSTSDB\Extensions\SqlServer\2008\DBSchemas\master.dbschema</HintPath>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>
