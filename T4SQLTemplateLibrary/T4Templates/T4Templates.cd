@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="T4SQL.TemplateContext">
+    <Position X="0.5" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="T4SQL.TemplateContext.TemplateProperty">
+        <TypeIdentifier>
+          <NewMemberFileName>TemplateContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAABEAAAAAACACAAwAAAAABAAAAAAA=</HashCode>
+      <FileName>TemplateContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.UtilityExtensions">
+    <Position X="4.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>UtilityExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="T4SQL.ITemplate">
+    <Position X="2.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ITemplate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

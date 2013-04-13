@@ -20,9 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\wikipage_home.htm = Documents\wikipage_home.htm
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{0BD1299C-6AE3-407C-844D-F69B90037846}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs23
 		SccLocalPath0 = .
@@ -42,6 +44,9 @@ Global
 		SccProjectUniqueName5 = T4Templates\\T4Templates.csproj
 		SccProjectName5 = T4Templates
 		SccLocalPath5 = T4Templates
+		SccProjectUniqueName6 = DataAccess\\DataAccess.csproj
+		SccProjectName6 = DataAccess
+		SccLocalPath6 = DataAccess
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +111,16 @@ Global
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Release|x86.ActiveCfg = Release|x86
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Release|x86.Build.0 = Release|x86
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,3 +9,5 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+:r .\1-T4SQL.ENGINE_CONFIG.data.sql
+:r .\2-T4SQL.WORKSPACE_ENTRY.data.sql

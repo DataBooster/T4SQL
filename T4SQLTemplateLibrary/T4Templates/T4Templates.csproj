@@ -8,7 +8,7 @@
     <ProjectGuid>{55837841-3D2A-411D-960F-323C12668088}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>T4SQL.T4Templates</RootNamespace>
+    <RootNamespace>T4SQL</RootNamespace>
     <AssemblyName>T4SQL.T4Templates</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,7 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServer\TestTemplate1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestTemplate1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\TestTemplate1.partial.cs" />
+    <Compile Include="TemplateContext.cs" />
+    <Compile Include="UtilityExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Oracle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SqlServer\TestTemplate1.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TestTemplate1.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

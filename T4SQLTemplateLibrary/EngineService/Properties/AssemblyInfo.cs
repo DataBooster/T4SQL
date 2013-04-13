@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EngineService")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("T4SQL.EngineService")]
+[assembly: AssemblyDescription("T4SQL Template Library Engine Service")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EngineService")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCompany("http://t4sql.codeplex.com/")]
+[assembly: AssemblyProduct("T4SQL Template Library")]
+[assembly: AssemblyCopyright("Copyright ©  2013 Abel Cheng")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

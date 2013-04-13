@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("T4SQL.ConsoleTest")]
-[assembly: AssemblyDescription("T4SQL Template Library Console Test")]
+[assembly: AssemblyTitle("DbParallel.DataAccess")]
+[assembly: AssemblyDescription("dbParallel Database Access Extensions")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://t4sql.codeplex.com/")]
-[assembly: AssemblyProduct("T4SQL Template Library")]
-[assembly: AssemblyCopyright("Copyright ©  2013 Abel Cheng")]
+[assembly: AssemblyCompany("http://dbparallel.codeplex.com/")]
+[assembly: AssemblyProduct("dbParallel Database Task Parallel Foundation")]
+[assembly: AssemblyCopyright("Abel Cheng. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f5e25440-12b7-4551-8bec-433850e390e5")]
+[assembly: Guid("bf39ff9b-1363-47dc-af67-baf990ac1ec1")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]

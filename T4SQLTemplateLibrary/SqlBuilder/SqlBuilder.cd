@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="T4SQL.SqlBuilder.TemplateManager">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAQAIAAgAAAIAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.SqlBuilder.EngineConfig">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAEAAABAAAAAAAwBAAAACAQAAAAAAA=</HashCode>
+      <FileName>EngineConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.SqlBuilder.DbPackage">
+    <Position X="5.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAECANAAIAAAAAAAAQAAAAgAAAAAAAA=</HashCode>
+      <FileName>DbPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.SqlBuilder.EngineMain">
+    <Position X="7.25" Y="0.5" Width="1.75" />
+    <NestedTypes>
+      <Enum Name="T4SQL.SqlBuilder.EngineMain.ServiceMode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EngineMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAGAgAAAAAAAACAAAAAAAAgAAIAEAAIAIAAA=</HashCode>
+      <FileName>EngineMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
