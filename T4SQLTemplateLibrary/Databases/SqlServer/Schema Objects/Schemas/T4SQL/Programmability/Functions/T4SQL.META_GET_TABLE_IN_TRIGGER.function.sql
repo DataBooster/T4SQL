@@ -1,21 +1,23 @@
-﻿CREATE TRIGGER T4SQL.TRG_WORKSPACE_ENTRY_DEL
-ON T4SQL.WORKSPACE_ENTRY
-AFTER DELETE
-AS 
+﻿CREATE FUNCTION T4SQL.META_GET_TABLE_IN_TRIGGER
+(
+	@inProc_ID	INT
+)
+RETURNS NVARCHAR(128)
+AS
 BEGIN
-    SET NOCOUNT ON;
-	IF EXISTS
-	(
-		SELECT	1
-		FROM	deleted
-		WHERE	OBJECT_ID(WORKITEM_TABLE_NAME)	= OBJECT_ID(N'T4SQL.SEED_WORKITEM')
-			AND OBJECT_ID(PROPERTY_TABLE_NAME)	= OBJECT_ID(N'T4SQL.SEED_PROPERTY')
-	)
-	BEGIN
-		RAISERROR(N'Built-in workspace T4SQL.SEED_... cannot be deleted!', 16, 3);
-		ROLLBACK TRANSACTION;
-	END;
-END
+	DECLARE	@tTable_ID INT;
+
+	SELECT
+		@tTable_ID	= parent_id
+	FROM
+		sys.triggers	T
+	WHERE
+			T.type			= 'TR'
+		AND	T.parent_class	= 1
+		AND	T.object_id		= @inProc_ID;
+
+	RETURN QUOTENAME(OBJECT_SCHEMA_NAME(@tTable_ID)) + N'.' + QUOTENAME(OBJECT_NAME(@tTable_ID));
+END;
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -26,7 +28,7 @@ END
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎April ‎10, ‎2013, ‏‎6:50:26 PM
+--	Created Date:		‎‎April ‎19, ‎2013, ‏‎12:41:08 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

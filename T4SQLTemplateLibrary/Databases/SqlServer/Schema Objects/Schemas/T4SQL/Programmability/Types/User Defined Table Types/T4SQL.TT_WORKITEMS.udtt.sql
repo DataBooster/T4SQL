@@ -1,21 +1,8 @@
-﻿CREATE TRIGGER T4SQL.TRG_WORKSPACE_ENTRY_DEL
-ON T4SQL.WORKSPACE_ENTRY
-AFTER DELETE
-AS 
-BEGIN
-    SET NOCOUNT ON;
-	IF EXISTS
-	(
-		SELECT	1
-		FROM	deleted
-		WHERE	OBJECT_ID(WORKITEM_TABLE_NAME)	= OBJECT_ID(N'T4SQL.SEED_WORKITEM')
-			AND OBJECT_ID(PROPERTY_TABLE_NAME)	= OBJECT_ID(N'T4SQL.SEED_PROPERTY')
-	)
-	BEGIN
-		RAISERROR(N'Built-in workspace T4SQL.SEED_... cannot be deleted!', 16, 3);
-		ROLLBACK TRANSACTION;
-	END;
-END
+﻿CREATE TYPE T4SQL.TT_WORKITEMS AS TABLE 
+(
+	WORKITEM_NAME	NVARCHAR(32),
+	TEMPLATE_CLASS	VARCHAR(128)
+);
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -26,7 +13,7 @@ END
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎April ‎10, ‎2013, ‏‎6:50:26 PM
+--	Created Date:		‎‎‎April ‎20, ‎2013, ‏‎1:06:37 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
