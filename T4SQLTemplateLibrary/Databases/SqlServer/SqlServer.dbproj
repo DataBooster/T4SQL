@@ -224,7 +224,25 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Tables\Triggers\T4SQL.WORKSPACE_ENTRY.TRG_WORKSPACE_ENTRY_DEL.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\T4SQL.MATCH_TABLE_DEFINITION.function.sql">
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\Triggers\T4SQL.SEED_WORKITEM.TRG_SEED_WORKITEM_INS.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.META_COPY_PROPERTY_DEFAULT.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\T4SQL.META_GET_TABLE_IN_TRIGGER.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Functions\T4SQL.META_MATCH_TABLE_DEFINITION.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Types\User Defined Table Types\T4SQL.TT_WORKITEMS.udtt.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.META_CREATE_WORKITEM_TRIGGER.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Types\User Defined Table Types\T4SQL.TT_STRING_ARRAY.udtt.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

@@ -23,6 +23,9 @@
   </Class>
   <Class Name="T4SQL.SqlBuilder.EngineMain">
     <Position X="7.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Enum Name="T4SQL.SqlBuilder.EngineMain.ServiceMode" Collapsed="true">
         <TypeIdentifier>
