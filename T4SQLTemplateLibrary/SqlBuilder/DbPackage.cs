@@ -91,6 +91,40 @@ namespace T4SQL.SqlBuilder
 			return columns;
 		}
 
+		internal static void LoadDefaultProperties(this DbAccess dbAccess, Action<DbDataReader> setDefaultProperty)
+		{
+			const string sp = "LIST_DEFAULT_PROPERTY";
+
+			dbAccess.ExecuteReader(GetProcedure(sp), null, setDefaultProperty);
+		}
+
+		internal static IEnumerable<Workspace> LoadWorkspaceTasks(this DbAccess dbAccess)
+		{
+			const string sp = "LIST_WORKSPACE";
+
+			return dbAccess.ExecuteReader<Workspace>(GetProcedure(sp), null);
+		}
+
+		internal static IEnumerable<Workitem> LoadWorkitems(this DbAccess dbAccess, string workitemTable)
+		{
+			const string sp = "LIST_WORKITEM";
+
+			return dbAccess.ExecuteReader<Workitem>(GetProcedure(sp), parameters =>
+				{
+					parameters.Add("inWorkitem_Table", workitemTable);
+				});
+		}
+
+		internal static void LoadWorkingProperties(this DbAccess dbAccess, string propertyTable, Action<DbDataReader> setWorkingProperty)
+		{
+			const string sp = "LIST_WORKING_PROPERTY";
+
+			dbAccess.ExecuteReader(GetProcedure(sp), parameters =>
+			{
+				parameters.Add("inProperty_Table", propertyTable);
+			}, setWorkingProperty);
+		}
+
 		public static void LogSysError(this DbAccess dbAccess, string strReference, string strMessage)
 		{
 			const string sp = "LOG_SYS_ERROR";

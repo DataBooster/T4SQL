@@ -29,9 +29,11 @@ namespace T4SQL.SqlBuilder
 		private readonly DbAccess _MainDbAccess;
 		private readonly EventLog _ServiceEventLog;
 		private readonly TemplateManager _TemplateManager;
+		private List<Workspace> _WorkspaceTasks;
 		private volatile bool _KeepPolling;
 		private Task _MainTask;
 		private Func<string, List<string>> _fListTableColumns;
+		private TemplateContext _SeedTemplateContext;
 
 		public EngineMain(EventLog serviceEventLog = null)
 		{
@@ -41,6 +43,7 @@ namespace T4SQL.SqlBuilder
 			_MainDbAccess.LoadEngineConfig();
 			_ServiceEventLog = serviceEventLog;
 			_TemplateManager = new TemplateManager();
+			_SeedTemplateContext = new TemplateContext(_fListTableColumns);
 		}
 
 		public void Start()
@@ -54,15 +57,13 @@ namespace T4SQL.SqlBuilder
 					_MainDbAccess.RegisterTemplates(_TemplateManager.TemplateClassDictionary);
 					_KeepPolling = true;
 
-					if (_ServiceEventLog != null)
-						_ServiceEventLog.WriteEntry("T4SQL Template Engine is started successfully.");
+					LogEvent("T4SQL Template Engine is started successfully.");
 				}
 				else
 				{
 					_KeepPolling = false;
 
-					if (_ServiceEventLog != null)
-						_ServiceEventLog.WriteEntry("The server cannot be started due to another engine is in service!");
+					LogEvent("The server cannot be started due to another engine is in service!", EventLogEntryType.FailureAudit);
 				}
 
 				while (_KeepPolling)
@@ -71,22 +72,19 @@ namespace T4SQL.SqlBuilder
 
 					try
 					{
-						dynamic bag = new TemplateContext(_fListTableColumns);
-						bag["test1"] = new TemplateContext.TemplateProperty("v1", "a1");
-						bag["test2"] = new TemplateContext.TemplateProperty("v2", "a2");
-						bag["test3"] = new TemplateContext.TemplateProperty("v3", "a3");
-						var t = bag.test1;
-						//t = bag.test4;
-						var u = bag["test3"];
-						//u = bag["test4"];
-						u = bag[4];
+						RefreshTemplateDefaultProperties();
+
+						_WorkspaceTasks = _MainDbAccess.LoadWorkspaceTasks().ToList();
+
+						foreach (Workspace ws in _WorkspaceTasks)
+						{
+							ws.LoadWorkitems(_MainDbAccess, _TemplateManager.TemplateDefaultProperties, _SeedTemplateContext);
+							ws.BuildWorkitems(_MainDbAccess);
+						}
 					}
 					catch (Exception e)
 					{
-						if (_ServiceEventLog != null)
-							_ServiceEventLog.WriteEntry(e.Message, EventLogEntryType.Error);
-
-						_MainDbAccess.LogSysError(e.Source, e.Message);
+						LogEvent(e.Message, EventLogEntryType.Error, e.Source);
 					}
 
 					Thread.Sleep(EngineConfig.EnginePollInterval);
@@ -98,6 +96,65 @@ namespace T4SQL.SqlBuilder
 		{
 			_KeepPolling = false;
 			_MainTask.Wait();
+		}
+
+		[ConditionalAttribute("DEBUG")]
+		public void WriteDebug(string message)
+		{
+			if (_ServiceEventLog == null)
+				Console.WriteLine(message);
+			else
+				Debug.WriteLine(message);
+		}
+
+		protected void LogEvent(string message, EventLogEntryType eventType = EventLogEntryType.Information, string errorSource = null)
+		{
+			if (errorSource == null)
+			{
+				if (_ServiceEventLog != null)
+					_ServiceEventLog.WriteEntry(message, eventType);
+			}
+			else
+			{
+				if (_ServiceEventLog != null)
+					_ServiceEventLog.WriteEntry(message, eventType);
+
+				_MainDbAccess.LogSysError(errorSource, message);
+			}
+
+			WriteDebug(message);
+		}
+
+		private void SetTemplateDefaultProperty(string templateFullName, string propertyName, string defaultValue, string linkState)
+		{
+			TemplateContext defaultProperties;
+
+			if (_TemplateManager.TemplateDefaultProperties.TryGetValue(templateFullName, out defaultProperties) == false)
+			{
+				defaultProperties = new TemplateContext(_fListTableColumns);
+				_TemplateManager.TemplateDefaultProperties.Add(templateFullName, defaultProperties);
+			}
+
+			TemplateContext.TemplateProperty templateProperty;
+
+			if (defaultProperties.PropertyDictionary.TryGetValue(propertyName, out templateProperty) == false)
+				defaultProperties.PropertyDictionary.Add(propertyName, new TemplateContext.TemplateProperty(defaultValue, linkState));
+			else
+			{
+				templateProperty.StringValue = defaultValue;
+				templateProperty.LinkState = linkState;
+			}
+		}
+
+		private void RefreshTemplateDefaultProperties()
+		{
+			_TemplateManager.ClearTemplateDefaultProperties();
+
+			_MainDbAccess.LoadDefaultProperties(row =>
+				{
+					SetTemplateDefaultProperty(row.Field<string>("CLASS_NAME"), row.Field<string>("PROPERTY_NAME"),
+						row.Field<string>("DEFAULT_VALUE"), row.Field<string>("LINK_STATE"));
+				});
 		}
 	}
 }

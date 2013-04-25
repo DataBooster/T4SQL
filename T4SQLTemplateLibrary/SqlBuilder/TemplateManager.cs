@@ -9,16 +9,23 @@ namespace T4SQL.SqlBuilder
 	{
 		private readonly Type _typeITemplate;
 		private readonly Dictionary<string, Type> _templateClassDictionary;
+		private readonly Dictionary<string, TemplateContext> _templateDefaultProperties;
 
 		public Dictionary<string, Type> TemplateClassDictionary
 		{
 			get { return _templateClassDictionary; }
 		}
 
+		public Dictionary<string, TemplateContext> TemplateDefaultProperties
+		{
+			get { return _templateDefaultProperties; }
+		} 
+
 		public TemplateManager()
 		{
 			_typeITemplate = typeof(ITemplate);
 			_templateClassDictionary = new Dictionary<string, Type>();
+			_templateDefaultProperties = new Dictionary<string, TemplateContext>();
 		}
 
 		protected bool RegisterTemplate(Type template)
@@ -81,6 +88,12 @@ namespace T4SQL.SqlBuilder
 			}
 			else
 				return null;
+		}
+
+		internal void ClearTemplateDefaultProperties()
+		{
+			foreach (KeyValuePair<string, TemplateContext> kvp in _templateDefaultProperties)
+				kvp.Value.Clear();
 		}
 	}
 }
