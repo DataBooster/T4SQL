@@ -1,16 +1,19 @@
-﻿CREATE TABLE T4SQL.TEMPLATE_SPEC
+﻿CREATE PROCEDURE T4SQL.ENGINE_LIST_WORKING_PROPERTY
 (
-	CLASS_NAME		VARCHAR(128)	NOT NULL,
-	PROPERTY_NAME	NVARCHAR(64)	NOT NULL,
-	DEFAULT_VALUE	NVARCHAR(4000),
-	LINK_STATE		NVARCHAR(256),
-
-	CONSTRAINT PK_TEMPLATE_SPEC PRIMARY KEY (CLASS_NAME, PROPERTY_NAME),
-	CONSTRAINT FK_TEMPLATE_SPEC_CLASS FOREIGN KEY (CLASS_NAME)
-		REFERENCES T4SQL.TEMPLATE_CLASS(FULL_NAME)
-		ON UPDATE  CASCADE 
-		ON DELETE  CASCADE
-);
+	@inProperty_Table	NVARCHAR(128)
+)
+AS
+	EXECUTE (N'SELECT
+	WORKITEM_NAME,
+	PROPERTY_NAME,
+	STRING_VALUE,
+	LINK_STATE
+FROM
+	' + @inProperty_Table + N'
+ORDER BY
+	WORKITEM_NAME,
+	PROPERTY_NAME
+');
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -21,7 +24,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎March ‎19, ‎2013, ‏‎8:53:42 PM
+--	Created Date:		‎April ‎24, ‎2013, ‏‎4:39:58 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
@@ -29,6 +32,6 @@
 --
 --
 --
---	(Keep code clean)
+--	(Keep code clean rather than complicated code plus long comments.)
 --
 ----------------------------------------------------------------------------------------------------

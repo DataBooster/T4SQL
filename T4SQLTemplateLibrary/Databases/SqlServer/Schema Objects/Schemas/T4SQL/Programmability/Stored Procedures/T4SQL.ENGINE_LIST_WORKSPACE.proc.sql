@@ -1,17 +1,13 @@
-﻿CREATE TABLE T4SQL.TEMPLATE_SPEC
-(
-	CLASS_NAME		VARCHAR(128)	NOT NULL,
-	PROPERTY_NAME	NVARCHAR(64)	NOT NULL,
-	DEFAULT_VALUE	NVARCHAR(4000),
-	LINK_STATE		NVARCHAR(256),
-
-	CONSTRAINT PK_TEMPLATE_SPEC PRIMARY KEY (CLASS_NAME, PROPERTY_NAME),
-	CONSTRAINT FK_TEMPLATE_SPEC_CLASS FOREIGN KEY (CLASS_NAME)
-		REFERENCES T4SQL.TEMPLATE_CLASS(FULL_NAME)
-		ON UPDATE  CASCADE 
-		ON DELETE  CASCADE
-);
-
+﻿CREATE PROCEDURE T4SQL.ENGINE_LIST_WORKSPACE
+AS
+	SELECT
+		WORKITEM_TABLE_NAME,
+		PROPERTY_TABLE_NAME
+	FROM
+		T4SQL.WORKSPACE_ENTRY
+	ORDER BY
+		WORKSPACE_ID;
+		
 ----------------------------------------------------------------------------------------------------
 --
 --	Copyright 2013 Abel Cheng
@@ -21,7 +17,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎March ‎19, ‎2013, ‏‎8:53:42 PM
+--	Created Date:		‎April ‎23, ‎2013, ‏‎12:16:50 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
@@ -29,6 +25,6 @@
 --
 --
 --
---	(Keep code clean)
+--	(Keep code clean rather than complicated code plus long comments.)
 --
 ----------------------------------------------------------------------------------------------------

@@ -8,13 +8,13 @@ namespace T4SQL
 	{
 		public class TemplateProperty
 		{
-			public string Value { get; set; }
-			public string Link { get; set; }
+			public string StringValue { get; set; }
+			public string LinkState { get; set; }
 
-			public TemplateProperty(string propertyValue, string propertyLink)
+			public TemplateProperty(string stringValue, string linkState)
 			{
-				Value = propertyValue;
-				Link = propertyLink;
+				StringValue = stringValue;
+				LinkState = linkState;
 			}
 		}
 
@@ -46,6 +46,7 @@ namespace T4SQL
 			return bFound;
 		}
 
+		#region override methods
 		public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
 		{
 			return TryGetProperty(binder.Name, out result);
@@ -60,6 +61,28 @@ namespace T4SQL
 		{
 			_PropertyDictionary[indexes[0] as string] = value as TemplateProperty;
 			return true;
+		}
+
+		public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
+		{
+			_PropertyDictionary[binder.Name] = value as TemplateProperty;
+			return true;
+		}
+		#endregion
+
+		public void Clear()
+		{
+			_PropertyDictionary.Clear();
+		}
+
+		public TemplateContext Copy()
+		{
+			TemplateContext newInstance = new TemplateContext(_fListTableColumns);
+
+			foreach (KeyValuePair<string, TemplateProperty> kvp in _PropertyDictionary)
+				newInstance.PropertyDictionary.Add(kvp.Key, new TemplateProperty(kvp.Value.StringValue, kvp.Value.LinkState));
+
+			return newInstance;
 		}
 	}
 }

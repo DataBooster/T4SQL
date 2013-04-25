@@ -3,7 +3,7 @@
   <Class Name="T4SQL.SqlBuilder.TemplateManager">
     <Position X="0.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAAAAQAIAAgAAAIAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAAABAAAAAAAQAIAAgAAAIAAAAAAAQAAAAgAAAAgAA=</HashCode>
       <FileName>TemplateManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="T4SQL.SqlBuilder.DbPackage">
     <Position X="5.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAECANAAIAAAAAAAAQAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAECANAAIAAAAAAAAQAAAggAAAABAAA=</HashCode>
       <FileName>DbPackage.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -34,8 +34,22 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAGAgAAAAAAAACAAAAAAAAgAAIAEAAIAIAAA=</HashCode>
+      <HashCode>AEQAAAAAAGAgAAAAAABACACAAAAAAkAAIAEQAIAIAAA=</HashCode>
       <FileName>EngineMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.SqlBuilder.Workspace">
+    <Position X="0.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAACABAEAAAAAAAAAAAAAAAAgEAAAEAAAAAAAABAA=</HashCode>
+      <FileName>Workspace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.SqlBuilder.Workitem">
+    <Position X="3.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAABAAAAEAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Workitem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

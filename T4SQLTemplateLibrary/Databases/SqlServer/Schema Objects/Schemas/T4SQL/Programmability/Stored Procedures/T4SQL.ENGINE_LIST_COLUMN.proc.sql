@@ -3,6 +3,9 @@
 	@inTable_Name	NVARCHAR(64)
 )
 AS
+    SET NOCOUNT ON;
+
+	/*
 	SELECT
 		COLUMN_NAME
 	FROM
@@ -10,8 +13,17 @@ AS
 	WHERE
 		TABLE_SCHEMA + '.' + TABLE_NAME	= @inTable_Name
 	ORDER BY
-		ORDINAL_POSITION
-;
+		ORDINAL_POSITION;
+	*/
+
+	SELECT
+		name	AS COLUMN_NAME
+	FROM
+		sys.columns
+	WHERE
+		object_id	= OBJECT_ID(@inTable_Name)
+	ORDER BY
+		column_id;
 
 ----------------------------------------------------------------------------------------------------
 --
