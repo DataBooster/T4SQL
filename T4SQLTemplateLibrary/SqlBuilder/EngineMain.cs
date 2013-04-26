@@ -77,10 +77,7 @@ namespace T4SQL.SqlBuilder
 						_WorkspaceTasks = _MainDbAccess.LoadWorkspaceTasks().ToList();
 
 						foreach (Workspace ws in _WorkspaceTasks)
-						{
-							ws.LoadWorkitems(_MainDbAccess, _TemplateManager.TemplateDefaultProperties, _SeedTemplateContext);
-							ws.BuildWorkitems(_MainDbAccess);
-						}
+							ws.BuildWorkitems(_MainDbAccess, _TemplateManager, _SeedTemplateContext);
 					}
 					catch (Exception e)
 					{

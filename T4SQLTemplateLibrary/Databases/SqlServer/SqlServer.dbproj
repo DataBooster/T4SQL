@@ -257,6 +257,9 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_LIST_WORKING_PROPERTY.proc.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_COMPILE_WORKITEM.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">

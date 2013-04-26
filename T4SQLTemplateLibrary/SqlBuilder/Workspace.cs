@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DbParallel.DataAccess;
 
@@ -28,7 +29,7 @@ namespace T4SQL.SqlBuilder
 
 		private Workitem _recentWorkitem;
 
-		private void SetWorkingProperty(string workitemName, string propertyName, string stringValue, string linkState, TemplateContext seedProperties)
+		private void SetWorkingProperty(string workitemName, string propertyName, string stringValue, string linkState)
 		{
 			if (_recentWorkitem == null || _recentWorkitem.Workitem_Name != workitemName)
 			{
@@ -36,9 +37,6 @@ namespace T4SQL.SqlBuilder
 				if (_recentWorkitem == null)
 					return;
 			}
-
-			if (_recentWorkitem.WorkingProperties == null)
-				_recentWorkitem.WorkingProperties = seedProperties.Copy();
 
 			Dictionary<string, TemplateContext.TemplateProperty> propertyDictionary = _recentWorkitem.WorkingProperties.PropertyDictionary;
 			TemplateContext.TemplateProperty templateProperty;
@@ -52,26 +50,36 @@ namespace T4SQL.SqlBuilder
 			}
 		}
 
-		public void LoadWorkitems(DbAccess dbAccess, Dictionary<string, TemplateContext> templateDefaultProperties, TemplateContext seedProperties)
+		public void BuildWorkitems(DbAccess dbAccess, TemplateManager templateManager, TemplateContext seedProperties)
 		{
 			TemplateContext defaultProperties;
+			Type templateClass;
 
 			_Workitems = dbAccess.LoadWorkitems(_Workitem_Table_Name).ToList();
 
 			foreach (Workitem wi in _Workitems)
-				if (templateDefaultProperties.TryGetValue(wi.Template_Name, out defaultProperties))
+			{
+				if (templateManager.TemplateDefaultProperties.TryGetValue(wi.Template_Name, out defaultProperties))
 					wi.WorkingProperties = defaultProperties.Copy();
+				else
+					wi.WorkingProperties = seedProperties.Copy();
+
+				if (templateManager.TemplateClassDictionary.TryGetValue(wi.Template_Name, out templateClass))
+					wi.TemplateClass = templateClass;
+			}
 
 			dbAccess.LoadWorkingProperties(_Property_Table_Name, row =>
 				{
 					SetWorkingProperty(row.Field<string>("WORKITEM_NAME"), row.Field<string>("PROPERTY_NAME"),
-						row.Field<string>("STRING_VALUE"), row.Field<string>("LINK_STATE"), seedProperties);
+						row.Field<string>("STRING_VALUE"), row.Field<string>("LINK_STATE"));
 				});
-		}
 
-		public void BuildWorkitems(DbAccess dbAccess)
-		{
+			foreach (Workitem wi in _Workitems)
+			{
+				wi.Compile();
 
+				dbAccess.CompileWorkitem(_Workitem_Table_Name, wi.Workitem_Name, wi.Compiled_Error, wi.Object_Code);
+			}
 		}
 	}
 }
