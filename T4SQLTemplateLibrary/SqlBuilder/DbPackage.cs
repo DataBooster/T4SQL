@@ -125,6 +125,19 @@ namespace T4SQL.SqlBuilder
 			}, setWorkingProperty);
 		}
 
+		internal static void CompileWorkitem(this DbAccess dbAccess, string workitem_Table, string workitem_Name, string compiled_Error, string object_Code)
+		{
+			const string sp = "COMPILE_WORKITEM";
+
+			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
+			{
+				parameters.Add("inWorkitem_Table", workitem_Table);
+				parameters.Add("inWorkitem_Name", workitem_Name);
+				parameters.Add("inCompiled_Error", compiled_Error);
+				parameters.Add("inObject_Code", object_Code);
+			});
+		}
+
 		public static void LogSysError(this DbAccess dbAccess, string strReference, string strMessage)
 		{
 			const string sp = "LOG_SYS_ERROR";

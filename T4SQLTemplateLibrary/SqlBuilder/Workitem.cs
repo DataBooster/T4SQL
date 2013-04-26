@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace T4SQL.SqlBuilder
 {
@@ -27,6 +24,40 @@ namespace T4SQL.SqlBuilder
 			get { return _WorkingProperties; }
 			set { _WorkingProperties = value; }
 		}
+
+		private Type _TemplateClass;
+		public Type TemplateClass
+		{
+			get { return _TemplateClass; }
+			set { _TemplateClass = value; }
+		}
+
+		public void Compile()
+		{
+			if (_TemplateClass == null)
+			{
+				_Compiled_Error = "Invalid Template Class full name!";
+				return;
+			}
+
+			try
+			{
+				ITemplate template = Activator.CreateInstance(_TemplateClass) as ITemplate;
+
+				template.Context = _WorkingProperties;
+				_Object_Code = template.TransformText();
+			}
+			catch (Exception e)
+			{
+				_Compiled_Error = e.Message.Left(512);
+			}
+		}
+
+		private string _Compiled_Error;
+		public string Compiled_Error { get { return _Compiled_Error; } }
+
+		private string _Object_Code;
+		public string Object_Code { get { return _Object_Code; } }
 	}
 }
 
