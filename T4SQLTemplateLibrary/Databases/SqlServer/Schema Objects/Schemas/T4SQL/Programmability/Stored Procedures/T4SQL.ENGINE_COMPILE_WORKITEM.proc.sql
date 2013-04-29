@@ -7,7 +7,7 @@
 )
 AS
 	SET NOCOUNT ON
-	DECLARE	@tSQL NVARCHAR(1024), @ParmDefinition NVARCHAR(256);
+	DECLARE	@tSQL NVARCHAR(512), @ParmDefinition NVARCHAR(128);
 
 	SET	@tSQL = N'UPDATE	' + @inWorkitem_Table + N'
 	SET

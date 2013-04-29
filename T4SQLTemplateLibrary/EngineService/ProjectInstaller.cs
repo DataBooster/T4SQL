@@ -1,21 +1,25 @@
 ﻿using System;
-using T4SQL.SqlBuilder;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration.Install;
+using System.Linq;
+using System.ServiceProcess;
 
-namespace T4SQL.ConsoleTest
+
+namespace T4SQL.EngineService
 {
-	class Program
+	[RunInstaller(true)]
+	public partial class ProjectInstaller : System.Configuration.Install.Installer
 	{
-		static void Main(string[] args)
+		public ProjectInstaller()
 		{
-			EngineMain engineMain = new EngineMain();
+			InitializeComponent();
+		}
 
-			engineMain.Start();
-
-			engineMain.WriteDebug("Press the Escape (Esc) key to quit the Template Engine at any time:");
-
-			while (Console.ReadKey().Key != ConsoleKey.Escape) ;
-
-			engineMain.Stop();
+		private void templateEngineServiceInstaller_AfterInstall(object sender, InstallEventArgs e)
+		{
+			new ServiceController(templateEngineServiceInstaller.ServiceName).Start();
 		}
 	}
 }
@@ -29,7 +33,7 @@ namespace T4SQL.ConsoleTest
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎February ‎20, ‎2013, ‏‎10:35:52 PM
+//	Created Date:		‎‎April ‎28, ‎2013, ‏‎10:29:40 PM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment
