@@ -1,6 +1,6 @@
 ﻿namespace T4SQL.EngineService
 {
-	partial class WinService
+	partial class TemplateEngine
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -28,8 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			this.ServiceName = "Service1";
+			// 
+			// TemplateEngine
+			// 
+			this.CanShutdown = true;
+			this.ServiceName = "T4SQL Template Engine";
+
 		}
 
 		#endregion
