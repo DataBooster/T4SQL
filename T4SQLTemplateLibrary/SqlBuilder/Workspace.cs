@@ -38,7 +38,7 @@ namespace T4SQL.SqlBuilder
 					return;
 			}
 
-			Dictionary<string, TemplateContext.TemplateProperty> propertyDictionary = _recentWorkitem.WorkingProperties.PropertyDictionary;
+			Dictionary<string, TemplateContext.TemplateProperty> propertyDictionary = _recentWorkitem.WorkingProperties.Properties;
 			TemplateContext.TemplateProperty templateProperty;
 
 			if (propertyDictionary.TryGetValue(propertyName, out templateProperty) == false)

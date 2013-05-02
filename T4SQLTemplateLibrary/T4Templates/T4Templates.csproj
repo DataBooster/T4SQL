@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITemplate.cs" />
+    <Compile Include="ITemplateProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\TestTemplate1.cs">
       <AutoGen>True</AutoGen>
@@ -54,6 +55,7 @@
     </Compile>
     <Compile Include="SqlServer\TestTemplate1.partial.cs" />
     <Compile Include="TemplateContext.cs" />
+    <Compile Include="TemplateSpec.cs" />
     <Compile Include="UtilityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

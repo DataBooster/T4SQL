@@ -3,7 +3,7 @@
 	@inFull_Name			VARCHAR(128),
 	@inModule				NVARCHAR(128),
 	@inAssembly_String		VARCHAR(256),
-	@inClass_Description	NVARCHAR(512)
+	@inClass_Description	NVARCHAR(1024)
 )
 AS
 	SET NOCOUNT ON;

@@ -19,7 +19,7 @@ namespace T4SQL.SqlBuilder
 		public Dictionary<string, TemplateContext> TemplateDefaultProperties
 		{
 			get { return _templateDefaultProperties; }
-		} 
+		}
 
 		public TemplateManager()
 		{
