@@ -1,4 +1,5 @@
-﻿
+﻿using System.CodeDom.Compiler;
+
 namespace T4SQL
 {
 	public interface ITemplate
@@ -7,6 +8,11 @@ namespace T4SQL
 		{
 			get;
 			set;
+		}
+
+		CompilerErrorCollection Errors
+		{
+			get;
 		}
 
 		string TransformText();
@@ -22,7 +28,7 @@ namespace T4SQL
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎March ‎08, ‎2013, ‏‎12:18:25 AM
+//	Created Date:		‎March ‎08, ‎2013, ‏‎12:18:21 PM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

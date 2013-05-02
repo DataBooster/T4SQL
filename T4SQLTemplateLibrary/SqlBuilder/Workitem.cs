@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using System.CodeDom.Compiler;
 
 namespace T4SQL.SqlBuilder
 {
@@ -34,6 +36,8 @@ namespace T4SQL.SqlBuilder
 
 		public void Compile()
 		{
+			const int maxErrorLength = 2000;
+
 			if (_TemplateClass == null)
 			{
 				_Compiled_Error = "Invalid Template Class full name!";
@@ -46,10 +50,29 @@ namespace T4SQL.SqlBuilder
 
 				template.Context = _WorkingProperties;
 				_Object_Code = template.TransformText();
+
+				if (template.Errors.HasErrors)
+				{
+					StringBuilder errors = new StringBuilder();
+
+					foreach (CompilerError err in template.Errors)
+					{
+						if (string.IsNullOrWhiteSpace(err.ErrorText))
+							continue;
+
+						if (errors.Length > 0)
+							errors.AppendLine();
+
+						errors.Append(err.ErrorText);
+					}
+
+					if (errors.Length > 0)
+						_Compiled_Error = errors.ToString().Left(maxErrorLength);
+				}
 			}
 			catch (Exception e)
 			{
-				_Compiled_Error = e.Message.Left(512);
+				_Compiled_Error = e.Message.Left(maxErrorLength);
 			}
 		}
 

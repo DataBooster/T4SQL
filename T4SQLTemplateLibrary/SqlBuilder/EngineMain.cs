@@ -55,6 +55,10 @@ namespace T4SQL.SqlBuilder
 				if (_MainDbAccess.StandbyPing() == ServiceMode.Primary)
 				{
 					_MainDbAccess.RegisterTemplates(_TemplateManager.TemplateClassDictionary);
+
+					foreach (KeyValuePair<string, Type> kvp in _TemplateManager.TemplateClassDictionary)
+						RegisterTemplateSpec(_MainDbAccess, kvp.Value);
+
 					_KeepPolling = true;
 
 					LogEvent("T4SQL Template Engine is started successfully.");
@@ -134,8 +138,8 @@ namespace T4SQL.SqlBuilder
 
 			TemplateContext.TemplateProperty templateProperty;
 
-			if (defaultProperties.PropertyDictionary.TryGetValue(propertyName, out templateProperty) == false)
-				defaultProperties.PropertyDictionary.Add(propertyName, new TemplateContext.TemplateProperty(defaultValue, linkState));
+			if (defaultProperties.Properties.TryGetValue(propertyName, out templateProperty) == false)
+				defaultProperties.Properties.Add(propertyName, new TemplateContext.TemplateProperty(defaultValue, linkState));
 			else
 			{
 				templateProperty.StringValue = defaultValue;
@@ -152,6 +156,31 @@ namespace T4SQL.SqlBuilder
 					SetTemplateDefaultProperty(row.Field<string>("CLASS_NAME"), row.Field<string>("PROPERTY_NAME"),
 						row.Field<string>("DEFAULT_VALUE"), row.Field<string>("LINK_STATE"));
 				});
+		}
+
+		private bool RegisterTemplateSpec(DbAccess dbAccess, Type templateClass)
+		{
+			if (templateClass.GetInterface(typeof(ITemplateProperties).FullName) == null)
+				return false;
+			else
+			{
+				ITemplateProperties templateProperties = Activator.CreateInstance(templateClass) as ITemplateProperties;
+
+				if (templateProperties == null)
+					return false;
+				else
+				{
+					TemplateSpec templateSpec = templateProperties.GetPropertiesSpec();
+
+					if (templateSpec == null)
+						return false;
+
+					foreach (KeyValuePair<string, TemplateSpec.TemplatePropertySpec> p in templateSpec.Properties)
+						dbAccess.RegisterTemplatesSpec(templateClass.FullName, p.Key, p.Value.StringValue, p.Value.LinkState, p.Value.Description);
+
+					return true;
+				}
+			}
 		}
 	}
 }

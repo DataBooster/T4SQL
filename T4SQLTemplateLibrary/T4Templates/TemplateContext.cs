@@ -18,17 +18,17 @@ namespace T4SQL
 			}
 		}
 
-		private Dictionary<string, TemplateProperty> _PropertyDictionary;
-		public Dictionary<string, TemplateProperty> PropertyDictionary
+		private readonly Dictionary<string, TemplateProperty> _Properties;
+		public Dictionary<string, TemplateProperty> Properties
 		{
-			get { return _PropertyDictionary; }
+			get { return _Properties; }
 		}
 
-		private Func<string, List<string>> _fListTableColumns;
+		private readonly Func<string, List<string>> _fListTableColumns;
 
 		public TemplateContext(Func<string, List<string>> fListTableColumns)
 		{
-			_PropertyDictionary = new Dictionary<string, TemplateProperty>();
+			_Properties = new Dictionary<string, TemplateProperty>();
 			_fListTableColumns = fListTableColumns;
 		}
 
@@ -40,7 +40,7 @@ namespace T4SQL
 		private bool TryGetProperty(string propertyName, out object result)
 		{
 			TemplateProperty templateProperty;
-			bool bFound = _PropertyDictionary.TryGetValue(propertyName, out templateProperty);
+			bool bFound = _Properties.TryGetValue(propertyName, out templateProperty);
 
 			result = templateProperty;
 			return bFound;
@@ -59,28 +59,28 @@ namespace T4SQL
 
 		public override bool TrySetIndex(System.Dynamic.SetIndexBinder binder, object[] indexes, object value)
 		{
-			_PropertyDictionary[indexes[0] as string] = value as TemplateProperty;
+			_Properties[indexes[0] as string] = value as TemplateProperty;
 			return true;
 		}
 
 		public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
 		{
-			_PropertyDictionary[binder.Name] = value as TemplateProperty;
+			_Properties[binder.Name] = value as TemplateProperty;
 			return true;
 		}
 		#endregion
 
 		public void Clear()
 		{
-			_PropertyDictionary.Clear();
+			_Properties.Clear();
 		}
 
 		public TemplateContext Copy()
 		{
 			TemplateContext newInstance = new TemplateContext(_fListTableColumns);
 
-			foreach (KeyValuePair<string, TemplateProperty> kvp in _PropertyDictionary)
-				newInstance.PropertyDictionary.Add(kvp.Key, new TemplateProperty(kvp.Value.StringValue, kvp.Value.LinkState));
+			foreach (KeyValuePair<string, TemplateProperty> kvp in _Properties)
+				newInstance.Properties.Add(kvp.Key, new TemplateProperty(kvp.Value.StringValue, kvp.Value.LinkState));
 
 			return newInstance;
 		}

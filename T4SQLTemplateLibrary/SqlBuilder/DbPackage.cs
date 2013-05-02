@@ -75,6 +75,21 @@ namespace T4SQL.SqlBuilder
 				});
 		}
 
+		public static void RegisterTemplatesSpec(this DbAccess dbAccess, string inClass_Name, string inProperty_Name,
+			string inDefault_Value, string inLink_State, string inProperty_Description)
+		{
+			const string sp = "REGISTER_TEMPLATE_SPEC";
+
+			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
+			{
+				parameters.Add("inClass_Name", inClass_Name);
+				parameters.Add("inProperty_Name", inProperty_Name);
+				parameters.Add("inDefault_Value", inDefault_Value);
+				parameters.Add("inLink_State", inLink_State);
+				parameters.Add("inProperty_Description", inProperty_Description);
+			});
+		}
+
 		internal static List<string> ListTableColumns(this DbAccess dbAccess, string tableName)
 		{
 			const string sp = "LIST_COLUMN";
