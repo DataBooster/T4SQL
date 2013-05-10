@@ -263,12 +263,21 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_REGISTER_TEMPLATE_SPEC.proc.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.UTL_ORDINAL_NUMBER.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.VW_ORDINAL_NUMBER_EXPANSION.view.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
     <NotInBuild Include="Scripts\Post-Deployment\2-T4SQL.WORKSPACE_ENTRY.data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\3-dbo.UTL_ORDINAL_NUMBER.data.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>

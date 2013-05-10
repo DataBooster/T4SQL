@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace T4SQL
 {
@@ -38,9 +39,12 @@ namespace T4SQL
 				return str.Substring(str.Length - length, length);
 		}
 
-		public static IEnumerable<string> Cut(this string str, string separator = ",")
+		public static IEnumerable<string> SplitToCollection(this string input, char separator = ',', char leftQuote = '"', char rightQuote = '"')
 		{
-			return str.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).Where(s => s.Length > 0);
+			Regex splitter = new Regex(string.Format(@"\G(?<item>([^{0}{1}]*[{1}][^{2}]*[{2}][^{0}{1}]*)+|[^{0}]*)[{0}]",
+				Regex.Escape(new string(separator, 1)), Regex.Escape(new string(leftQuote, 1)), Regex.Escape(new string(rightQuote, 1))));
+
+			return splitter.Matches(input + separator).Cast<Match>().Select(m => m.Groups["item"].Value.Trim());
 		}
 	}
 }
