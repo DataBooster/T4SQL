@@ -18,6 +18,24 @@ namespace T4SQL.SqlBuilder
 			return EngineConfig.DatabasePackage + sp;
 		}
 
+		public static ServerEnvironment GetDbServerEnv(this DbAccess dbAccess)
+		{
+			const string sp = "GET_DB_SERVER_ENV";
+			DbParameter outDatabase_Product = null;
+			DbParameter outProduct_Version = null;
+			DbParameter outServer_Name = null;
+
+			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
+			{
+				outDatabase_Product = parameters.Add().SetName("outDatabase_Product").SetDirection(ParameterDirection.Output).SetSize(256);
+				outProduct_Version = parameters.Add().SetName("outProduct_Version").SetDirection(ParameterDirection.Output).SetSize(64);
+				outServer_Name = parameters.Add().SetName("outServer_Name").SetDirection(ParameterDirection.Output).SetSize(64);
+			});
+
+			return new ServerEnvironment(tableName => dbAccess.ListTableColumns(tableName),
+				outDatabase_Product.Parameter<string>(), outProduct_Version.Parameter<string>(), outServer_Name.Parameter<string>());
+		}
+
 		public static void LoadEngineConfig(this DbAccess dbAccess)
 		{
 			const string sp = "GET_CONFIG";

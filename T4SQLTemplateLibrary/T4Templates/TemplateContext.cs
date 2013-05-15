@@ -24,17 +24,16 @@ namespace T4SQL
 			get { return _Properties; }
 		}
 
-		private readonly Func<string, List<string>> _fListTableColumns;
-
-		public TemplateContext(Func<string, List<string>> fListTableColumns)
+		private readonly ServerEnvironment _DbServerEnv;
+		public ServerEnvironment DbServerEnv
 		{
-			_Properties = new Dictionary<string, TemplateProperty>();
-			_fListTableColumns = fListTableColumns;
+			get { return _DbServerEnv; }
 		}
 
-		public List<string> ListTableColumns(string tableName)
+		public TemplateContext(ServerEnvironment dbServerEnv)
 		{
-			return _fListTableColumns(tableName);
+			_Properties = new Dictionary<string, TemplateProperty>();
+			_DbServerEnv = dbServerEnv;
 		}
 
 		private bool TryGetProperty(string propertyName, out object result)
@@ -77,7 +76,7 @@ namespace T4SQL
 
 		public TemplateContext Copy()
 		{
-			TemplateContext newInstance = new TemplateContext(_fListTableColumns);
+			TemplateContext newInstance = new TemplateContext(_DbServerEnv);
 
 			foreach (KeyValuePair<string, TemplateProperty> kvp in _Properties)
 				newInstance.Properties.Add(kvp.Key, new TemplateProperty(kvp.Value.StringValue, kvp.Value.LinkState));

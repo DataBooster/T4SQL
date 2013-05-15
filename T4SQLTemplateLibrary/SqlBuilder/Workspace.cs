@@ -50,7 +50,7 @@ namespace T4SQL.SqlBuilder
 			}
 		}
 
-		public void BuildWorkitems(DbAccess dbAccess, TemplateManager templateManager, TemplateContext seedProperties)
+		public void BuildWorkitems(DbAccess dbAccess, TemplateManager templateManager, ServerEnvironment dbServerEnv)
 		{
 			TemplateContext defaultProperties;
 			Type templateClass;
@@ -62,7 +62,7 @@ namespace T4SQL.SqlBuilder
 				if (templateManager.TemplateDefaultProperties.TryGetValue(wi.Template_Name, out defaultProperties))
 					wi.WorkingProperties = defaultProperties.Copy();
 				else
-					wi.WorkingProperties = seedProperties.Copy();
+					wi.WorkingProperties = new TemplateContext(dbServerEnv);
 
 				if (templateManager.TemplateClassDictionary.TryGetValue(wi.Template_Name, out templateClass))
 					wi.TemplateClass = templateClass;
