@@ -32,18 +32,16 @@ namespace T4SQL.SqlBuilder
 		private List<Workspace> _WorkspaceTasks;
 		private volatile bool _KeepPolling;
 		private Task _MainTask;
-		private Func<string, List<string>> _fListTableColumns;
-		private TemplateContext _SeedTemplateContext;
+		private ServerEnvironment _DbServerEnv;
 
 		public EngineMain(EventLog serviceEventLog = null)
 		{
 			_MainDbAccess = DbPackage.CreateConnection();
-			_fListTableColumns = tableName => _MainDbAccess.ListTableColumns(tableName);
+			_DbServerEnv = _MainDbAccess.GetDbServerEnv();
 
 			_MainDbAccess.LoadEngineConfig();
 			_ServiceEventLog = serviceEventLog;
 			_TemplateManager = new TemplateManager();
-			_SeedTemplateContext = new TemplateContext(_fListTableColumns);
 		}
 
 		public void Start()
@@ -81,7 +79,7 @@ namespace T4SQL.SqlBuilder
 						_WorkspaceTasks = _MainDbAccess.LoadWorkspaceTasks().ToList();
 
 						foreach (Workspace ws in _WorkspaceTasks)
-							ws.BuildWorkitems(_MainDbAccess, _TemplateManager, _SeedTemplateContext);
+							ws.BuildWorkitems(_MainDbAccess, _TemplateManager, _DbServerEnv);
 					}
 					catch (Exception e)
 					{
@@ -132,7 +130,7 @@ namespace T4SQL.SqlBuilder
 
 			if (_TemplateManager.TemplateDefaultProperties.TryGetValue(templateFullName, out defaultProperties) == false)
 			{
-				defaultProperties = new TemplateContext(_fListTableColumns);
+				defaultProperties = new TemplateContext(_DbServerEnv);
 				_TemplateManager.TemplateDefaultProperties.Add(templateFullName, defaultProperties);
 			}
 

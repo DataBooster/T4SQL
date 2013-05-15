@@ -269,6 +269,12 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.VW_ORDINAL_NUMBER_EXPANSION.view.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.VW_ORDINAL_DATE.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_DB_SERVER_ENV.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">

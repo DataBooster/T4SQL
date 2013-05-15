@@ -20,7 +20,7 @@
   <Class Name="T4SQL.UtilityExtensions">
     <Position X="5.25" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAACACAAAAAAAA=</HashCode>
       <FileName>UtilityExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -39,6 +39,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAACAAA=</HashCode>
       <FileName>TemplateSpec.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.ServerEnvironment">
+    <Position X="7.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServerEnvironment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="T4SQL.ITemplate">
