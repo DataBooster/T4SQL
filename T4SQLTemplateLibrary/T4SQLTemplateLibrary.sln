@@ -24,6 +24,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EngineServiceSetup", "EngineServiceSetup\EngineServiceSetup.vdproj", "{56858E6D-F88E-4876-A784-5A244216A979}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSTemplates", "VSTemplates", "{AD2C96A3-8A0E-4D50-A703-CDDC43D11284}"
+	ProjectSection(SolutionItems) = preProject
+		VSTemplates\Readme.htm = VSTemplates\Readme.htm
+		VSTemplates\T4SQLTemplate.CSharp.SqlServer.zip = VSTemplates\T4SQLTemplate.CSharp.SqlServer.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlServer", "SqlServer", "{A7937FB4-02FB-4E03-8DBD-9315594A764D}"
+	ProjectSection(SolutionItems) = preProject
+		VSTemplates\SqlServer\T4SQLTemplate.CSharp.tt = VSTemplates\SqlServer\T4SQLTemplate.CSharp.tt
+		VSTemplates\SqlServer\T4SQLTemplate.CSharp.vstemplate = VSTemplates\SqlServer\T4SQLTemplate.CSharp.vstemplate
+		VSTemplates\SqlServer\T4SQLTemplate.partial.cs = VSTemplates\SqlServer\T4SQLTemplate.partial.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8
@@ -90,5 +103,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
+		{A7937FB4-02FB-4E03-8DBD-9315594A764D} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal
