@@ -16,6 +16,11 @@ namespace T4SQL
 				StringValue = stringValue;
 				LinkState = linkState;
 			}
+
+			public override string ToString()
+			{
+				return StringValue;
+			}
 		}
 
 		private readonly Dictionary<string, TemplateProperty> _Properties;
@@ -30,10 +35,17 @@ namespace T4SQL
 			get { return _DbServerEnv; }
 		}
 
+		private readonly dynamic _PropertyBag;
+		public dynamic PropertyBag
+		{
+			get { return _PropertyBag; }
+		}
+
 		public TemplateContext(ServerEnvironment dbServerEnv)
 		{
 			_Properties = new Dictionary<string, TemplateProperty>();
 			_DbServerEnv = dbServerEnv;
+			_PropertyBag = this as dynamic;
 		}
 
 		private bool TryGetProperty(string propertyName, out object result)
@@ -41,8 +53,24 @@ namespace T4SQL
 			TemplateProperty templateProperty;
 			bool bFound = _Properties.TryGetValue(propertyName, out templateProperty);
 
-			result = templateProperty;
+			result = templateProperty;	// .StringValue;
 			return bFound;
+		}
+
+		private bool TrySetProperty(string propertyName, object value)
+		{
+			if (value is TemplateProperty)
+			{
+				_Properties[propertyName] = value as TemplateProperty;
+				return true;
+			}
+			else if (value is string)
+			{
+				_Properties[propertyName] = new TemplateProperty(value as string, null);
+				return true;
+			}
+			else
+				return false;
 		}
 
 		#region override methods
@@ -58,14 +86,12 @@ namespace T4SQL
 
 		public override bool TrySetIndex(System.Dynamic.SetIndexBinder binder, object[] indexes, object value)
 		{
-			_Properties[indexes[0] as string] = value as TemplateProperty;
-			return true;
+			return TrySetProperty(indexes[0] as string, value);
 		}
 
 		public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
 		{
-			_Properties[binder.Name] = value as TemplateProperty;
-			return true;
+			return TrySetProperty(binder.Name, value);
 		}
 		#endregion
 

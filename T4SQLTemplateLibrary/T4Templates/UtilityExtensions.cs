@@ -46,6 +46,11 @@ namespace T4SQL
 
 			return splitter.Matches(input + separator).Cast<Match>().Select(m => m.Groups["item"].Value.Trim());
 		}
+
+		public static string GetTemplateName(this ITemplate templateClass)
+		{
+			return templateClass.GetType().FullName;
+		}
 	}
 }
 
