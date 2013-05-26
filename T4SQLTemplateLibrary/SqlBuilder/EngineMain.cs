@@ -174,7 +174,7 @@ namespace T4SQL.SqlBuilder
 						return false;
 
 					foreach (KeyValuePair<string, TemplateSpec.TemplatePropertySpec> p in templateSpec.Properties)
-						dbAccess.RegisterTemplatesSpec(templateClass.FullName, p.Key, p.Value.StringValue, p.Value.LinkState, p.Value.Description);
+						dbAccess.RegisterTemplatesSpec(templateClass.FullName, p.Key, p.Value.StringValue, p.Value.LinkState, p.Value.Description, p.Value.SortOrder);
 
 					return true;
 				}

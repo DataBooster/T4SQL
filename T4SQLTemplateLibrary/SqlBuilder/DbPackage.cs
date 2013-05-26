@@ -94,7 +94,7 @@ namespace T4SQL.SqlBuilder
 		}
 
 		public static void RegisterTemplatesSpec(this DbAccess dbAccess, string inClass_Name, string inProperty_Name,
-			string inDefault_Value, string inLink_State, string inProperty_Description)
+			string inDefault_Value, string inLink_State, string inProperty_Description, short inProperty_Order)
 		{
 			const string sp = "REGISTER_TEMPLATE_SPEC";
 
@@ -105,6 +105,7 @@ namespace T4SQL.SqlBuilder
 				parameters.Add("inDefault_Value", inDefault_Value);
 				parameters.Add("inLink_State", inLink_State);
 				parameters.Add("inProperty_Description", inProperty_Description);
+				parameters.Add("inProperty_Order", inProperty_Order);
 			});
 		}
 

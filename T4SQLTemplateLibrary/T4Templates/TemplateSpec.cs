@@ -7,11 +7,13 @@ namespace T4SQL
 		public class TemplatePropertySpec : TemplateContext.TemplateProperty
 		{
 			public string Description { get; set; }
+			public short SortOrder { get; set; }
 
-			public TemplatePropertySpec(string defaultValue, string linkState, string description)
+			public TemplatePropertySpec(string defaultValue, string linkState, string description, short sortOrder)
 				: base(defaultValue, linkState)
 			{
 				Description = description;
+				SortOrder = sortOrder;
 			}
 		}
 
@@ -21,14 +23,17 @@ namespace T4SQL
 			get { return _Properties; }
 		}
 
+		private short _Property_Order;
+
 		public TemplateSpec()
 		{
 			_Properties = new Dictionary<string, TemplatePropertySpec>();
+			_Property_Order = 0;
 		}
 
 		public void AddProperty(string propertyName, string defaultValue, string linkState, string description)
 		{
-			_Properties.Add(propertyName, new TemplatePropertySpec(defaultValue, linkState, description));
+			_Properties.Add(propertyName, new TemplatePropertySpec(defaultValue, linkState, description, ++_Property_Order));
 		}
 	}
 }

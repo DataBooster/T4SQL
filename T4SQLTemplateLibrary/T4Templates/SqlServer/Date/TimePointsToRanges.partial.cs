@@ -35,6 +35,11 @@ namespace T4SQL.SqlServer.Date
 
 		#region Members to be called from the code blocks in the tt file
 
+		public string TemplateName { get { return this.GetTemplateName(); } }
+		public Version DbmsVersion { get { return Context.DbServerEnv.ProductVersion; } }
+		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
+		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
+
 		public IEnumerable<string> GetKeyColumns()
 		{
 			return this.GetPropertyValue("KeyColumns").SplitToCollection();
@@ -46,8 +51,6 @@ namespace T4SQL.SqlServer.Date
 				(new string[] { this.GetPropertyValue("DateColumn") }, StringComparer.OrdinalIgnoreCase);
 		}
 
-		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
-		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
 		public string KeyColumns { get { return this.GetPropertyValue("KeyColumns"); } }
 		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public string RangeStartDateColumn { get { return this.GetPropertyValue("RangeStartDateColumn"); } }
@@ -70,3 +73,24 @@ namespace T4SQL.SqlServer.Date
 		#endregion
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright 2013 Abel Cheng
+//	This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//	See http://www.apache.org/licenses/LICENSE-2.0.
+//	All other rights reserved.
+//	You must not remove this notice, or any other, from this software.
+//
+//	Original Author:	Abel Cheng <abelcys@gmail.com>
+//	Created Date:		‎‎May ‎20, ‎2013, ‏‎12:00:44 AM
+//	Primary Host:		http://t4sql.codeplex.com
+//	Change Log:
+//	Author				Date			Comment
+//
+//
+//
+//
+//	(Keep code clean rather than complicated code plus long comments.)
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
