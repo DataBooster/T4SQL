@@ -41,6 +41,10 @@ namespace T4SQL
 			get { return _PropertyBag; }
 		}
 
+		#region Error Message Formats
+		public static string _PropertyNotFoundErrorFormat = "Property \"{0}\" is not found in the workitem.";
+		#endregion
+
 		public TemplateContext(ServerEnvironment dbServerEnv)
 		{
 			_Properties = new Dictionary<string, TemplateProperty>();

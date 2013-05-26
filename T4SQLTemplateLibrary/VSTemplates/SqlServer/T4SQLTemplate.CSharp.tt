@@ -1,4 +1,7 @@
 ﻿<#@ template language="C#" #>
+<#@ import namespace="T4SQL" #>
+<#@ import namespace="System.Linq" #>
+
 IF OBJECT_ID(N'<#= Context.PropertyBag.ObjectView #>', N'V') IS NULL
 	EXECUTE ('CREATE VIEW <#= Context.PropertyBag.ObjectView #> AS SELECT NULL AS CREATE_OR_REPLACE');
 GO

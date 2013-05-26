@@ -8,11 +8,11 @@ namespace T4SQL
 		private readonly Func<string, List<string>> _fListTableColumns;
 
 		private readonly string _DatabaseProduct;
-		private readonly string _ProductVersion;
+		private readonly Version _ProductVersion;
 		private readonly string _ServerName;
 
 		public string DatabaseProduct { get { return _DatabaseProduct; } }
-		public string ProductVersion { get { return _ProductVersion; } }
+		public Version ProductVersion { get { return _ProductVersion; } }
 		public string ServerName { get { return _ServerName; } }
 
 		public ServerEnvironment(Func<string, List<string>> fListTableColumns,
@@ -21,7 +21,7 @@ namespace T4SQL
 			_fListTableColumns = fListTableColumns;
 
 			_DatabaseProduct = databaseProduct;
-			_ProductVersion = productVersion;
+			_ProductVersion = new Version(productVersion);
 			_ServerName = serverName;
 		}
 
