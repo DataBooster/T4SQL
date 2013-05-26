@@ -10,8 +10,11 @@ AS
 		T4SQL.TEMPLATE_CLASS	C
 	WHERE
 			D.CLASS_NAME	= C.FULL_NAME
-		AND	C.IS_ACTIVE		= 1;
-		
+		AND	C.IS_ACTIVE		= 1
+	ORDER BY
+		D.PROPERTY_ORDER
+;
+
 ----------------------------------------------------------------------------------------------------
 --
 --	Copyright 2013 Abel Cheng

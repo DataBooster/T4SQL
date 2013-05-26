@@ -21,7 +21,8 @@ namespace $rootnamespace$
 			TemplateSpec spec = new TemplateSpec();
 
 			// <ToDo> Specify all properties to be used in the template:
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view.");
+			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
+			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
 			spec.AddProperty("PropertyName", "DefaultValue", null, "Property description ... (Max 1024 Chars)");
 			// ...
 			// </ToDo>
@@ -32,6 +33,10 @@ namespace $rootnamespace$
 
 		#region Members to be called from the code blocks in the tt file
 
+		public string TemplateName { get { return this.GetTemplateName(); } }
+		public Version DbmsVersion { get { return Context.DbServerEnv.ProductVersion; } }
+		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
+		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
 
 		#endregion
 	}
