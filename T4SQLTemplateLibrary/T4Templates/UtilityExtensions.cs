@@ -51,6 +51,28 @@ namespace T4SQL
 		{
 			return templateClass.GetType().FullName;
 		}
+
+		public static bool IsNull(this string strNull)
+		{
+			return string.IsNullOrWhiteSpace(strNull) ? true : strNull.Equals("NULL", StringComparison.OrdinalIgnoreCase);
+		}
+
+		public static string GetPropertyValue(this ITemplate template, string propertyName, string errorFormat = null)
+		{
+			try
+			{
+				return template.Context.Properties[propertyName].StringValue;
+			}
+			catch (KeyNotFoundException)
+			{
+				if (string.IsNullOrWhiteSpace(errorFormat))
+					errorFormat = TemplateContext._PropertyNotFoundErrorFormat;
+
+				template.Error(string.Format(errorFormat, propertyName));
+			}
+
+			return null;
+		}
 	}
 }
 

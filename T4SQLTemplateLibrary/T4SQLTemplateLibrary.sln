@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServer", "Databases\SqlServer\SqlServer.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder", "SqlBuilder\SqlBuilder.csproj", "{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Templates", "T4Templates\T4Templates.csproj", "{55837841-3D2A-411D-960F-323C12668088}"
@@ -37,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlServer", "SqlServer", "{
 		VSTemplates\SqlServer\T4SQLTemplate.partial.cs = VSTemplates\SqlServer\T4SQLTemplate.partial.cs
 	EndProjectSection
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "T4SQLDB", "Databases\SqlServer\T4SQLDB.sqlproj", "{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8
@@ -46,37 +46,31 @@ Global
 		SccProjectUniqueName1 = ConsoleTest\\ConsoleTest.csproj
 		SccProjectName1 = ConsoleTest
 		SccLocalPath1 = ConsoleTest
-		SccProjectUniqueName2 = Databases\\SqlServer\\SqlServer.dbproj
-		SccProjectTopLevelParentUniqueName2 = T4SQLTemplateLibrary.sln
-		SccProjectName2 = Databases/SqlServer
-		SccLocalPath2 = Databases\\SqlServer
-		SccProjectUniqueName3 = EngineService\\EngineService.csproj
-		SccProjectName3 = EngineService
-		SccLocalPath3 = EngineService
-		SccProjectUniqueName4 = SqlBuilder\\SqlBuilder.csproj
-		SccProjectName4 = SqlBuilder
-		SccLocalPath4 = SqlBuilder
-		SccProjectUniqueName5 = T4Templates\\T4Templates.csproj
-		SccProjectName5 = T4Templates
-		SccLocalPath5 = T4Templates
-		SccProjectUniqueName6 = DataAccess\\DataAccess.csproj
-		SccProjectName6 = DataAccess
-		SccLocalPath6 = DataAccess
-		SccProjectUniqueName7 = EngineServiceSetup\\EngineServiceSetup.vdproj
-		SccProjectName7 = EngineServiceSetup
-		SccLocalPath7 = EngineServiceSetup
+		SccProjectUniqueName2 = EngineService\\EngineService.csproj
+		SccProjectName2 = EngineService
+		SccLocalPath2 = EngineService
+		SccProjectUniqueName3 = SqlBuilder\\SqlBuilder.csproj
+		SccProjectName3 = SqlBuilder
+		SccLocalPath3 = SqlBuilder
+		SccProjectUniqueName4 = T4Templates\\T4Templates.csproj
+		SccProjectName4 = T4Templates
+		SccLocalPath4 = T4Templates
+		SccProjectUniqueName5 = DataAccess\\DataAccess.csproj
+		SccProjectName5 = DataAccess
+		SccLocalPath5 = DataAccess
+		SccProjectUniqueName6 = EngineServiceSetup\\EngineServiceSetup.vdproj
+		SccProjectName6 = EngineServiceSetup
+		SccLocalPath6 = EngineServiceSetup
+		SccProjectUniqueName7 = Databases\\SqlServer\\T4SQLDB.sqlproj
+		SccProjectTopLevelParentUniqueName7 = T4SQLTemplateLibrary.sln
+		SccProjectName7 = Databases/SqlServer
+		SccLocalPath7 = Databases\\SqlServer
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -97,12 +91,18 @@ Global
 		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56858E6D-F88E-4876-A784-5A244216A979}.Debug|Any CPU.ActiveCfg = Debug
 		{56858E6D-F88E-4876-A784-5A244216A979}.Release|Any CPU.ActiveCfg = Release
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
+		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
 		{A7937FB4-02FB-4E03-8DBD-9315594A764D} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal
