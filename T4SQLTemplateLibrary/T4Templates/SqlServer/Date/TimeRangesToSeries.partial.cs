@@ -8,8 +8,8 @@ using T4SQL;
 
 namespace T4SQL.SqlServer.Date
 {
-	[Description("Transform time points (turning points) data into time ranges data (start_date - end_date).")]
-	public partial class TimePointsToRanges : ITemplate, ITemplateProperties
+	[Description("Transform time ranges data (start_date - end_date) into time series data (daily).")]
+	public partial class TimeRangesToSeries : ITemplate, ITemplateProperties
 	{
 		#region Implement ITemplate Properties
 		public TemplateContext Context { get; set; }
@@ -21,13 +21,14 @@ namespace T4SQL.SqlServer.Date
 			TemplateSpec spec = new TemplateSpec();
 
 			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
-			spec.AddProperty("SourceView", "schema.SourceTableOrView", null, "Source Table Or View");
+			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
 			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
-			spec.AddProperty("DateColumn", "DATE_", null, "Source date column of time point");
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");
 			spec.AddProperty("EndDateNext", "0", null, "0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
-			spec.AddProperty("DefaultEndDate", "CAST('9999-12-31' AS DATE)", null, "Ultimate END_DATE as the substitute of IS NULL");
+			spec.AddProperty("EndDateNull", "NULL", null, "EndDate IS NULL means CURRENT");
+			spec.AddProperty("DailyView", "T4SQLDB.dbo.VW_ORDINAL_DATE", null, "Time Series base daily source table or view");
+			spec.AddProperty("DateColumn", "DATE_", null, "The date column of daily source table or view");
 
 			return spec;
 		}
@@ -41,10 +42,10 @@ namespace T4SQL.SqlServer.Date
 		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
 
 		public string KeyColumns { get { return this.GetPropertyValue("KeyColumns"); } }
-		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public string RangeStartDateColumn { get { return this.GetPropertyValue("RangeStartDateColumn"); } }
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
-		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate"); } }
+		public string DailyView { get { return this.GetPropertyValue("DailyView"); } }
+		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
 
 		public IEnumerable<string> GetKeyColumns()
@@ -52,10 +53,23 @@ namespace T4SQL.SqlServer.Date
 			return KeyColumns.SplitToCollection();
 		}
 
+		public bool IsEndDateNullable
+		{
+			get
+			{
+				string strEndDateNull = this.GetPropertyValue("EndDateNull");
+
+				if (strEndDateNull.IsNullString())
+					return true;
+				else
+					return strEndDateNull.IsTrueString();
+			}
+		}
+
 		public IEnumerable<string> GetRemainColumns()
 		{
 			return Context.DbServerEnv.ListTableColumns(SourceView).Except
-				(new string[] { DateColumn }, StringComparer.OrdinalIgnoreCase);
+				(new string[] { RangeStartDateColumn, RangeEndDateColumn }, StringComparer.OrdinalIgnoreCase);
 		}
 
 		#endregion
@@ -71,7 +85,7 @@ namespace T4SQL.SqlServer.Date
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎‎May ‎20, ‎2013, ‏‎12:00:44 AM
+//	Created Date:		‎May ‎15, ‎2013, ‏‎11:30:39 PM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

@@ -39,6 +39,24 @@ namespace T4SQL
 				return str.Substring(str.Length - length, length);
 		}
 
+		public static bool IsNullString(this string strNull)
+		{
+			return string.IsNullOrWhiteSpace(strNull) ? true : strNull.Equals("NULL", StringComparison.OrdinalIgnoreCase);
+		}
+
+		public static bool IsTrueString(this string strTrueOrFalse)
+		{
+			if (strTrueOrFalse == null)
+				return false;
+
+			string str = strTrueOrFalse.Trim().ToUpper();
+
+			if (str == "TRUE" || str == "T" || str == "YES" || str == "Y" || str == "1")
+				return true;
+			else
+				return false;
+		}
+
 		public static IEnumerable<string> SplitToCollection(this string input, char separator = ',', char leftQuote = '"', char rightQuote = '"')
 		{
 			Regex splitter = new Regex(string.Format(@"\G(?<item>([^{0}{1}]*[{1}][^{2}]*[{2}][^{0}{1}]*)+|[^{0}]*)[{0}]",
@@ -50,11 +68,6 @@ namespace T4SQL
 		public static string GetTemplateName(this ITemplate templateClass)
 		{
 			return templateClass.GetType().FullName;
-		}
-
-		public static bool IsNull(this string strNull)
-		{
-			return string.IsNullOrWhiteSpace(strNull) ? true : strNull.Equals("NULL", StringComparison.OrdinalIgnoreCase);
 		}
 
 		public static string GetPropertyValue(this ITemplate template, string propertyName, string errorFormat = null)
