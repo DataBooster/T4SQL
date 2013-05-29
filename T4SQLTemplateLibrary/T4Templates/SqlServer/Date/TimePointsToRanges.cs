@@ -59,7 +59,7 @@ namespace T4SQL.SqlServer.Date
             
             #line 11 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
 
-	string tEndDateCol = IsEndDateNext ? "t2.DATE_" : "DATEADD(day, -1, t2.DATE_)";
+	string tEndDateCol = IsEndDateNext ? "t2." + DateColumn : string.Format("DATEADD(day, -1, t2.{0})", DateColumn);
 
 	if (DbmsVersion > new Version(11, 0))	// SQL Server 2012
 	{
@@ -70,7 +70,7 @@ namespace T4SQL.SqlServer.Date
             this.Write("SELECT\r\n\t");
             
             #line 18 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", GetRemainColumns())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns)));
             
             #line default
             #line hidden
@@ -105,7 +105,7 @@ namespace T4SQL.SqlServer.Date
             this.Write(") OVER (PARTITION BY ");
             
             #line 20 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(KeyColumns));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Key_Columns));
             
             #line default
             #line hidden
@@ -146,7 +146,7 @@ namespace T4SQL.SqlServer.Date
             this.Write("WITH TR AS\r\n(\r\n\tSELECT\r\n\t\t*,\r\n\t\tROW_NUMBER() OVER (PARTITION BY ");
             
             #line 35 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(KeyColumns));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Key_Columns));
             
             #line default
             #line hidden
@@ -167,7 +167,7 @@ namespace T4SQL.SqlServer.Date
             this.Write("\r\n)\r\nSELECT\r\n\t");
             
             #line 40 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", GetRemainColumns().Select(c => "t1." + c))));
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "t1." + c))));
             
             #line default
             #line hidden
@@ -202,7 +202,7 @@ namespace T4SQL.SqlServer.Date
             this.Write("\r\nFROM\r\n\tTR t1 LEFT OUTER JOIN\r\n\tTR t2 ON (");
             
             #line 45 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" AND ", GetKeyColumns().Select(k => string.Format(@"t1.{0} = t2.{0}", k)))));
+            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" AND ", KeyColumns.Select(k => string.Format(@"t1.{0} = t2.{0}", k)))));
             
             #line default
             #line hidden

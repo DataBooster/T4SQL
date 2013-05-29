@@ -25,9 +25,12 @@ namespace T4SQL
 			_ServerName = serverName;
 		}
 
-		public List<string> ListTableColumns(string tableName)
+		public IEnumerable<string> ListTableColumns(string tableName, string specificColumns = "*")
 		{
-			return _fListTableColumns(tableName);
+			if (string.IsNullOrWhiteSpace(specificColumns) || specificColumns.Trim() == "*")
+				return _fListTableColumns(tableName);
+			else
+				return specificColumns.SplitToCollection();
 		}
 	}
 }

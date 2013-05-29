@@ -23,11 +23,12 @@ namespace T4SQL.SqlServer.Date
 			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
 			spec.AddProperty("SourceView", "schema.SourceTableOrView", null, "Source Table Or View");
 			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
+			spec.AddProperty("AttribColumns", "*", null, "A comma-separated list of attribute columns - '*' for all attributes");
 			spec.AddProperty("DateColumn", "DATE_", null, "Source date column of time point");
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");
 			spec.AddProperty("EndDateNext", "0", null, "0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
-			spec.AddProperty("DefaultEndDate", "CAST('9999-12-31' AS DATE)", null, "Ultimate END_DATE as the substitute of IS NULL");
+			spec.AddProperty("DefaultEndDate", "CAST('2999-12-31' AS DATE)", null, "Ultimate END_DATE as the substitute of IS NULL");
 
 			return spec;
 		}
@@ -40,22 +41,21 @@ namespace T4SQL.SqlServer.Date
 		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
 		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
 
-		public string KeyColumns { get { return this.GetPropertyValue("KeyColumns"); } }
+		public string Key_Columns { get { return this.GetPropertyValue("KeyColumns"); } }
 		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public string RangeStartDateColumn { get { return this.GetPropertyValue("RangeStartDateColumn"); } }
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
 		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
+		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitToCollection(); } }
 
-		public IEnumerable<string> GetKeyColumns()
+		public IEnumerable<string> SelectColumns
 		{
-			return KeyColumns.SplitToCollection();
-		}
-
-		public IEnumerable<string> GetRemainColumns()
-		{
-			return Context.DbServerEnv.ListTableColumns(SourceView).Except
-				(new string[] { DateColumn }, StringComparer.OrdinalIgnoreCase);
+			get
+			{
+				return KeyColumns.Union(Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("AttribColumns")), StringComparer.OrdinalIgnoreCase)
+					.Except(new string[] { DateColumn, RangeStartDateColumn, RangeEndDateColumn }, StringComparer.OrdinalIgnoreCase);
+			}
 		}
 
 		#endregion
