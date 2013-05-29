@@ -22,7 +22,7 @@ namespace T4SQL.SqlServer.Date
 
 			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
 			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
+			spec.AddProperty("SelectColumns", "*", null, "A comma-separated list of select columns - exclude the date column");
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");
 			spec.AddProperty("EndDateNext", "0", null, "0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
@@ -41,17 +41,11 @@ namespace T4SQL.SqlServer.Date
 		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
 		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
 
-		public string KeyColumns { get { return this.GetPropertyValue("KeyColumns"); } }
 		public string RangeStartDateColumn { get { return this.GetPropertyValue("RangeStartDateColumn"); } }
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
 		public string DailyView { get { return this.GetPropertyValue("DailyView"); } }
 		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
-
-		public IEnumerable<string> GetKeyColumns()
-		{
-			return KeyColumns.SplitToCollection();
-		}
 
 		public bool IsEndDateNullable
 		{
@@ -66,10 +60,13 @@ namespace T4SQL.SqlServer.Date
 			}
 		}
 
-		public IEnumerable<string> GetRemainColumns()
+		public IEnumerable<string> SelectColumns
 		{
-			return Context.DbServerEnv.ListTableColumns(SourceView).Except
-				(new string[] { RangeStartDateColumn, RangeEndDateColumn }, StringComparer.OrdinalIgnoreCase);
+			get
+			{
+				return Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("SelectColumns")).Except
+					(new string[] { RangeStartDateColumn, RangeEndDateColumn, DateColumn }, StringComparer.OrdinalIgnoreCase);
+			}
 		}
 
 		#endregion
