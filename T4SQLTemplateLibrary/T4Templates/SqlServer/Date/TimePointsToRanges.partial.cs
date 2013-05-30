@@ -23,7 +23,7 @@ namespace T4SQL.SqlServer.Date
 			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
 			spec.AddProperty("SourceView", "schema.SourceTableOrView", null, "Source Table Or View");
 			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
-			spec.AddProperty("AttribColumns", "*", null, "A comma-separated list of attribute columns - '*' for all attributes");
+			spec.AddProperty("AttribColumns", "*", null, "* or a comma-separated list of attribute columns");
 			spec.AddProperty("DateColumn", "DATE_", null, "Source date column of time point");
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");

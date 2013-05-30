@@ -62,85 +62,85 @@ namespace T4SQL.SqlServer.Date
             
             #line default
             #line hidden
-            this.Write(",\r\n\t");
             
-            #line 13 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "S." + c))));
+            #line 12 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.Select(c => "S." + c).InsertRight()));
             
             #line default
             #line hidden
             this.Write("\r\nFROM\r\n\t");
             
-            #line 15 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 14 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceView));
             
             #line default
             #line hidden
             this.Write("\tS,\r\n\t");
             
-            #line 16 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 15 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyView));
             
             #line default
             #line hidden
             this.Write("\tD\r\nWHERE\r\n\t(\r\n\t\tS.");
             
-            #line 19 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 18 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RangeEndDateColumn));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 19 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 18 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(IsEndDateNext ? ">" : ">="));
             
             #line default
             #line hidden
             this.Write(" D.");
             
-            #line 19 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 18 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 20 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 19 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
  if (IsEndDateNullable) { 
             
             #line default
             #line hidden
             this.Write("\t\tOR S.");
             
-            #line 21 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 20 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RangeEndDateColumn));
             
             #line default
             #line hidden
             this.Write(" IS NULL\r\n");
             
-            #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 21 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t)\r\n\tAND S.");
             
-            #line 24 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 23 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RangeStartDateColumn));
             
             #line default
             #line hidden
             this.Write(" <= D.");
             
-            #line 24 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
+            #line 23 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeRangesToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
             
             #line default
             #line hidden
             this.Write(@"
 ;
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -162,8 +162,6 @@ namespace T4SQL.SqlServer.Date
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO
 ");
             return this.GenerationEnvironment.ToString();
         }

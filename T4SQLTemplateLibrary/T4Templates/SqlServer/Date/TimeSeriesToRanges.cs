@@ -58,11 +58,11 @@ namespace T4SQL.SqlServer.Date
             this.Write("\r\nSELECT\r\n\t");
             
             #line 12 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeSeriesToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.InsertLeft()));
             
             #line default
             #line hidden
-            this.Write(",\r\n\tMIN(");
+            this.Write("\r\n\tMIN(");
             
             #line 13 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimeSeriesToRanges.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
@@ -141,6 +141,7 @@ namespace T4SQL.SqlServer.Date
             #line hidden
             this.Write(@"
 ;
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -162,8 +163,6 @@ namespace T4SQL.SqlServer.Date
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO
 ");
             return this.GenerationEnvironment.ToString();
         }

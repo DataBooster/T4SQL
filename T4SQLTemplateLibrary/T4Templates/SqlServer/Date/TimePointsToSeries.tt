@@ -13,12 +13,11 @@ ALTER VIEW <#= ObjectView #> AS
 	{
 #>
 SELECT
-	D.<#= DailyDateColumn #>,
-	<#= string.Join(", ", SelectColumns.Select(c => "S." + c)) #>
+	D.<#= DailyDateColumn #><#= SelectColumns.Select(c => "S." + c).InsertRight() #>
 FROM
 	(
 		SELECT
-			<#= string.Join(", ", SelectColumns) #>,
+			<#= SelectColumns.InsertLeft() #>
 			<#= SourceDateColumn #>		AS START$DATE,
 			LEAD(<#= SourceDateColumn #>, 1, CAST('2999-12-31' AS DATE)) OVER (PARTITION BY <#= Key_Columns #> ORDER BY <#= SourceDateColumn #>)
 										AS EXPIRE$DATE
@@ -43,12 +42,11 @@ WITH TR AS
 		<#= SourceView #>
 )
 SELECT
-	D.<#= DailyDateColumn #>,
-	<#= string.Join(", ", SelectColumns.Select(c => "S." + c)) #>
+	D.<#= DailyDateColumn #><#= SelectColumns.Select(c => "S." + c).InsertRight() #>
 FROM
 	(
 		SELECT
-			<#= string.Join(", ", SelectColumns.Select(c => "t1." + c)) #>,
+			<#= SelectColumns.Select(c => "t1." + c).InsertLeft() #>
 			t1.<#= SourceDateColumn #>											AS START$DATE,
 			ISNULL(t2.<#= SourceDateColumn #>, CAST('2999-12-31' AS DATE))		AS EXPIRE$DATE
 		FROM
@@ -64,6 +62,7 @@ WHERE
 	}
 #>
 ;
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -85,5 +84,3 @@ WHERE
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO
