@@ -24,8 +24,8 @@ namespace T4SQL.SqlServer.Date
 			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
 			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
 			spec.AddProperty("SourceDateColumn", "DATE_", null, "Source date column of time point");
-			spec.AddProperty("AttribColumns", "*", null, "A comma-separated list of attribute columns - '*' for all");
-			spec.AddProperty("DailyView", "T4SQLDB.dbo.VW_ORDINAL_DATE", null, "Time Series base daily source table or view");
+			spec.AddProperty("AttribColumns", "*", null, "* or a comma-separated list of attribute columns");
+			spec.AddProperty("DailyView", "dbo.VW_ORDINAL_DATE", null, "Time Series base daily source table or view");
 			spec.AddProperty("DailyDateColumn", "DATE_", null, "The date column of daily source table or view");
 
 			return spec;

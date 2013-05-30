@@ -15,7 +15,7 @@ ALTER VIEW <#= ObjectView #> AS
 	{
 #>
 SELECT
-	<#= string.Join(", ", SelectColumns) #>,
+	<#= SelectColumns.InsertLeft() #>
 	<#= DateColumn #>		AS <#= RangeStartDateColumn #>,
 	LEAD(<#= tEndDateCol #>, 1<#= DefaultEndDate.IsNullString() ? "" : ", " + DefaultEndDate #>) OVER (PARTITION BY <#= Key_Columns #> ORDER BY <#= DateColumn #>)
 								AS <#= RangeEndDateColumn #>
@@ -37,7 +37,7 @@ WITH TR AS
 		<#= SourceView #>
 )
 SELECT
-	<#= string.Join(", ", SelectColumns.Select(c => "t1." + c)) #>,
+	<#= SelectColumns.Select(c => "t1." + c).InsertLeft() #>
 	t1.<#= DateColumn #>		AS <#= RangeStartDateColumn #>,
 	<#= tEndDateCol #>			AS <#= RangeEndDateColumn #>
 FROM
@@ -48,6 +48,7 @@ FROM
 	}
 #>
 ;
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -69,5 +70,3 @@ FROM
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO

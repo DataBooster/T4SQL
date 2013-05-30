@@ -70,11 +70,11 @@ namespace T4SQL.SqlServer.Date
             this.Write("SELECT\r\n\t");
             
             #line 18 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.InsertLeft()));
             
             #line default
             #line hidden
-            this.Write(",\r\n\t");
+            this.Write("\r\n\t");
             
             #line 19 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
@@ -167,11 +167,11 @@ namespace T4SQL.SqlServer.Date
             this.Write("\r\n)\r\nSELECT\r\n\t");
             
             #line 40 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "t1." + c))));
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.Select(c => "t1." + c).InsertLeft()));
             
             #line default
             #line hidden
-            this.Write(",\r\n\tt1.");
+            this.Write("\r\n\tt1.");
             
             #line 41 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToRanges.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
@@ -216,6 +216,7 @@ namespace T4SQL.SqlServer.Date
             #line default
             #line hidden
             this.Write(@";
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -237,8 +238,6 @@ namespace T4SQL.SqlServer.Date
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO
 ");
             return this.GenerationEnvironment.ToString();
         }

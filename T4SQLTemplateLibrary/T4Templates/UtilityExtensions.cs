@@ -65,6 +65,26 @@ namespace T4SQL
 			return splitter.Matches(input + separator).Cast<Match>().Select(m => m.Groups["item"].Value.Trim());
 		}
 
+		public static string InsertLeft(this string str, string separator = ", ")
+		{
+			return string.IsNullOrEmpty(str) ? string.Empty : str + separator;
+		}
+
+		public static string InsertLeft(this IEnumerable<string> values, string separator = ", ")
+		{
+			return InsertLeft(string.Join(separator, values), separator);
+		}
+
+		public static string InsertRight(this string str, string separator = ", ")
+		{
+			return string.IsNullOrEmpty(str) ? string.Empty : separator + str;
+		}
+
+		public static string InsertRight(this IEnumerable<string> values, string separator = ", ")
+		{
+			return InsertRight(string.Join(separator, values), separator);
+		}
+
 		public static string GetTemplateName(this ITemplate templateClass)
 		{
 			return templateClass.GetType().FullName;

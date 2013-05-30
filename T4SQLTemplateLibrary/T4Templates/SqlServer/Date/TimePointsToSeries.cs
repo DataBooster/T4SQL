@@ -72,79 +72,78 @@ namespace T4SQL.SqlServer.Date
             
             #line default
             #line hidden
-            this.Write(",\r\n\t");
             
-            #line 17 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "S." + c))));
+            #line 16 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.Select(c => "S." + c).InsertRight()));
             
             #line default
             #line hidden
             this.Write("\r\nFROM\r\n\t(\r\n\t\tSELECT\r\n\t\t\t");
             
-            #line 21 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns)));
+            #line 20 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.InsertLeft()));
             
             #line default
             #line hidden
-            this.Write(",\r\n\t\t\t");
+            this.Write("\r\n\t\t\t");
             
-            #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 21 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
             #line hidden
             this.Write("\t\tAS START$DATE,\r\n\t\t\tLEAD(");
             
-            #line 23 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
             #line hidden
             this.Write(", 1, CAST(\'2999-12-31\' AS DATE)) OVER (PARTITION BY ");
             
-            #line 23 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Key_Columns));
             
             #line default
             #line hidden
             this.Write(" ORDER BY ");
             
-            #line 23 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
             #line hidden
             this.Write(")\r\n\t\t\t\t\t\t\t\t\t\tAS EXPIRE$DATE\r\n\t\tFROM\r\n\t\t\t");
             
-            #line 26 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 25 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceView));
             
             #line default
             #line hidden
             this.Write("\r\n\t)\tS,\r\n\t");
             
-            #line 28 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 27 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyView));
             
             #line default
             #line hidden
             this.Write("\tD\r\nWHERE\r\n\t\tS.EXPIRE$DATE > D.");
             
-            #line 30 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 29 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyDateColumn));
             
             #line default
             #line hidden
             this.Write("\r\n\tAND S.START$DATE <= D.");
             
-            #line 31 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 30 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyDateColumn));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 32 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 31 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
 
 	}
 	else									// SQL Server 2008, 2005
@@ -155,56 +154,55 @@ namespace T4SQL.SqlServer.Date
             #line hidden
             this.Write("WITH TR AS\r\n(\r\n\tSELECT\r\n\t\t*,\r\n\t\tROW_NUMBER() OVER (PARTITION BY ");
             
-            #line 41 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 40 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Key_Columns));
             
             #line default
             #line hidden
             this.Write(" ORDER BY ");
             
-            #line 41 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 40 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
             #line hidden
             this.Write(") AS ROW$NUMBER\r\n\tFROM\r\n\t\t");
             
-            #line 43 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 42 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceView));
             
             #line default
             #line hidden
             this.Write("\r\n)\r\nSELECT\r\n\tD.");
             
-            #line 46 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 45 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyDateColumn));
             
             #line default
             #line hidden
-            this.Write(",\r\n\t");
             
-            #line 47 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "S." + c))));
+            #line 45 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.Select(c => "S." + c).InsertRight()));
             
             #line default
             #line hidden
             this.Write("\r\nFROM\r\n\t(\r\n\t\tSELECT\r\n\t\t\t");
             
-            #line 51 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", SelectColumns.Select(c => "t1." + c))));
+            #line 49 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.Select(c => "t1." + c).InsertLeft()));
             
             #line default
             #line hidden
-            this.Write(",\r\n\t\t\tt1.");
+            this.Write("\r\n\t\t\tt1.");
             
-            #line 52 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 50 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
             #line hidden
             this.Write("\t\t\t\t\t\t\t\t\t\t\tAS START$DATE,\r\n\t\t\tISNULL(t2.");
             
-            #line 53 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 51 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceDateColumn));
             
             #line default
@@ -212,35 +210,35 @@ namespace T4SQL.SqlServer.Date
             this.Write(", CAST(\'2999-12-31\' AS DATE))\t\tAS EXPIRE$DATE\r\n\t\tFROM\r\n\t\t\tTR t1 LEFT OUTER JOIN\r\n" +
                     "\t\t\tTR t2 ON (");
             
-            #line 56 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 54 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(" AND ", KeyColumns.Select(k => string.Format(@"t1.{0} = t2.{0}", k)))));
             
             #line default
             #line hidden
             this.Write("\r\n\t\t\t\tAND t1.ROW$NUMBER + 1 = t2.ROW$NUMBER)\r\n\t)\tS,\r\n\t");
             
-            #line 59 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 57 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyView));
             
             #line default
             #line hidden
             this.Write("\tD\r\nWHERE\r\n\t\tS.EXPIRE$DATE > D.");
             
-            #line 61 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 59 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyDateColumn));
             
             #line default
             #line hidden
             this.Write("\r\n\tAND S.START$DATE <= D.");
             
-            #line 62 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 60 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DailyDateColumn));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 63 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
+            #line 61 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Date\TimePointsToSeries.tt"
 
 	}
 
@@ -248,6 +246,7 @@ namespace T4SQL.SqlServer.Date
             #line default
             #line hidden
             this.Write(@";
+GO
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -269,8 +268,6 @@ namespace T4SQL.SqlServer.Date
 --	(Keep code clean)
 --
 ----------------------------------------------------------------------------------------------------
-
-GO
 ");
             return this.GenerationEnvironment.ToString();
         }
