@@ -9,7 +9,7 @@ using T4SQL;
 namespace T4SQL.SqlServer.Date
 {
 	[Description("Transform time points (turning points) data into time series (daily) data.")]
-	public partial class TimePointsToSeries : ITemplate, ITemplateProperties
+	public partial class VTimePointsToSeries : ITemplate, ITemplateProperties
 	{
 		#region Implement ITemplate Properties
 		public TemplateContext Context { get; set; }
@@ -49,8 +49,8 @@ namespace T4SQL.SqlServer.Date
 		{
 			get
 			{
-				return KeyColumns.Union(Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("AttribColumns")),
-					StringComparer.OrdinalIgnoreCase).Except(new string[] { SourceDateColumn }, StringComparer.OrdinalIgnoreCase);
+				return KeyColumns.UnionColumns(Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("AttribColumns")))
+					.ExceptColumns(new string[] { SourceDateColumn });
 			}
 		}
 

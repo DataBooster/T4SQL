@@ -13,14 +13,14 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAABAABEAAAIAACgAAAwAAAAAAAABCAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAgEDAgBEAAAIAACgAEAAAAAAAAAABCABA=</HashCode>
       <FileName>TemplateContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="T4SQL.UtilityExtensions">
     <Position X="5.25" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAACACAAAAAAAA=</HashCode>
+      <HashCode>AwMAAAAAABAAAAAgAAAAAAgQAAABAAAACACAAgAAAAA=</HashCode>
       <FileName>UtilityExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -37,15 +37,22 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAgCAAA=</HashCode>
       <FileName>TemplateSpec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="T4SQL.ServerEnvironment">
     <Position X="7.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAACAAAAAAIACAAAAAAAAAAAAAAwAAAAAAAAJAAAA=</HashCode>
       <FileName>ServerEnvironment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.ColumnComparer">
+    <Position X="7.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIQAAABAAAAgAAA=</HashCode>
+      <FileName>ColumnComparer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="T4SQL.ITemplate">

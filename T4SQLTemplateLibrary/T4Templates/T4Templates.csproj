@@ -45,41 +45,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnComparer.cs" />
     <Compile Include="ITemplate.cs" />
     <Compile Include="ITemplateProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEnvironment.cs" />
-    <Compile Include="SqlServer\Date\TimePointsToRanges.cs">
+    <Compile Include="SqlServer\Date\VTimePointsToRanges.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TimePointsToRanges.tt</DependentUpon>
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimePointsToRanges.partial.cs">
-      <DependentUpon>TimePointsToRanges.tt</DependentUpon>
+    <Compile Include="SqlServer\Date\VTimePointsToRanges.partial.cs">
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimePointsToSeries.cs">
+    <Compile Include="SqlServer\Date\VTimePointsToSeries.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TimePointsToSeries.tt</DependentUpon>
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimePointsToSeries.partial.cs">
-      <DependentUpon>TimePointsToSeries.tt</DependentUpon>
+    <Compile Include="SqlServer\Date\VTimePointsToSeries.partial.cs">
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimeRangesToSeries.cs">
+    <Compile Include="SqlServer\Date\VTimeRangesToSeries.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TimeRangesToSeries.tt</DependentUpon>
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimeRangesToSeries.partial.cs">
-      <DependentUpon>TimeRangesToSeries.tt</DependentUpon>
+    <Compile Include="SqlServer\Date\VTimeRangesToSeries.partial.cs">
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimeSeriesToRanges.cs">
+    <Compile Include="SqlServer\Date\VTimeSeriesToRanges.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TimeSeriesToRanges.tt</DependentUpon>
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
     </Compile>
-    <Compile Include="SqlServer\Date\TimeSeriesToRanges.partial.cs">
-      <DependentUpon>TimeSeriesToRanges.tt</DependentUpon>
+    <Compile Include="SqlServer\Date\VTimeSeriesToRanges.partial.cs">
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
     </Compile>
     <Compile Include="TemplateContext.cs" />
     <Compile Include="TemplateSpec.cs" />
@@ -89,21 +90,21 @@
     <Folder Include="Oracle\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SqlServer\Date\TimePointsToRanges.tt">
+    <None Include="SqlServer\Date\VTimePointsToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>TimePointsToRanges.cs</LastGenOutput>
+      <LastGenOutput>VTimePointsToRanges.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\TimePointsToSeries.tt">
+    <None Include="SqlServer\Date\VTimePointsToSeries.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>TimePointsToSeries.cs</LastGenOutput>
+      <LastGenOutput>VTimePointsToSeries.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\TimeRangesToSeries.tt">
+    <None Include="SqlServer\Date\VTimeRangesToSeries.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>TimeRangesToSeries.cs</LastGenOutput>
+      <LastGenOutput>VTimeRangesToSeries.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\TimeSeriesToRanges.tt">
+    <None Include="SqlServer\Date\VTimeSeriesToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>TimeSeriesToRanges.cs</LastGenOutput>
+      <LastGenOutput>VTimeSeriesToRanges.cs</LastGenOutput>
     </None>
     <None Include="T4Templates.cd" />
   </ItemGroup>
