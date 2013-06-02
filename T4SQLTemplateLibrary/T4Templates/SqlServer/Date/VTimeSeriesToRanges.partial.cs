@@ -9,7 +9,7 @@ using T4SQL;
 namespace T4SQL.SqlServer.Date
 {
 	[Description("Transform time series (daily) data into time ranges data (start_date - end_date).")]
-	public partial class TimeSeriesToRanges : ITemplate, ITemplateProperties
+	public partial class VTimeSeriesToRanges : ITemplate, ITemplateProperties
 	{
 		#region Implement ITemplate Properties
 		public TemplateContext Context { get; set; }
@@ -49,7 +49,7 @@ namespace T4SQL.SqlServer.Date
 			get
 			{
 				return Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("SelectColumns"))
-					.Except(new string[] { DateColumn, RangeStartDateColumn, RangeEndDateColumn }, StringComparer.OrdinalIgnoreCase);
+					.ExceptColumns(new string[] { DateColumn, RangeStartDateColumn, RangeEndDateColumn });
 			}
 		}
 

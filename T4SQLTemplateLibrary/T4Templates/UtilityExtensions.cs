@@ -8,6 +8,13 @@ namespace T4SQL
 {
 	public static class UtilityExtensions
 	{
+		private static readonly ColumnComparer _ColumnComparer;
+
+		static UtilityExtensions()
+		{
+			_ColumnComparer = new ColumnComparer();
+		}
+
 		public static string GetDescriptionAttribute(this Type clsType)
 		{
 			Object[] fnds = clsType.GetCustomAttributes(typeof(DescriptionAttribute), false);
@@ -105,6 +112,26 @@ namespace T4SQL
 			}
 
 			return null;
+		}
+
+		public static IEnumerable<string> UnionColumns(this IEnumerable<string> first, IEnumerable<string> second)
+		{
+			return first.Union(second, _ColumnComparer);
+		}
+
+		public static IEnumerable<string> ExceptColumns(this IEnumerable<string> first, IEnumerable<string> second)
+		{
+			return first.Except(second, _ColumnComparer);
+		}
+
+		public static IEnumerable<string> IntersectColumns(this IEnumerable<string> first, IEnumerable<string> second)
+		{
+			return first.Intersect(second, _ColumnComparer);
+		}
+
+		public static IEnumerable<string> DistinctColumns(this IEnumerable<string> source)
+		{
+			return source.Distinct(_ColumnComparer);
 		}
 	}
 }
