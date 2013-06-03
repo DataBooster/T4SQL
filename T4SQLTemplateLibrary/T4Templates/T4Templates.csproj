@@ -66,6 +66,14 @@
     <Compile Include="SqlServer\Date\VTimePointsToSeries.partial.cs">
       <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\Date\VTimeRangesCheckSum.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Date\VTimeRangesCheckSum.partial.cs">
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\Date\VTimeRangesToSeries.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +89,22 @@
     </Compile>
     <Compile Include="SqlServer\Date\VTimeSeriesToRanges.partial.cs">
       <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Pivot\VPivot.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Pivot\VPivot.partial.cs">
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Pivot\VUnpivot.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VUnpivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Pivot\VUnpivot.partial.cs">
+      <DependentUpon>VUnpivot.tt</DependentUpon>
     </Compile>
     <Compile Include="TemplateContext.cs" />
     <Compile Include="TemplateSpec.cs" />
@@ -98,6 +122,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimePointsToSeries.cs</LastGenOutput>
     </None>
+    <None Include="SqlServer\Date\VTimeRangesCheckSum.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VTimeRangesCheckSum.cs</LastGenOutput>
+    </None>
     <None Include="SqlServer\Date\VTimeRangesToSeries.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeRangesToSeries.cs</LastGenOutput>
@@ -105,6 +133,14 @@
     <None Include="SqlServer\Date\VTimeSeriesToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeSeriesToRanges.cs</LastGenOutput>
+    </None>
+    <None Include="SqlServer\Pivot\VPivot.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VPivot.cs</LastGenOutput>
+    </None>
+    <None Include="SqlServer\Pivot\VUnpivot.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VUnpivot.cs</LastGenOutput>
     </None>
     <None Include="T4Templates.cd" />
   </ItemGroup>
