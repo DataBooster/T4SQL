@@ -30,7 +30,7 @@ namespace T4SQL
 			if (string.IsNullOrWhiteSpace(specificColumns) || specificColumns.Trim() == "*")
 				return _fListTableColumns(tableName);
 			else
-				return specificColumns.SplitToCollection();
+				return specificColumns.SplitColumns();
 		}
 	}
 }

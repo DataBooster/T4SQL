@@ -9,10 +9,95 @@ namespace T4SQL
 	public static class UtilityExtensions
 	{
 		private static readonly ColumnComparer _ColumnComparer;
+		private static readonly Regex _ColumnSplitter;
+		private static readonly Regex _ColumnAliasModel1, _ColumnAliasModel2;
+		private static readonly Regex _AggFunFmt;
 
 		static UtilityExtensions()
 		{
 			_ColumnComparer = new ColumnComparer();
+
+			_ColumnSplitter = new Regex(@"\G(?<column>" +
+				@"(""[^""]*""" +
+				@"|'[^']*'" +
+				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
+				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
+				@"|[^,\(\[\{""]*" +
+				@")+),");
+
+			_ColumnAliasModel1 = new Regex(@"^\s*(?<expr>" +
+				@"(""[^""]*""" +
+				@"|'[^']*'" +
+				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
+				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
+				@"|[^\(\[\{""=]*?" +
+				@")+)\s*(?<!\.)(\b[aA][sS]\b)?\s*" +
+				@"(?<alias>" +
+				@"((?<ls>\[)[^\[\]]+)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|""[^""]+""" +
+				@"|'[^']+'" +
+				@"|[^'\[""\s]+" +
+				@")?\s*$");
+
+			_ColumnAliasModel2 = new Regex(@"^\s*(?<alias>" +
+				@"((?<ls>\[)[^\[\]]+)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|""[^""]+""" +
+				@"|'[^']+'" +
+				@"|[^'\[""\s=]+" +
+				@")\s*=\s*(?<expr>" +
+				@"(""[^""]*""" +
+				@"|'[^']*'" +
+				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
+				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
+				@"|[^\(\[\{""]*?" +
+				@")+)\s*$");
+
+			_AggFunFmt = new Regex(@"^\s*(?<fun>[^(]+)\s*(\(\s*(?<fmt>\{.+\})?\s*\)\s*)?$");
+		}
+
+		public static IEnumerable<string> SplitColumns(this string columns)
+		{
+			return _ColumnSplitter.Matches(columns + ",").Cast<Match>().Select(m => m.Groups["column"].Value.Trim());
+		}
+
+		public static Tuple<string, string> SegmentColumnAlias(this string columnClause)
+		{
+			string columnExpr, columnAlias = null;
+			Match mc = _ColumnAliasModel1.Match(columnClause);
+
+			if (mc.Success == false)
+				mc = _ColumnAliasModel2.Match(columnClause);
+
+			if (mc.Success)
+			{
+				Group ga = mc.Groups["alias"];
+				columnExpr = mc.Groups["expr"].Value;
+
+				if (ga.Success)
+					columnAlias = ga.Value;
+			}
+			else
+				columnExpr = columnClause;
+
+			return Tuple.Create(columnExpr, columnAlias);
+		}
+
+		public static string NormalizeAggFunFmt(this string aggFunFmt)
+		{
+			Match m = _AggFunFmt.Match(aggFunFmt);
+
+			if (m.Success)
+			{
+				Group gp = m.Groups["fmt"];
+				string fmt = gp.Success ? gp.Value : "{0}";
+
+				return string.Format(@"{0}({1})", m.Groups["fun"].Value.TrimEnd(), fmt);
+			}
+			else
+				return aggFunFmt;
 		}
 
 		public static string GetDescriptionAttribute(this Type clsType)
@@ -62,14 +147,6 @@ namespace T4SQL
 				return true;
 			else
 				return false;
-		}
-
-		public static IEnumerable<string> SplitToCollection(this string input, char separator = ',', char leftQuote = '"', char rightQuote = '"')
-		{
-			Regex splitter = new Regex(string.Format(@"\G(?<item>([^{0}{1}]*[{1}][^{2}]*[{2}][^{0}{1}]*)+|[^{0}]*)[{0}]",
-				Regex.Escape(new string(separator, 1)), Regex.Escape(new string(leftQuote, 1)), Regex.Escape(new string(rightQuote, 1))));
-
-			return splitter.Matches(input + separator).Cast<Match>().Select(m => m.Groups["item"].Value.Trim());
 		}
 
 		public static string InsertLeft(this string str, string separator = ", ")

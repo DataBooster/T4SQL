@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using T4SQL;
 
-namespace T4SQL.SqlServer.Date
+namespace T4SQL.SqlServer.Pivot
 {
-	[Description("Transform time points (turning points) data into time series (daily) data.")]
-	public partial class VTimePointsToSeries : ITemplate, ITemplateProperties
+	[Description("Unpivot")]
+	public partial class VUnpivot : ITemplate, ITemplateProperties
 	{
 		#region Implement ITemplate Properties
 		public TemplateContext Context { get; set; }
@@ -22,11 +22,10 @@ namespace T4SQL.SqlServer.Date
 
 			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
 			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude the date column of time point");
-			spec.AddProperty("SourceDateColumn", "DATE_", null, "Source date column of time point");
-			spec.AddProperty("AttribColumns", "*", null, "* or a comma-separated list of attribute columns");
-			spec.AddProperty("DailyView", "dbo.VW_ORDINAL_DATE", null, "Time Series base daily source table or view");
-			spec.AddProperty("DailyDateColumn", "DATE_", null, "The date column of daily source table or view");
+			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "Non-pivoted columns");
+			spec.AddProperty("ValueColumn", "MEASURE_COL", null, "Specify a name for each output column that will hold measure values");
+			spec.AddProperty("PivotColumn", "TYPE_COL", null, "Specify a name for each output column that will hold descriptor values");
+			spec.AddProperty("UnpivotColumns", "*", null, "Specify the input data columns whose names will become values in the output columns");
 
 			return spec;
 		}
@@ -38,19 +37,32 @@ namespace T4SQL.SqlServer.Date
 		public Version DbmsVersion { get { return Context.DbServerEnv.ProductVersion; } }
 		public string ObjectView { get { return this.GetPropertyValue("ObjectView"); } }
 		public string SourceView { get { return this.GetPropertyValue("SourceView"); } }
+		public string ValueColumn { get { return this.GetPropertyValue("ValueColumn"); } }
+		public string PivotColumn { get { return this.GetPropertyValue("PivotColumn"); } }
 
-		public string Key_Columns { get { return this.GetPropertyValue("KeyColumns"); } }
-		public string SourceDateColumn { get { return this.GetPropertyValue("SourceDateColumn"); } }
-		public string DailyView { get { return this.GetPropertyValue("DailyView"); } }
-		public string DailyDateColumn { get { return this.GetPropertyValue("DailyDateColumn"); } }
-		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitColumns(); } }
-
-		public IEnumerable<string> SelectColumns
+		private IEnumerable<string> NonPivotedColumns
 		{
 			get
 			{
-				return KeyColumns.UnionColumns(Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("AttribColumns")))
-					.ExceptColumns(new string[] { SourceDateColumn });
+				return this.GetPropertyValue("NonPivotedColumns").SplitColumns();
+			}
+		}
+
+		public string UnpivotInColumns
+		{
+			get
+			{
+				return string.Join(", ",
+					Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("UnpivotColumns"))
+					.ExceptColumns(NonPivotedColumns));
+			}
+		}
+
+		public string SelectColumns
+		{
+			get
+			{
+				return string.Join(", ", NonPivotedColumns.UnionColumns(new string[] {PivotColumn, ValueColumn}));
 			}
 		}
 
@@ -67,7 +79,7 @@ namespace T4SQL.SqlServer.Date
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎May ‎15, ‎2013, ‏‎11:30:25 PM
+//	Created Date:		‎‎June ‎02, ‎2013, ‏‎11:06:38 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment
