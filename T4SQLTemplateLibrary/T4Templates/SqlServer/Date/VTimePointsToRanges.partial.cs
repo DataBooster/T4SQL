@@ -47,7 +47,7 @@ namespace T4SQL.SqlServer.Date
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
 		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
-		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitToCollection(); } }
+		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitColumns(); } }
 
 		public IEnumerable<string> SelectColumns
 		{
