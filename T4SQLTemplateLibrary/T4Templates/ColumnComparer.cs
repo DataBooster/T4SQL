@@ -9,7 +9,8 @@ namespace T4SQL
 
 		static ColumnComparer()
 		{
-			_ColumnRegex = new Regex(@"^(\s*(\[.*?\]|\"".*?\""|\S*)\s*\.+)*\s*(\[(?<sb>.*?)\]|\""(?<dq>.*?)\""|(?<ns>\S*))\s*$");
+			_ColumnRegex = new Regex(@"^(\s*(\[.*?\]|\"".*?\""|\S*)\s*\.+)*\s*(\[(?<sb>.*?)\]|\""(?<dq>.*?)\""|(?<ns>\S*))\s*$",
+				RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 		}
 
 		private string ExtractColumnName(string quoteName)
