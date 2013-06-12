@@ -10,7 +10,7 @@ namespace T4SQL
 	{
 		private static readonly ColumnComparer _ColumnComparer;
 		private static readonly Regex _ColumnSplitter;
-		private static readonly Regex _ColumnAliasModel1, _ColumnAliasModel2;
+		private static readonly Regex[] _ColumnAliasModels;
 		private static readonly Regex _AggFunFmt;
 
 		static UtilityExtensions()
@@ -24,38 +24,50 @@ namespace T4SQL
 				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
 				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
 				@"|[^,\(\[\{""]*" +
-				@")+),");
+				@")+),",
+				RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 
-			_ColumnAliasModel1 = new Regex(@"^\s*(?<expr>" +
-				@"(""[^""]*""" +
-				@"|'[^']*'" +
-				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
-				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
-				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
-				@"|[^\(\[\{""=]*?" +
-				@")+)\s*(?<!\.)(\b[aA][sS]\b)?\s*" +
-				@"(?<alias>" +
-				@"((?<ls>\[)[^\[\]]+)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
-				@"|""[^""]+""" +
-				@"|'[^']+'" +
-				@"|[^'\[""\s]+" +
-				@")?\s*$");
+			_ColumnAliasModels = new Regex[] {
+				new Regex(@"^(?<expr>" +
+				    @"[\w@#][\w@$]*" +
+				    @"|""[^""]*""" +
+				    @"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
+				    @"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+(?(lp)(?!))" +
+				    @"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+(?(lb)(?!))" +
+				    @"|'[^']*'" +
+				    @")$",
+				    RegexOptions.ExplicitCapture | RegexOptions.Compiled),
 
-			_ColumnAliasModel2 = new Regex(@"^\s*(?<alias>" +
-				@"((?<ls>\[)[^\[\]]+)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
-				@"|""[^""]+""" +
-				@"|'[^']+'" +
-				@"|[^'\[""\s=]+" +
-				@")\s*=\s*(?<expr>" +
-				@"(""[^""]*""" +
-				@"|'[^']*'" +
-				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
-				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
-				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
-				@"|[^\(\[\{""]*?" +
-				@")+)\s*$");
+				new Regex(@"^(?<expr>" +
+				    @"(([^\(\[\{""'\w@#$\s][^\(\[\{""'\w@#$]*)?" +
+				    @"(""[^""]*""" +
+				    @"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
+				    @"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+(?(lp)(?!))" +
+				    @"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+(?(lb)(?!))" +
+				    @"|'[^']*'" +
+				    @"|(?(\b[aA][sS]\b)(?!)|\b[\w@#][\w@$]*\b)" +
+				    @")|\s+" +
+				    @")+)" +
+					@"(\b[aA][sS]\b\s*)?" +
+					@"(?<alias>" +
+					@"((?<lsa>\[)[^\[\]]*)+((?<rsa-lsa>\])(?(lsa)[^\[\]]*))+(?(lsa)(?!))" +
+				    @"|""[^""]+""" +
+				    @"|'[^']+'" +
+				    @"|\b[\w@#][^'\[\]""=\s]*" +
+				    @")$",
+				    RegexOptions.ExplicitCapture | RegexOptions.Compiled),
 
-			_AggFunFmt = new Regex(@"^\s*(?<fun>[^(]+)\s*(\(\s*(?<fmt>\{.+\})?\s*\)\s*)?$");
+				new Regex(@"^(?<alias>" +
+					@"((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
+					@"|""[^""]+""" +
+					@"|'[^']+'" +
+					@"|[^'\[""=]+" +
+					@")\s*=\s*(?<expr>\S.*)$",
+					RegexOptions.ExplicitCapture | RegexOptions.Compiled)
+			};
+
+			_AggFunFmt = new Regex(@"^\s*(?<fun>[^(]+)\s*(\(\s*(?<fmt>\{.+\})?\s*\)\s*)?$",
+				RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 		}
 
 		public static IEnumerable<string> SplitColumns(this string columns)
@@ -66,18 +78,30 @@ namespace T4SQL
 		public static Tuple<string, string> SegmentColumnAlias(this string columnClause)
 		{
 			string columnExpr, columnAlias = null;
-			Match mc = _ColumnAliasModel1.Match(columnClause);
+			Match mc = null;
 
-			if (mc.Success == false)
-				mc = _ColumnAliasModel2.Match(columnClause);
+			columnClause = columnClause.Trim();
+
+			foreach (Regex columnAliasModel in _ColumnAliasModels)
+			{
+				mc = columnAliasModel.Match(columnClause);
+
+				if (mc.Success)
+					break;
+			}
 
 			if (mc.Success)
 			{
 				Group ga = mc.Groups["alias"];
-				columnExpr = mc.Groups["expr"].Value;
+				columnExpr = mc.Groups["expr"].Value.TrimEnd();
 
 				if (ga.Success)
-					columnAlias = ga.Value;
+				{
+					columnAlias = ga.Value.TrimEnd();
+
+					if (columnAlias.Equals("AS", StringComparison.OrdinalIgnoreCase))
+						columnAlias = null;
+				}
 			}
 			else
 				columnExpr = columnClause;
