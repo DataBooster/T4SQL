@@ -90,6 +90,14 @@
     <Compile Include="SqlServer\Date\VTimeSeriesToRanges.partial.cs">
       <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\Grouping\VGroupingSets.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\Grouping\VGroupingSets.partial.cs">
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\Pivot\VPivot.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +141,10 @@
     <None Include="SqlServer\Date\VTimeSeriesToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeSeriesToRanges.cs</LastGenOutput>
+    </None>
+    <None Include="SqlServer\Grouping\VGroupingSets.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VGroupingSets.cs</LastGenOutput>
     </None>
     <None Include="SqlServer\Pivot\VPivot.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

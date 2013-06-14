@@ -5,12 +5,21 @@ namespace T4SQL
 {
 	public class ColumnComparer : StringComparer
 	{
-		private static readonly Regex _ColumnRegex;
+		private static readonly Regex _ColumnExtract, _ColumnDequote;
 
 		static ColumnComparer()
 		{
-			_ColumnRegex = new Regex(@"^(\s*(\[.*?\]|\"".*?\""|\S*)\s*\.+)*\s*(\[(?<sb>.*?)\]|\""(?<dq>.*?)\""|(?<ns>\S*))\s*$",
+			_ColumnExtract = new Regex(@"(?<col>" +
+				@"(""[^""]*""" +
+				@"|'[^']*'" +
+				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+(?(lp)(?!))" +
+				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
+				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+(?(lb)(?!))" +
+				@"|[^\(\[\{""'\.]*" +
+				@")+)\.",
 				RegexOptions.ExplicitCapture | RegexOptions.Compiled);
+
+			_ColumnDequote = new Regex(@"^""(?<dq>.*)""$|^'(?<dq>.*)'$|^\[(?<dq>.*)\]$|^\((?<dq>.*)\)$|^\{(?<dq>.*)\}$");
 		}
 
 		private string ExtractColumnName(string quoteName)
@@ -18,25 +27,16 @@ namespace T4SQL
 			if (string.IsNullOrEmpty(quoteName))
 				return quoteName;
 
-			Match match = _ColumnRegex.Match(quoteName);
+			MatchCollection mcs = _ColumnExtract.Matches(quoteName + ".");
+			Match lastMatch = null;
 
-			if (match.Success)
-			{
-				Group col = match.Groups["sb"];
+			foreach (Match m in mcs)
+				lastMatch = m;
 
-				if (col.Success == false)
-				{
-					col = match.Groups["dq"];
+			if (lastMatch != null)
+				quoteName = lastMatch.Groups["col"].Value;
 
-					if (col.Success == false)
-						col = match.Groups["ns"];
-				}
-
-				if (col.Success)
-					return col.Value.ToUpperInvariant();
-			}
-
-			return quoteName.ToUpperInvariant();
+			return _ColumnDequote.Replace(quoteName.Trim(), @"${dq}").ToUpperInvariant();
 		}
 
 		public override int Compare(string x, string y)
