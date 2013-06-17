@@ -8,15 +8,12 @@ namespace T4SQL
 {
 	public static class UtilityExtensions
 	{
-		private static readonly ColumnComparer _ColumnComparer;
 		private static readonly Regex _ColumnSplitter;
 		private static readonly Regex[] _ColumnAliasModels;
 		private static readonly Regex _AggFunFmt;
 
 		static UtilityExtensions()
 		{
-			_ColumnComparer = new ColumnComparer();
-
 			_ColumnSplitter = new Regex(@"\G(?<column>" +
 				@"(""[^""]*""" +
 				@"|'[^']*'" +
@@ -41,9 +38,9 @@ namespace T4SQL
 				new Regex(@"^(?<expr>" +
 				    @"(([^\(\[\{""'\w@#$\s][^\(\[\{""'\w@#$]*)?" +
 				    @"(""[^""]*""" +
-				    @"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
-				    @"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+(?(lp)(?!))" +
-				    @"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+(?(lb)(?!))" +
+				    @"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				    @"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
+				    @"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
 				    @"|'[^']*'" +
 				    @"|(?(\b[aA][sS]\b)(?!)|\b[\w@#][\w@$]*\b)" +
 				    @")|\s+" +
@@ -217,22 +214,22 @@ namespace T4SQL
 
 		public static IEnumerable<string> UnionColumns(this IEnumerable<string> first, IEnumerable<string> second)
 		{
-			return first.Union(second, _ColumnComparer);
+			return first.Union(second, ColumnComparer.Dequote);
 		}
 
 		public static IEnumerable<string> ExceptColumns(this IEnumerable<string> first, IEnumerable<string> second)
 		{
-			return first.Except(second, _ColumnComparer);
+			return first.Except(second, ColumnComparer.Dequote);
 		}
 
 		public static IEnumerable<string> IntersectColumns(this IEnumerable<string> first, IEnumerable<string> second)
 		{
-			return first.Intersect(second, _ColumnComparer);
+			return first.Intersect(second, ColumnComparer.Dequote);
 		}
 
 		public static IEnumerable<string> DistinctColumns(this IEnumerable<string> source)
 		{
-			return source.Distinct(_ColumnComparer);
+			return source.Distinct(ColumnComparer.Dequote);
 		}
 	}
 }
