@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnComparer.cs" />
+    <Compile Include="GroupingColumnSet.cs" />
     <Compile Include="ITemplate.cs" />
     <Compile Include="ITemplateProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

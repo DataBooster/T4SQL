@@ -5,6 +5,7 @@ namespace T4SQL
 {
 	public class ColumnComparer : StringComparer
 	{
+		private static readonly ColumnComparer _DequoteComparer;
 		private static readonly Regex _ColumnExtract, _ColumnDequote;
 
 		static ColumnComparer()
@@ -12,15 +13,19 @@ namespace T4SQL
 			_ColumnExtract = new Regex(@"(?<col>" +
 				@"(""[^""]*""" +
 				@"|'[^']*'" +
-				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+(?(lp)(?!))" +
-				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+(?(ls)(?!))" +
-				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+(?(lb)(?!))" +
+				@"|((?<lp>\()[^\(\)]*)+((?<rp-lp>\))(?(lp)[^\(\)]*))+" +
+				@"|((?<ls>\[)[^\[\]]*)+((?<rs-ls>\])(?(ls)[^\[\]]*))+" +
+				@"|((?<lb>\{)[^\{\}]*)+((?<rb-lb>\})(?(lb)[^\{\}]*))+" +
 				@"|[^\(\[\{""'\.]*" +
 				@")+)\.",
 				RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 
 			_ColumnDequote = new Regex(@"^""(?<dq>.*)""$|^'(?<dq>.*)'$|^\[(?<dq>.*)\]$|^\((?<dq>.*)\)$|^\{(?<dq>.*)\}$");
+
+			_DequoteComparer = new ColumnComparer();
 		}
+
+		public static ColumnComparer Dequote { get { return _DequoteComparer; } }
 
 		private string ExtractColumnName(string quoteName)
 		{
