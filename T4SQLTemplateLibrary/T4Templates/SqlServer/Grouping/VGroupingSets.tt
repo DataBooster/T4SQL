@@ -19,11 +19,11 @@ SELECT
 	<#= AggregateExprs #>
 FROM
 	<#= SourceView #>
-	<#= SourceFilter.InsertRight("WHERE\r\n		") #>
+<#= SourceFilter.InsertRight("WHERE\r\n		") #>
 GROUP BY
+	<#= SimpleGroupByColumns.InsertLeft() #>
 	GROUPING SETS
 	(
-		<#= SimpleGroupByColumns.InsertLeft() #>
 		<#= Grouping_Sets #>
 	)
 ;
