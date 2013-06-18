@@ -24,7 +24,7 @@ namespace T4SQL.SqlServer.Grouping
 			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
 			spec.AddProperty("SourceFilter", "", null, "Search conditions");
 			spec.AddProperty("SimpleGroupByColumns", "", null, "Simple group by items, e.g. COL1, COL2, COL3");
-			spec.AddProperty("GroupingSetsColumns", "() AS 'TOTAL_FUND', (COL4, COL5) AS 'AGG_4_5', (COL5, COL6, COL7) AS 'AGG_5_6_7'", null, "Grouping set list");
+			spec.AddProperty("GroupingSetsColumns", "(COL5, COL6, COL7) AS 'AGG_A', (COL4, COL5) AS 'AGG_B', () AS 'AGG_TOTAL'", null, "Grouping Set List");
 			spec.AddProperty("GroupingNameColumn", "AGG_TYPE", null, "Return a new column for identifying the level of grouping");
 			spec.AddProperty("AggregateExprs", "SUM(COL8) AS SUM_COL8, COUNT(DISTINCT COL9) AS CNT_COL9", null, "Aggregate Function Expressions");
 
@@ -74,7 +74,7 @@ namespace T4SQL.SqlServer.Grouping
 			{
 				if (_GroupingColumns == null)
 				{
-					IEnumerable<string> columns = new string[] { };
+					IEnumerable<string> columns = Enumerable.Empty<string>();
 
 					foreach (GroupingColumnSet colSet in GroupingSets)
 						if (colSet.Columns.Length > 0)

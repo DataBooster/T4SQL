@@ -125,21 +125,21 @@ namespace T4SQL.SqlServer.Grouping
             
             #line default
             #line hidden
-            this.Write("\r\n\t");
+            this.Write("\r\n");
             
             #line 22 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Grouping\VGroupingSets.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceFilter.InsertRight("WHERE\r\n		")));
             
             #line default
             #line hidden
-            this.Write("\r\nGROUP BY\r\n\tGROUPING SETS\r\n\t(\r\n\t\t");
+            this.Write("\r\nGROUP BY\r\n\t");
             
-            #line 26 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Grouping\VGroupingSets.tt"
+            #line 24 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Grouping\VGroupingSets.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SimpleGroupByColumns.InsertLeft()));
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t");
+            this.Write("\r\n\tGROUPING SETS\r\n\t(\r\n\t\t");
             
             #line 27 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\SqlServer\Grouping\VGroupingSets.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Grouping_Sets));
