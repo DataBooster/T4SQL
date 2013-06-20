@@ -24,18 +24,21 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EngineServiceSetup", "Engin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSTemplates", "VSTemplates", "{AD2C96A3-8A0E-4D50-A703-CDDC43D11284}"
 	ProjectSection(SolutionItems) = preProject
-		VSTemplates\Readme.htm = VSTemplates\Readme.htm
-		VSTemplates\T4SQLTemplate.CSharp.SqlServer.zip = VSTemplates\T4SQLTemplate.CSharp.SqlServer.zip
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlServer", "SqlServer", "{A7937FB4-02FB-4E03-8DBD-9315594A764D}"
-	ProjectSection(SolutionItems) = preProject
-		VSTemplates\SqlServer\T4SQLTemplate.CSharp.tt = VSTemplates\SqlServer\T4SQLTemplate.CSharp.tt
-		VSTemplates\SqlServer\T4SQLTemplate.CSharp.vstemplate = VSTemplates\SqlServer\T4SQLTemplate.CSharp.vstemplate
-		VSTemplates\SqlServer\T4SQLTemplate.partial.cs = VSTemplates\SqlServer\T4SQLTemplate.partial.cs
+		VSTemplates\Readme - Individual Installation.htm = VSTemplates\Readme - Individual Installation.htm
+		VSTemplates\Readme - Team Installation.htm = VSTemplates\Readme - Team Installation.htm
+		VSTemplates\T4SQLTemplate.CSharp.zip = VSTemplates\T4SQLTemplate.CSharp.zip
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "T4SQLDB", "Databases\SqlServer\T4SQLDB.sqlproj", "{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{15675A2B-48D5-484F-B908-82A8E744A6C0}"
+	ProjectSection(SolutionItems) = preProject
+		VSTemplates\CSharp\T4SQLTemplate.CSharp.tt = VSTemplates\CSharp\T4SQLTemplate.CSharp.tt
+		VSTemplates\CSharp\T4SQLTemplate.CSharp.vstemplate = VSTemplates\CSharp\T4SQLTemplate.CSharp.vstemplate
+		VSTemplates\CSharp\T4SQLTemplate.Oracle.sql = VSTemplates\CSharp\T4SQLTemplate.Oracle.sql
+		VSTemplates\CSharp\T4SQLTemplate.partial.cs = VSTemplates\CSharp\T4SQLTemplate.partial.cs
+		VSTemplates\CSharp\T4SQLTemplate.SqlServer.sql = VSTemplates\CSharp\T4SQLTemplate.SqlServer.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -103,6 +106,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
-		{A7937FB4-02FB-4E03-8DBD-9315594A764D} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
+		{15675A2B-48D5-484F-B908-82A8E744A6C0} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal
