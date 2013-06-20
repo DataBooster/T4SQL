@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}"
+	ProjectSection(SolutionItems) = preProject
+		Databases\Install SQL Server Data Tools.htm = Databases\Install SQL Server Data Tools.htm
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder", "SqlBuilder\SqlBuilder.csproj", "{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}"
 EndProject
