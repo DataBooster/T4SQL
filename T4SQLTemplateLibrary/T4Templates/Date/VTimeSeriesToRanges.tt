@@ -1,0 +1,39 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="T4SQL" #>
+<#@ import namespace="System.Linq" #>
+<#
+	if (DbmsPlatform == "SQL Server")
+	{
+#>
+<#@ include file="VTimeSeriesToRanges.SqlServer.sql" #>
+<#
+	} else
+	if (DbmsPlatform == "Oracle")
+	{
+#>
+<#@ include file="VTimeSeriesToRanges.Oracle.sql" #>
+<#
+	} else
+	{
+		Error("T4SQL.Date.VTimeSeriesToRanges is not implemented for " + DbmsPlatform);
+	}
+#>
+<#
+	/*
+		Before building the project or checking in code, if any included file changes,
+		you should re-transform the including template in the solution by:
+
+		*	Right-click one or more files in Solution Explorer and then click Run Custom Tool.
+			Use this method to transform a selected set of templates.
+		or
+		*	Click Transform All Templates in the Solution Explorer toolbar.
+			This will transform all the templates in the Visual Studio solution.
+		or
+		*	Installed Visual Studio Visualization and Modeling SDK
+			http://archive.msdn.microsoft.com/vsvmsdk,
+			And setup all the templates transformed automatically:
+			http://msdn.microsoft.com/en-us/library/dd820620.aspx#Regenerating
+			http://msdn.microsoft.com/en-us/library/ee847423.aspx
+			http://msdn.microsoft.com/en-us/library/ff521399.aspx
+	*/
+#>

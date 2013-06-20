@@ -21,18 +21,20 @@ namespace T4SQL.SqlBuilder
 		public static ServerEnvironment GetDbServerEnv(this DbAccess dbAccess)
 		{
 			const string sp = "GET_DB_SERVER_ENV";
+			DbParameter outDatabase_Platform = null;
 			DbParameter outDatabase_Product = null;
 			DbParameter outProduct_Version = null;
 			DbParameter outServer_Name = null;
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 			{
+				outDatabase_Platform = parameters.Add().SetName("outDatabase_Platform").SetDirection(ParameterDirection.Output).SetSize(32);
 				outDatabase_Product = parameters.Add().SetName("outDatabase_Product").SetDirection(ParameterDirection.Output).SetSize(256);
 				outProduct_Version = parameters.Add().SetName("outProduct_Version").SetDirection(ParameterDirection.Output).SetSize(64);
 				outServer_Name = parameters.Add().SetName("outServer_Name").SetDirection(ParameterDirection.Output).SetSize(64);
 			});
 
-			return new ServerEnvironment(tableName => dbAccess.ListTableColumns(tableName),
+			return new ServerEnvironment(tableName => dbAccess.ListTableColumns(tableName), outDatabase_Platform.Parameter<string>(),
 				outDatabase_Product.Parameter<string>(), outProduct_Version.Parameter<string>(), outServer_Name.Parameter<string>());
 		}
 

@@ -46,112 +46,110 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnComparer.cs" />
+    <Compile Include="Date\VTimePointsToRanges.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimePointsToRanges.partial.cs">
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimePointsToSeries.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimePointsToSeries.partial.cs">
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeRangesCheckSum.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeRangesCheckSum.partial.cs">
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeRangesToSeries.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeRangesToSeries.partial.cs">
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeSeriesToRanges.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Date\VTimeSeriesToRanges.partial.cs">
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
+    </Compile>
     <Compile Include="GroupingColumnSet.cs" />
+    <Compile Include="Grouping\VGroupingSets.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Grouping\VGroupingSets.partial.cs">
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Compile>
     <Compile Include="ITemplate.cs" />
     <Compile Include="ITemplateProperties.cs" />
+    <Compile Include="Pivot\VPivot.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pivot\VPivot.partial.cs">
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pivot\VUnpivot.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VUnpivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pivot\VUnpivot.partial.cs">
+      <DependentUpon>VUnpivot.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEnvironment.cs" />
-    <Compile Include="SqlServer\Date\VTimePointsToRanges.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimePointsToRanges.partial.cs">
-      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimePointsToSeries.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimePointsToSeries.partial.cs">
-      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeRangesCheckSum.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeRangesCheckSum.partial.cs">
-      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeRangesToSeries.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeRangesToSeries.partial.cs">
-      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeSeriesToRanges.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Date\VTimeSeriesToRanges.partial.cs">
-      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Grouping\VGroupingSets.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VGroupingSets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Grouping\VGroupingSets.partial.cs">
-      <DependentUpon>VGroupingSets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Pivot\VPivot.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VPivot.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Pivot\VPivot.partial.cs">
-      <DependentUpon>VPivot.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Pivot\VUnpivot.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VUnpivot.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SqlServer\Pivot\VUnpivot.partial.cs">
-      <DependentUpon>VUnpivot.tt</DependentUpon>
-    </Compile>
     <Compile Include="TemplateContext.cs" />
     <Compile Include="TemplateSpec.cs" />
     <Compile Include="UtilityExtensions.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Oracle\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SqlServer\Date\VTimePointsToRanges.tt">
+    <None Include="Date\VTimePointsToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimePointsToRanges.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\VTimePointsToSeries.tt">
+    <None Include="Date\VTimePointsToSeries.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimePointsToSeries.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\VTimeRangesCheckSum.tt">
+    <None Include="Date\VTimeRangesCheckSum.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeRangesCheckSum.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\VTimeRangesToSeries.tt">
+    <None Include="Date\VTimeRangesToSeries.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeRangesToSeries.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Date\VTimeSeriesToRanges.tt">
+    <None Include="Date\VTimeSeriesToRanges.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VTimeSeriesToRanges.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Grouping\VGroupingSets.tt">
+    <None Include="Grouping\VGroupingSets.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VGroupingSets.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Pivot\VPivot.tt">
+    <None Include="Pivot\VPivot.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VPivot.cs</LastGenOutput>
     </None>
-    <None Include="SqlServer\Pivot\VUnpivot.tt">
+    <None Include="Pivot\VUnpivot.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VUnpivot.cs</LastGenOutput>
     </None>
@@ -159,6 +157,56 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Date\VTimePointsToRanges.Oracle.sql">
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimePointsToRanges.SqlServer.sql">
+      <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimePointsToSeries.Oracle.sql">
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimePointsToSeries.SqlServer.sql">
+      <DependentUpon>VTimePointsToSeries.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeRangesCheckSum.Oracle.sql">
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeRangesCheckSum.SqlServer.sql">
+      <DependentUpon>VTimeRangesCheckSum.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeRangesToSeries.Oracle.sql">
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeRangesToSeries.SqlServer.sql">
+      <DependentUpon>VTimeRangesToSeries.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeSeriesToRanges.Oracle.sql">
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
+    </Content>
+    <Content Include="Date\VTimeSeriesToRanges.SqlServer.sql">
+      <DependentUpon>VTimeSeriesToRanges.tt</DependentUpon>
+    </Content>
+    <Content Include="Grouping\VGroupingSets.Oracle.sql">
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Content>
+    <Content Include="Grouping\VGroupingSets.SqlServer.sql">
+      <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VPivot.Oracle.sql">
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VPivot.SqlServer.sql">
+      <DependentUpon>VPivot.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VUnpivot.Oracle.sql">
+      <DependentUpon>VUnpivot.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VUnpivot.SqlServer.sql">
+      <DependentUpon>VUnpivot.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
