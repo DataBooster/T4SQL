@@ -22,12 +22,12 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <LoadSqlClrTypes>True</LoadSqlClrTypes>
     <RootNamespace>T4SQL</RootNamespace>
-    <DefaultSchema>dbo</DefaultSchema>
+    <DefaultSchema>T4SQL</DefaultSchema>
     <PreviousProjectVersion>4.0</PreviousProjectVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>
@@ -37,7 +37,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7deafca2-b40a-4c8b-a6bb-8123bdf91ab4}</ProjectGuid>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
-    <GenerateCreateScript>False</GenerateCreateScript>
+    <GenerateCreateScript>True</GenerateCreateScript>
     <SqlServerVerification>False</SqlServerVerification>
     <TargetLanguage>CS</TargetLanguage>
     <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
@@ -303,6 +303,8 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_DB_SERVER_ENV.proc.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.CMD_BUILD_SCRIPTS.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.CMD_PRINT_ALL_LINES.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
