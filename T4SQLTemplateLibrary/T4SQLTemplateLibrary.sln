@@ -43,9 +43,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{15675A
 		VSTemplates\CSharp\T4SQLTemplate.SqlServer.sql = VSTemplates\CSharp\T4SQLTemplate.SqlServer.sql
 	EndProjectSection
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Test (SQL Server)", "Databases\SqlServer\Test\Test (SQL Server).sqlproj", "{C8E89649-607A-4A1D-94BB-F1B0235DCC67}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs23
 		SccLocalPath0 = .
@@ -71,6 +73,10 @@ Global
 		SccProjectTopLevelParentUniqueName7 = T4SQLTemplateLibrary.sln
 		SccProjectName7 = Databases/SqlServer
 		SccLocalPath7 = Databases\\SqlServer
+		SccProjectUniqueName8 = Databases\\SqlServer\\Test\\Test\u0020(SQL\u0020Server).sqlproj
+		SccProjectTopLevelParentUniqueName8 = T4SQLTemplateLibrary.sln
+		SccProjectName8 = Databases/SqlServer/Test
+		SccLocalPath8 = Databases\\SqlServer\\Test
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,12 +109,19 @@ Global
 		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7DEAFCA2-B40A-4C8B-A6BB-8123BDF91AB4} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
+		{C8E89649-607A-4A1D-94BB-F1B0235DCC67} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
 		{15675A2B-48D5-484F-B908-82A8E744A6C0} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal
