@@ -27,12 +27,13 @@ AS
 		IF @tEnd < @tTextLen
 		BEGIN
 			SET @tEnd = CHARINDEX(@tNewLine, @inMessage, @tEnd);
+
 			IF @tEnd > 0
 			BEGIN
 				PRINT SUBSTRING(@inMessage, @tStart, @tEnd - @tStart);
 				SET @tStart = @tEnd + @tNL;
 				CONTINUE;
-			END
+			END;
 		END;
 
 		PRINT SUBSTRING(@inMessage, @tStart, @tTextLen - @tStart + 1);

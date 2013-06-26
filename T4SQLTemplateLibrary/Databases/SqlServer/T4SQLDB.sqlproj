@@ -318,12 +318,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ArtifactReference Include="C:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\\SQLSchemas\master.dacpac">
-      <HintPath>C:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\\SQLSchemas\master.dacpac</HintPath>
-      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
-    </ArtifactReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Debug.publish.xml" />
     <None Include="Release.publish.xml" />
   </ItemGroup>
@@ -332,5 +326,12 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>
