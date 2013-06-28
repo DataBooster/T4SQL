@@ -80,8 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="test.schema.sql" />
-    <Build Include="Tables\test.sample_properties.sql" />
-    <Build Include="Tables\test.sample_workspace.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac">
@@ -94,6 +92,6 @@
     <PostDeploy Include="InitData\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="InitData\RegisterSampleWorkspace.sql" />
+    <None Include="InitData\1-CreateSampleWorkspace.sql" />
   </ItemGroup>
 </Project>

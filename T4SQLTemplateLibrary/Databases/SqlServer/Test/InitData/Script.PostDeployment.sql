@@ -10,4 +10,4 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\RegisterSampleWorkspace.sql
+:r .\1-CreateSampleWorkspace.sql
