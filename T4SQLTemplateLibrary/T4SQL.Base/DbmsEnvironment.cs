@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using T4SQL.MetaData;
 
 namespace T4SQL
 {
-	public class ServerEnvironment
+	public class DbmsEnvironment
 	{
-		private readonly Func<string, List<string>> _fListTableColumns;
+		private readonly Func<string, IEnumerable<DbmsColumn>> _fListTableColumns;
+		private readonly Func<string, DbmsRelationTree> _fLoadForeignKeys;
 
 		private readonly string _DatabasePlatform;
 		private readonly string _DatabaseProduct;
@@ -17,10 +20,15 @@ namespace T4SQL
 		public Version ProductVersion { get { return _ProductVersion; } }
 		public string ServerName { get { return _ServerName; } }
 
-		public ServerEnvironment(Func<string, List<string>> fListTableColumns,
+	//	internal Func<string, IEnumerable<DbmsColumn>> FuncListTableColumns { get { return _fListTableColumns; } }
+	//	internal Func<string, DbmsRelationTree> FuncLoadForeignKeys { get { return _fLoadForeignKeys; } }
+
+		public DbmsEnvironment(Func<string, IEnumerable<DbmsColumn>> fListTableColumns,
+			Func<string, DbmsRelationTree> fLoadForeignKeys,
 			string databasePlatform, string databaseProduct, string productVersion, string serverName)
 		{
 			_fListTableColumns = fListTableColumns;
+			_fLoadForeignKeys = fLoadForeignKeys;
 
 			_DatabasePlatform = databasePlatform;
 			_DatabaseProduct = databaseProduct;
@@ -31,7 +39,7 @@ namespace T4SQL
 		public IEnumerable<string> ListTableColumns(string tableName, string specificColumns = "*")
 		{
 			if (string.IsNullOrWhiteSpace(specificColumns) || specificColumns.Trim() == "*")
-				return _fListTableColumns(tableName);
+				return _fListTableColumns(tableName).Select(col => col.ColumnName);
 			else
 				return specificColumns.SplitColumns();
 		}
@@ -47,7 +55,7 @@ namespace T4SQL
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		May ‎14, ‎2013, ‏‎12:00:23 aM
+//	Created Date:		May ‎14, ‎2013, ‏‎12:00:23 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

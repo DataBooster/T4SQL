@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.Common;
 
 namespace DbParallel.DataAccess
@@ -25,6 +26,20 @@ namespace DbParallel.DataAccess
 			DbParameter parameter = _DbCommand.CreateParameter();
 			parameter.ParameterName = parameterName;
 			parameter.Value = (oValue == null) ? DBNull.Value : oValue;
+			_DbCommand.Parameters.Add(parameter);
+
+			return parameter;
+		}
+
+		public DbParameter AddOutput(string parameterName, int nSize = 0)
+		{
+			DbParameter parameter = _DbCommand.CreateParameter();
+			parameter.ParameterName = parameterName;
+			parameter.Direction = ParameterDirection.Output;
+
+			if (nSize > 0)
+				parameter.Size = nSize;
+
 			_DbCommand.Parameters.Add(parameter);
 
 			return parameter;

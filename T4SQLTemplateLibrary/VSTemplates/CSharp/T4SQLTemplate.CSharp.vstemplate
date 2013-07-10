@@ -13,19 +13,11 @@ http://t4sql.codeplex.com/
 		<DefaultName>T4SQLTemplate.tt</DefaultName>
 	</TemplateData>
 	<TemplateContent>
-		<!--
 		<References>
 			<Reference>
-				<Assembly>System</Assembly>
-			</Reference>
-			<Reference>
-				<Assembly>mscorlib</Assembly>
-			</Reference>
-			<Reference>
-				<Assembly>T4SQL.T4Templates</Assembly>
+				<Assembly>T4SQL.Base</Assembly>
 			</Reference>
 		</References>
-		-->
 		<ProjectItem TargetFileName="$fileinputname$.$fileinputextension$" ReplaceParameters="true" CustomTool="TextTemplatingFilePreprocessor">T4SQLTemplate.CSharp.tt</ProjectItem>
 		<ProjectItem SubType="Code" TargetFileName="$fileinputname$.$fileinputextension$\$fileinputname$.partial.cs" ReplaceParameters="true">T4SQLTemplate.partial.cs</ProjectItem>
 		<ProjectItem SubType="Code" TargetFileName="$fileinputname$.$fileinputextension$\$fileinputname$.SqlServer.sql" ReplaceParameters="true">T4SQLTemplate.SqlServer.sql</ProjectItem>

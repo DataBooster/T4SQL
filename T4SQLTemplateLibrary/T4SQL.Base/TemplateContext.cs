@@ -29,8 +29,8 @@ namespace T4SQL
 			get { return _Properties; }
 		}
 
-		private readonly ServerEnvironment _DbServerEnv;
-		public ServerEnvironment DbServerEnv
+		private readonly DbmsEnvironment _DbServerEnv;
+		public DbmsEnvironment DbServerEnv
 		{
 			get { return _DbServerEnv; }
 		}
@@ -45,7 +45,7 @@ namespace T4SQL
 		public static string _PropertyNotFoundErrorFormat = "Property \"{0}\" is not found in the workitem.";
 		#endregion
 
-		public TemplateContext(ServerEnvironment dbServerEnv)
+		public TemplateContext(DbmsEnvironment dbServerEnv)
 		{
 			_Properties = new Dictionary<string, TemplateProperty>();
 			_DbServerEnv = dbServerEnv;

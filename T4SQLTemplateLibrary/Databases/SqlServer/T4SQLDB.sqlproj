@@ -306,6 +306,7 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.CMD_BUILD_SCRIPTS.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.CMD_PRINT_ALL_LINES.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.META_CREATE_WORKSPACE.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_FOREIGN_KEY.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
