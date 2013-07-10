@@ -55,14 +55,15 @@ namespace T4SQL.SqlBuilder
 
 		public void LoadAddIns()
 		{
-			RegisterTemplate(_typeITemplate.Assembly);
+			Type typeAddInsLocator = typeof(AddInsLocator);
+			string builtInDll = typeAddInsLocator.Module.FullyQualifiedName;
+			string addInDir = Path.GetDirectoryName(builtInDll);
 
-			string bootDll = _typeITemplate.Module.FullyQualifiedName;
-			string addInDir = Path.GetDirectoryName(bootDll);
+			RegisterTemplate(typeAddInsLocator.Assembly);									// Register built-in Templates
 
 			if (addInDir.StartsWith(AppDomain.CurrentDomain.BaseDirectory))
 				foreach (string dllFile in Directory.GetFiles(addInDir, "*.dll", SearchOption.AllDirectories))
-					if (dllFile != bootDll)
+					if (!dllFile.Equals(builtInDll, StringComparison.OrdinalIgnoreCase))	// Register add-in Templates
 					{
 						try
 						{

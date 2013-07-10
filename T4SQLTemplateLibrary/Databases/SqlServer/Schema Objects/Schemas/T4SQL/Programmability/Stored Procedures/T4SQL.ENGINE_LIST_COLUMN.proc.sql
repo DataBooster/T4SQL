@@ -17,7 +17,8 @@ AS
 	*/
 
 	SELECT
-		name	AS COLUMN_NAME
+		name	AS COLUMN_NAME,
+		IS_NULLABLE
 	FROM
 		sys.columns
 	WHERE

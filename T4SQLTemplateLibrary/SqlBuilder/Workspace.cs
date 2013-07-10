@@ -50,7 +50,7 @@ namespace T4SQL.SqlBuilder
 			}
 		}
 
-		public void BuildWorkitems(DbAccess dbAccess, TemplateManager templateManager, ServerEnvironment dbServerEnv)
+		public void BuildWorkitems(DbAccess dbAccess, TemplateManager templateManager, DbmsEnvironment dbServerEnv)
 		{
 			TemplateContext defaultProperties;
 			Type templateClass;

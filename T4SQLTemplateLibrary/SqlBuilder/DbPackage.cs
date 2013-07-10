@@ -2,7 +2,9 @@
 using System.Data;
 using System.Data.Common;
 using System.Collections.Generic;
+using System.Linq;
 using DbParallel.DataAccess;
+using T4SQL.MetaData;
 
 namespace T4SQL.SqlBuilder
 {
@@ -18,7 +20,7 @@ namespace T4SQL.SqlBuilder
 			return EngineConfig.DatabasePackage + sp;
 		}
 
-		public static ServerEnvironment GetDbServerEnv(this DbAccess dbAccess)
+		public static DbmsEnvironment GetDbServerEnv(this DbAccess dbAccess)
 		{
 			const string sp = "GET_DB_SERVER_ENV";
 			DbParameter outDatabase_Platform = null;
@@ -28,14 +30,16 @@ namespace T4SQL.SqlBuilder
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 			{
-				outDatabase_Platform = parameters.Add().SetName("outDatabase_Platform").SetDirection(ParameterDirection.Output).SetSize(32);
-				outDatabase_Product = parameters.Add().SetName("outDatabase_Product").SetDirection(ParameterDirection.Output).SetSize(256);
-				outProduct_Version = parameters.Add().SetName("outProduct_Version").SetDirection(ParameterDirection.Output).SetSize(64);
-				outServer_Name = parameters.Add().SetName("outServer_Name").SetDirection(ParameterDirection.Output).SetSize(64);
+				outDatabase_Platform = parameters.AddOutput("outDatabase_Platform", 32);
+				outDatabase_Product = parameters.AddOutput("outDatabase_Product", 256);
+				outProduct_Version = parameters.AddOutput("outProduct_Version", 64);
+				outServer_Name = parameters.AddOutput("outServer_Name", 64);
 			});
 
-			return new ServerEnvironment(tableName => dbAccess.ListTableColumns(tableName), outDatabase_Platform.Parameter<string>(),
-				outDatabase_Product.Parameter<string>(), outProduct_Version.Parameter<string>(), outServer_Name.Parameter<string>());
+			return new DbmsEnvironment(tableName => dbAccess.ListTableColumns(tableName),
+				tableName => dbAccess.LoadForeignKeys(tableName),
+				outDatabase_Platform.Parameter<string>(), outDatabase_Product.Parameter<string>(),
+				outProduct_Version.Parameter<string>(), outServer_Name.Parameter<string>());
 		}
 
 		public static void LoadEngineConfig(this DbAccess dbAccess)
@@ -45,7 +49,7 @@ namespace T4SQL.SqlBuilder
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 			{
-				outPollInterval = parameters.Add().SetName("outPoll_Interval").SetDirection(ParameterDirection.Output).SetDbType(DbType.Byte);
+				outPollInterval = parameters.AddOutput("outPoll_Interval").SetDbType(DbType.Byte);
 			});
 
 			EngineConfig.EnginePollInterval = outPollInterval.Parameter<byte>() * 1000;
@@ -57,7 +61,7 @@ namespace T4SQL.SqlBuilder
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 			{
-				outParameter = parameters.Add().SetName("outSwitch_To_Mode").SetDirection(ParameterDirection.Output).SetSize(EngineMain.ServiceModeMaxLen);
+				outParameter = parameters.AddOutput("outSwitch_To_Mode", EngineMain.ServiceModeMaxLen);
 			});
 
 			EngineMain.ServiceMode newMode;
@@ -111,20 +115,54 @@ namespace T4SQL.SqlBuilder
 			});
 		}
 
-		internal static List<string> ListTableColumns(this DbAccess dbAccess, string tableName)
+		internal static IEnumerable<DbmsColumn> ListTableColumns(this DbAccess dbAccess, string tableName)
 		{
 			const string sp = "LIST_COLUMN";
-			List<string> columns = new List<string>();
 
-			dbAccess.ExecuteReader(GetProcedure(sp), parameters =>
+			return dbAccess.ExecuteReader<DbmsColumn>(GetProcedure(sp), parameters =>
 				{
 					parameters.Add("inTable_Name", tableName);
-				}, reader =>
+				}, map =>
 				{
-					columns.Add(reader.Field<string>("COLUMN_NAME"));
+					map.Add("COLUMN_NAME", t => t.ColumnName);
+					map.Add("IS_NULLABLE", t => t.IsNullable);
 				});
+		}
 
-			return columns;
+		private static void LoadForeignKeys(this DbAccess dbAccess, DbmsRelationTree foreignKeyBaseTable)
+		{
+			const string sp = "GET_FOREIGN_KEY";
+			DbParameter outTable_Name = null;
+
+			dbAccess.ExecuteReader(GetProcedure(sp), parameters =>
+			{
+				parameters.Add("inTable_Name", foreignKeyBaseTable.TableName);
+				outTable_Name = parameters.AddOutput("outTable_Name", 128);
+			}, reader =>
+			{
+				foreignKeyBaseTable.AddForeignKeyColumn(
+					reader.Field<string>("CONSTRAINT_NAME"),
+					reader.Field<string>("FOREIGN_KEY_COLUMN"),
+					reader.Field<bool>("FOREIGN_KEY_NULLABLE"),
+					reader.Field<string>("REFERENCED_TABLE"),
+					reader.Field<string>("REFERENCED_COLUMN"),
+					reader.Field<bool>("REFERENCED_NULLABLE"));
+			});
+
+			foreignKeyBaseTable.TableName = outTable_Name.Parameter<string>();
+			foreignKeyBaseTable.Columns = ListTableColumns(dbAccess, foreignKeyBaseTable.TableName).ToArray();
+
+			foreach (DbmsForeignKey fk in foreignKeyBaseTable.ForeignKeys)
+				LoadForeignKeys(dbAccess, fk.PrimaryUniqueKeyBaseTable);
+		}
+
+		internal static DbmsRelationTree LoadForeignKeys(this DbAccess dbAccess, string tableName)
+		{
+			DbmsRelationTree rootTable = new DbmsRelationTree(tableName);
+
+			LoadForeignKeys(dbAccess, rootTable);
+
+			return rootTable;
 		}
 
 		internal static void LoadDefaultProperties(this DbAccess dbAccess, Action<DbDataReader> setDefaultProperty)

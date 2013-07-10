@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8}</ProjectGuid>
+    <ProjectGuid>{A5DD7958-181E-4D43-BE49-BAE5005ADB6D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>T4SQL.SqlBuilder</RootNamespace>
-    <AssemblyName>T4SQL.SqlBuilder</AssemblyName>
+    <RootNamespace>T4SQL</RootNamespace>
+    <AssemblyName>T4SQL.Base</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -35,9 +35,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>T4SQL.Base.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,32 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbPackage.cs" />
-    <Compile Include="EngineConfig.cs" />
-    <Compile Include="EngineMain.cs" />
+    <Compile Include="ColumnComparer.cs" />
+    <Compile Include="GroupingColumnSet.cs" />
+    <Compile Include="ITemplate.cs" />
+    <Compile Include="ITemplateProperties.cs" />
+    <Compile Include="MetaData\DbmsColumn.cs" />
+    <Compile Include="MetaData\DbmsForeignKey.cs" />
+    <Compile Include="MetaData\DbmsRelationTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateManager.cs" />
-    <Compile Include="Workitem.cs" />
-    <Compile Include="Workspace.cs" />
+    <Compile Include="DbmsEnvironment.cs" />
+    <Compile Include="TemplateContext.cs" />
+    <Compile Include="TemplateSpec.cs" />
+    <Compile Include="UtilityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SqlBuilder.cd" />
+    <None Include="MetaData\MetaData.cd" />
+    <None Include="T4SQL.Base.cd" />
+    <None Include="T4SQL.Base.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{0BD1299C-6AE3-407C-844D-F69B90037846}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\T4SQL.Base\T4SQL.Base.csproj">
-      <Project>{A5DD7958-181E-4D43-BE49-BAE5005ADB6D}</Project>
-      <Name>T4SQL.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\T4Templates\T4Templates.csproj">
-      <Project>{55837841-3D2A-411D-960F-323C12668088}</Project>
-      <Name>T4Templates</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

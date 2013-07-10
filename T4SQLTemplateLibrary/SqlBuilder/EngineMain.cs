@@ -32,7 +32,7 @@ namespace T4SQL.SqlBuilder
 		private List<Workspace> _WorkspaceTasks;
 		private volatile bool _KeepPolling;
 		private Task _MainTask;
-		private ServerEnvironment _DbServerEnv;
+		private DbmsEnvironment _DbServerEnv;
 
 		public EngineMain(EventLog serviceEventLog = null)
 		{
