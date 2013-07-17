@@ -8,6 +8,11 @@ namespace DbParallel.DataAccess
 	{
 		private readonly DbCommand _DbCommand;
 
+		public DbParameterCollection Parameters
+		{
+			get { return _DbCommand.Parameters; }
+		}
+
 		public DbParameterBuilder(DbCommand dbCommand)
 		{
 			_DbCommand = dbCommand;

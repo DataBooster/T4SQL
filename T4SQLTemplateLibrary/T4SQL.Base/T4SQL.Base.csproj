@@ -58,6 +58,8 @@
     <Compile Include="MetaData\DbmsColumn.cs" />
     <Compile Include="MetaData\DbmsForeignKey.cs" />
     <Compile Include="MetaData\DbmsRelationTree.cs" />
+    <Compile Include="MetaData\TableLink.cs" />
+    <Compile Include="MetaData\JoinedTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbmsEnvironment.cs" />
     <Compile Include="TemplateContext.cs" />

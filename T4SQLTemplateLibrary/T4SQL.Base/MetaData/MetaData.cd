@@ -3,14 +3,14 @@
   <Class Name="T4SQL.MetaData.DbmsRelationTree">
     <Position X="0.5" Y="0.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAIAAAAAAAAAAIIAEABAABABAQAAAQgAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAQAAEAAAAIAAIIMEAAACAABAUAAAQgAAAA=</HashCode>
       <FileName>MetaData\DbmsRelationTree.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="T4SQL.MetaData.DbmsForeignKey">
     <Position X="3" Y="0.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>gAAgAACAAEAAACAAAAAAAAAQEAIAEAAAAAACAAAAQAI=</HashCode>
+      <HashCode>gAAgAACAAEAAACAAAAAAAAAQEAIAEAAAAAACAAAAYAI=</HashCode>
       <FileName>MetaData\DbmsForeignKey.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -19,6 +19,30 @@
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAEAABAAAAACAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>MetaData\DbmsColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.MetaData.JoinedTable">
+    <Position X="0.5" Y="5.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="T4SQL.MetaData.JoinedTable.ColumnAlias">
+        <TypeIdentifier>
+          <NewMemberFileName>MetaData\JoinedTable.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAASAAAAAAAAAAEAAAEAAEAEAAAEAAAAAAAAA=</HashCode>
+      <FileName>MetaData\JoinedTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="T4SQL.MetaData.TableLink">
+    <Position X="3.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAABAAAIAAAAAAAAAAABAAAAAABAIAIAAAIAAACA=</HashCode>
+      <FileName>MetaData\TableLink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

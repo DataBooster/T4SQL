@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE T4SQL.ENGINE_GET_FOREIGN_KEY
 (
-	@inTable_Name	NVARCHAR(64),
-	@outTable_Name	NVARCHAR(128)	OUTPUT
+	@inTable_Name		NVARCHAR(64),
+	@outTable_Schema	NVARCHAR(64)	OUTPUT,
+	@outTable_Name		NVARCHAR(64)	OUTPUT,
+	@outQualified_Name	NVARCHAR(128)	OUTPUT
 )
 AS
 	SET NOCOUNT ON;
@@ -10,7 +12,9 @@ AS
 	SET @tTable_Id	= OBJECT_ID(@inTable_Name);
 
 	SELECT
-		@outTable_Name	= QUOTENAME(S.name) + N'.' + QUOTENAME(T.name)
+		@outTable_Schema	= S.name,
+		@outTable_Name		= T.name,
+		@outTable_Name		= QUOTENAME(S.name) + N'.' + QUOTENAME(T.name)
 	FROM
 		sys.schemas		S,
 		sys.objects		T

@@ -190,6 +190,13 @@ namespace T4SQL
 			return InsertRight(string.Join(separator, values), separator);
 		}
 
+		public static string PushIndent(this string multiLine, string indentor = "\t")
+		{
+			Regex bgCh = new Regex(@"^.", RegexOptions.Multiline);
+
+			return bgCh.Replace(multiLine, indentor + @"$&");
+		}
+
 		public static string GetTemplateName(this ITemplate templateClass)
 		{
 			return templateClass.GetType().FullName;
