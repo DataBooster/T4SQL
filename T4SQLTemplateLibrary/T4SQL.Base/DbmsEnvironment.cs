@@ -20,8 +20,8 @@ namespace T4SQL
 		public Version ProductVersion { get { return _ProductVersion; } }
 		public string ServerName { get { return _ServerName; } }
 
-	//	internal Func<string, IEnumerable<DbmsColumn>> FuncListTableColumns { get { return _fListTableColumns; } }
-	//	internal Func<string, DbmsRelationTree> FuncLoadForeignKeys { get { return _fLoadForeignKeys; } }
+		//	internal Func<string, IEnumerable<DbmsColumn>> FuncListTableColumns { get { return _fListTableColumns; } }
+		//	internal Func<string, DbmsRelationTree> FuncLoadForeignKeys { get { return _fLoadForeignKeys; } }
 
 		public DbmsEnvironment(Func<string, IEnumerable<DbmsColumn>> fListTableColumns,
 			Func<string, DbmsRelationTree> fLoadForeignKeys,
@@ -42,6 +42,12 @@ namespace T4SQL
 				return _fListTableColumns(tableName).Select(col => col.ColumnName);
 			else
 				return specificColumns.SplitColumns();
+		}
+
+		public JoinedTable NavigateForeignKeyTable(string foreignKeyBaseTable)
+		{
+			DbmsRelationTree baseTable = _fLoadForeignKeys(foreignKeyBaseTable);
+			return new JoinedTable(baseTable);
 		}
 	}
 }

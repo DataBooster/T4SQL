@@ -6,22 +6,36 @@ namespace T4SQL.MetaData
 {
 	public class DbmsRelationTree
 	{
-		private string _nodeTableName;
+		private string _Schema;
+		private string _NodeTableName;
+		private string _QualifiedName;
 		private DbmsForeignKey _ParentForeignKey;
 		private List<DbmsForeignKey> _ForeignKeys;
 		private DbmsColumn[] _Columns;
 
 		public DbmsRelationTree(string tableName, DbmsForeignKey parentForeignKey = null)
 		{
-			_nodeTableName = tableName;
+			_NodeTableName = _QualifiedName = tableName;
 			_ParentForeignKey = parentForeignKey;
 			_ForeignKeys = new List<DbmsForeignKey>();
 		}
 
+		public string Schema
+		{
+			get { return _Schema; }
+			set { _Schema = value; }
+		}
+
 		public string TableName
 		{
-			get { return _nodeTableName; }
-			set { _nodeTableName = value; }
+			get { return _NodeTableName; }
+			set { _NodeTableName = value; }
+		}
+
+		public string QualifiedName
+		{
+			get { return _QualifiedName; }
+			set { _QualifiedName = value; }
 		}
 
 		public DbmsForeignKey ParentForeignKey
@@ -58,13 +72,12 @@ namespace T4SQL.MetaData
 			fk.AddForeignKeyColumn(new DbmsColumn(foreignKeyColumn, foreignKeyNullable), new DbmsColumn(referencedColumn, referencedNullable));
 		}
 
-		private string _Alias;
-		internal string Alias
+		private TableLink _LinkProperty;
+		internal TableLink LinkProperty
 		{
-			get { return _Alias; }
-			set { _Alias = value; }
+			get { return _LinkProperty; }
+			set { _LinkProperty = value; }
 		}
-
 	}
 }
 

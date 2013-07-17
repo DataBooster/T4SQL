@@ -98,6 +98,18 @@ namespace T4SQL.MetaData
 
 			return false;
 		}
+
+		public bool IsNullable
+		{
+			get
+			{
+				foreach (DbmsColumn fkCol in _ForeignKeyColumns)
+					if (fkCol.IsNullable)
+						return true;
+
+				return false;
+			}
+		}
 	}
 }
 

@@ -132,12 +132,16 @@ namespace T4SQL.SqlBuilder
 		private static void LoadForeignKeys(this DbAccess dbAccess, DbmsRelationTree foreignKeyBaseTable)
 		{
 			const string sp = "GET_FOREIGN_KEY";
+			DbParameter outTable_Schema = null;
 			DbParameter outTable_Name = null;
+			DbParameter outQualified_Name = null;
 
 			dbAccess.ExecuteReader(GetProcedure(sp), parameters =>
 			{
 				parameters.Add("inTable_Name", foreignKeyBaseTable.TableName);
-				outTable_Name = parameters.AddOutput("outTable_Name", 128);
+				outTable_Schema = parameters.AddOutput("outTable_Schema", 64);
+				outTable_Name = parameters.AddOutput("outTable_Name", 64);
+				outQualified_Name = parameters.AddOutput("outQualified_Name", 128);
 			}, reader =>
 			{
 				foreignKeyBaseTable.AddForeignKeyColumn(
@@ -149,7 +153,10 @@ namespace T4SQL.SqlBuilder
 					reader.Field<bool>("REFERENCED_NULLABLE"));
 			});
 
+			foreignKeyBaseTable.Schema = outTable_Schema.Parameter<string>();
 			foreignKeyBaseTable.TableName = outTable_Name.Parameter<string>();
+			foreignKeyBaseTable.QualifiedName = outQualified_Name.Parameter<string>();
+
 			foreignKeyBaseTable.Columns = ListTableColumns(dbAccess, foreignKeyBaseTable.TableName).ToArray();
 
 			foreach (DbmsForeignKey fk in foreignKeyBaseTable.ForeignKeys)
