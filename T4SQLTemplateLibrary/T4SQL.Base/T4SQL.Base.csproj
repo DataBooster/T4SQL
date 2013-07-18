@@ -69,6 +69,7 @@
   <ItemGroup>
     <None Include="MetaData\MetaData.cd" />
     <None Include="T4SQL.Base.cd" />
+    <None Include="T4SQL.Base.nuspec" />
     <None Include="T4SQL.Base.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

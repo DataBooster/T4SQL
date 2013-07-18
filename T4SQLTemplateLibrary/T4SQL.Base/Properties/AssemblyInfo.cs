@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("T4SQL.Base")]
 [assembly: AssemblyDescription("T4SQL Template Library Base")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://t4sql.codeplex.com/")]
+[assembly: AssemblyCompany("Abel Cheng")]
 [assembly: AssemblyProduct("T4SQL Template Library")]
 [assembly: AssemblyCopyright("Copyright ©  2013 Abel Cheng")]
 [assembly: AssemblyTrademark("T4SQL")]
