@@ -51,6 +51,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{FF43
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA}"
+	ProjectSection(SolutionItems) = preProject
+		T4SQL.Base\NuGet\Download NuGet Command-Line.htm = T4SQL.Base\NuGet\Download NuGet Command-Line.htm
+		T4SQL.Base\NuGet\pack.bat = T4SQL.Base\NuGet\pack.bat
+		T4SQL.Base\NuGet\Readme.txt = T4SQL.Base\NuGet\Readme.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 10
@@ -153,6 +160,7 @@ Global
 		{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
 		{A5DD7958-181E-4D43-BE49-BAE5005ADB6D} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{55837841-3D2A-411D-960F-323C12668088} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
+		{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{15675A2B-48D5-484F-B908-82A8E744A6C0} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal
