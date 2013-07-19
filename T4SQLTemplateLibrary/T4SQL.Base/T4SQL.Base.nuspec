@@ -15,7 +15,8 @@
 		<tags>T4SQL Template Base Interface</tags>
 	</metadata>
 	<files>
-		<file src="..\VSTemplates\T4SQLTemplate.CSharp.zip" target="Visual Studio\Templates\ItemTemplates\T4SQLTemplate.CSharp.zip" />
-		<file src="NuGet\Readme.txt" target="Readme.txt" />
+		<file src="..\VSTemplates\*.CSharp.zip" target="Visual Studio\Templates\ItemTemplates\Visual C#" />
+		<file src="NuGet\Install.ps1" target="tools" />
+		<file src="NuGet\Readme.txt" target="" />
 	</files>
 </package>

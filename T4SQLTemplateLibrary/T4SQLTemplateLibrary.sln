@@ -54,6 +54,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA}"
 	ProjectSection(SolutionItems) = preProject
 		T4SQL.Base\NuGet\Download NuGet Command-Line.htm = T4SQL.Base\NuGet\Download NuGet Command-Line.htm
+		T4SQL.Base\NuGet\Install.ps1 = T4SQL.Base\NuGet\Install.ps1
 		T4SQL.Base\NuGet\pack.bat = T4SQL.Base\NuGet\pack.bat
 		T4SQL.Base\NuGet\Readme.txt = T4SQL.Base\NuGet\Readme.txt
 	EndProjectSection
