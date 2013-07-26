@@ -168,12 +168,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assoc\VNaviForeignKey.Oracle.sql">
+    <None Include="Assoc\VNaviForeignKey.Oracle.sql">
       <DependentUpon>VNaviForeignKey.tt</DependentUpon>
-    </Content>
-    <Content Include="Assoc\VNaviForeignKey.SqlServer.sql">
+    </None>
+    <None Include="Assoc\VNaviForeignKey.SqlServer.sql">
       <DependentUpon>VNaviForeignKey.tt</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Date\VTimePointsToRanges.Oracle.sql">
       <DependentUpon>VTimePointsToRanges.tt</DependentUpon>
     </Content>

@@ -78,6 +78,21 @@ namespace T4SQL.MetaData
 			get { return _LinkProperty; }
 			set { _LinkProperty = value; }
 		}
+
+		internal IEnumerable<DbmsColumn> DisplayColumns
+		{
+			get
+			{
+				if (_ParentForeignKey == null)
+					return _Columns;
+				else
+				{
+					var pkCols = _ParentForeignKey.PrimaryUniqueKeyColumns.Select(c => c.ColumnName);
+
+					return _Columns.Where(c => !pkCols.Contains(c.ColumnName, StringComparer.OrdinalIgnoreCase));
+				}
+			}
+		}
 	}
 }
 
