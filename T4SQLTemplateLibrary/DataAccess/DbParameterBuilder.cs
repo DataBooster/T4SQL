@@ -7,11 +7,7 @@ namespace DbParallel.DataAccess
 	public partial class DbParameterBuilder
 	{
 		private readonly DbCommand _DbCommand;
-
-		public DbParameterCollection Parameters
-		{
-			get { return _DbCommand.Parameters; }
-		}
+		public DbCommand Command { get { return _DbCommand; } }
 
 		public DbParameterBuilder(DbCommand dbCommand)
 		{

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("T4SQL.Base")]
-[assembly: AssemblyDescription("T4SQL Template Library Base")]
+[assembly: AssemblyDescription("Base Library for Developing T4SQL Templates Plug-ins")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Abel Cheng")]
 [assembly: AssemblyProduct("T4SQL Template Library")]

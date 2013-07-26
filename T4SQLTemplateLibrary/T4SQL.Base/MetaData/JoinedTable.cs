@@ -68,6 +68,11 @@ namespace T4SQL.MetaData
 						return string.Format("{0}.{1} AS {2}", TableAlias, ColumnName, Alias);
 				}
 			}
+
+			public override string ToString()
+			{
+				return ColumnExpression;
+			}
 		}
 
 		private DbmsRelationTree _RootTable;
@@ -89,7 +94,7 @@ namespace T4SQL.MetaData
 		{
 			nodeTable.LinkProperty = new TableLink(this, parentAlias, position);
 
-			foreach (DbmsColumn col in nodeTable.Columns)
+			foreach (DbmsColumn col in nodeTable.DisplayColumns)
 				_ColumnAliases.Add(new ColumnAlias(nodeTable, col));
 
 			for (byte pos = 0; pos < nodeTable.ForeignKeys.Count; pos++)
@@ -98,24 +103,32 @@ namespace T4SQL.MetaData
 
 		public string BuildJoinClause()
 		{
-			return BuildJoinClause(_RootTable);
+			int cntJoin;
+			return BuildJoinClause(_RootTable, out cntJoin);
 		}
 
-		private string BuildJoinClause(DbmsRelationTree startTable)
+		private string BuildJoinClause(DbmsRelationTree startTable, out int cntJoin)
 		{
 			StringBuilder joinClause = new StringBuilder();
 
 			joinClause.AppendFormat(startTable.TableName);
 			joinClause.Append(" ");
 			joinClause.AppendLine(startTable.LinkProperty.Alias);
+			cntJoin = 1;
 
 			foreach (DbmsForeignKey fk in startTable.ForeignKeys)	// INNER JOIN first
 				if (!fk.IsNullable)									// ForeignKeyColumns is not null
+				{
 					AppendJoinSource(joinClause, fk);
+					cntJoin++;
+				}
 
 			foreach (DbmsForeignKey fk in startTable.ForeignKeys)	// Then LEFT JOIN
 				if (fk.IsNullable)									// ForeignKeyColumns is nullable
+				{
 					AppendJoinSource(joinClause, fk);
+					cntJoin++;
+				}
 
 			return joinClause.ToString();
 		}
@@ -126,16 +139,25 @@ namespace T4SQL.MetaData
 			string pkTableAlias = foreignKey.PrimaryUniqueKeyBaseTable.LinkProperty.Alias;
 			List<DbmsColumn> fkColumns = foreignKey.ForeignKeyColumns;
 			List<DbmsColumn> pkColumns = foreignKey.PrimaryUniqueKeyColumns;
-			int nCols = foreignKey.ForeignKeyColumns.Count;
+			int cntJoin, nCols = foreignKey.ForeignKeyColumns.Count;
+			string insideJoin = BuildJoinClause(foreignKey.PrimaryUniqueKeyBaseTable, out cntJoin);
 
 			if (foreignKey.IsNullable)
-				joinClause.AppendLine("LEFT JOIN (");
+				joinClause.Append("LEFT JOIN");
 			else
-				joinClause.AppendLine("INNER JOIN (");
+				joinClause.Append("INNER JOIN");
 
-			joinClause.Append(BuildJoinClause(foreignKey.PrimaryUniqueKeyBaseTable).PushIndent());
+			if (cntJoin > 1)
+				joinClause.AppendLine(" (");
+			else
+				joinClause.AppendLine();
 
-			joinClause.Append(") ON (");
+			joinClause.Append(insideJoin.PushIndent());
+
+			if (cntJoin > 1)
+				joinClause.Append(") ");
+
+			joinClause.Append("ON (");
 
 			for (int i = 0; i < nCols; i++)
 			{
@@ -145,7 +167,7 @@ namespace T4SQL.MetaData
 				joinClause.AppendFormat("{0}.{1} = {2}.{3}", fkTableAlias, fkColumns[i].ColumnName, pkTableAlias, pkColumns[i].ColumnName);
 			}
 
-			joinClause.Append(")");
+			joinClause.AppendLine(")");
 		}
 
 		public bool SolveNameRepetition(string renameFormat)	// renameFormat: "{0}${1}" - {0}: Table; {1}: ColumnName

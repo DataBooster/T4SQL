@@ -8,7 +8,7 @@ In case the automatic installation fail due to insufficient permissions or other
 you may need to manually install it by following instructions:
 
 Copy the file T4SQLTemplate.CSharp.zip
-	from the project NuGet package directory (packages\T4SQL.Base.x.x.x.x\Visual Studio\Templates\ItemTemplates\)
+	from the project NuGet package directory (packages\T4SQL.Base.x.x.x.x\Visual Studio\Templates\ItemTemplates\Visual C#\)
 	to your Visual Studio Item Templates Directory
 		(Find Visual Studio [Tools] menu, [Options] dialog box, under [Projects and Solutions]\[General], in [user item templates location])
 
