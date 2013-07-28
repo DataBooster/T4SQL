@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using DbParallel.DataAccess;
+using T4SQL.SqlBuilder.DataAccess;
 
 namespace T4SQL.SqlBuilder
 {

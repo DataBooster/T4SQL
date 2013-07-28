@@ -45,14 +45,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D3826FC20BA01AEFEAFB7FB084915301"
+        "MsmKey" = "8:_C5DD5469CB657002B2003A18DE846FE8"
         "OwnerKey" = "8:_EB6FDD64509844DC91FE40DDDE0D3A7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D3826FC20BA01AEFEAFB7FB084915301"
+        "MsmKey" = "8:_C5DD5469CB657002B2003A18DE846FE8"
         "OwnerKey" = "8:_926173DE0E60FFBF61B20B0AC615E010"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFDE8E36EFAEE5625005F055DED6A94E"
+        "OwnerKey" = "8:_EB6FDD64509844DC91FE40DDDE0D3A7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFDE8E36EFAEE5625005F055DED6A94E"
+        "OwnerKey" = "8:_2D3C74C050CBB50EAF56FCF7F4DAFD46"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFDE8E36EFAEE5625005F055DED6A94E"
+        "OwnerKey" = "8:_902F5F7E5FEB245B63F3C7253BBB96F8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C5DD5469CB657002B2003A18DE846FE8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_902F5F7E5FEB245B63F3C7253BBB96F8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_926173DE0E60FFBF61B20B0AC615E010"
+        "OwnerKey" = "8:_DFDE8E36EFAEE5625005F055DED6A94E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D3826FC20BA01AEFEAFB7FB084915301"
+        "OwnerKey" = "8:_926173DE0E60FFBF61B20B0AC615E010"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -290,7 +314,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DbParallel.DataAccess, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DbParallel.DataAccess, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_926173DE0E60FFBF61B20B0AC615E010"
@@ -317,20 +341,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D3826FC20BA01AEFEAFB7FB084915301"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C5DD5469CB657002B2003A18DE846FE8"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DDTek.Oracle, Version=3.5.0.0, Culture=neutral, PublicKeyToken=c84cd5c63851e072, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_D3826FC20BA01AEFEAFB7FB084915301"
+                    "_C5DD5469CB657002B2003A18DE846FE8"
                     {
-                    "Name" = "8:DDTek.Oracle.dll"
+                    "Name" = "8:Oracle.DataAccess.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:DDTek.Oracle.dll"
+            "SourcePath" = "8:Oracle.DataAccess.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_485FEF67C2D245DCAB253E8281A1B913"
@@ -345,6 +369,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DFDE8E36EFAEE5625005F055DED6A94E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:T4SQL.Base, Version=1.0.0.1, Culture=neutral, PublicKeyToken=e64a73ddc9c094f9, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DFDE8E36EFAEE5625005F055DED6A94E"
+                    {
+                    "Name" = "8:T4SQL.Base.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:T4SQL.Base.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_485FEF67C2D245DCAB253E8281A1B913"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -416,7 +471,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:T4SQL Template Library Engine"
         "ProductCode" = "8:{60288E41-28EF-4CDD-BADF-4BF3BEE645FF}"
-        "PackageCode" = "8:{633C7814-FD32-495F-BAED-20D822FD5B91}"
+        "PackageCode" = "8:{184CFE6E-CD1A-4E58-A504-D694A02CE08D}"
         "UpgradeCode" = "8:{DF052A72-00BB-4271-A6D5-12FA73E8647D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

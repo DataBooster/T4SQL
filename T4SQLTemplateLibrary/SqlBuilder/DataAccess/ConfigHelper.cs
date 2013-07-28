@@ -1,28 +1,10 @@
 ﻿using System.Data.Common;
 using System.Configuration;
 
-namespace T4SQL.SqlBuilder
+namespace T4SQL.SqlBuilder.DataAccess
 {
-	internal static class EngineConfig
+	public static partial class ConfigHelper
 	{
-		private static DbProviderFactory _DbProviderFactory;
-		public static DbProviderFactory DbProviderFactory
-		{
-			get { return _DbProviderFactory; }
-		}
-
-		private static string _ConnectionString;
-		public static string ConnectionString
-		{
-			get { return _ConnectionString; }
-		}
-
-		private static string _DatabasePackage;
-		public static string DatabasePackage
-		{
-			get { return _DatabasePackage; }
-		}
-
 		private static int _EnginePollInterval;
 		internal static int EnginePollInterval	// milliseconds
 		{
@@ -30,18 +12,10 @@ namespace T4SQL.SqlBuilder
 			set { _EnginePollInterval = value; }
 		}
 
-		static EngineConfig()
+		static partial void ConfigInit()
 		{
-			const string connectionSettingKey = "T4SQLDB";
-			const string packageSettingKey = "Engine_Package";
-
-			ConnectionStringSettings connSetting = ConfigurationManager.ConnectionStrings[connectionSettingKey];
-			_DbProviderFactory = DbProviderFactories.GetFactory(connSetting.ProviderName);
-			_ConnectionString = connSetting.ConnectionString;
-
-			_DatabasePackage = ConfigurationManager.AppSettings[packageSettingKey];
-			if (_DatabasePackage == null)
-				_DatabasePackage = string.Empty;
+			_ConnectionSettingKey = "T4SQLDB";
+			_PackageSettingKey = "Engine_Package";
 		}
 	}
 }

@@ -78,7 +78,30 @@ namespace T4SQL.Assoc
             
             #line default
             #line hidden
-            this.Write("\r\n;\r\nGO\r\n");
+            this.Write(@";
+GO
+
+----------------------------------------------------------------------------------------------------
+--
+--	Copyright 2013 Abel Cheng
+--	This source code is subject to terms and conditions of the Apache License, Version 2.0.
+--	See http://www.apache.org/licenses/LICENSE-2.0.
+--	All other rights reserved.
+--	You must not remove this notice, or any other, from this software.
+--
+--	Original Author:	Abel Cheng <abelcys@gmail.com>
+--	Created Date:		‎‎‎July ‎03, ‎2013, ‏‎12:56:08 AM
+--	Primary Host:		http://t4sql.codeplex.com
+--	Change Log:
+--	Author				Date			Comment
+--
+--
+--
+--
+--	(Keep code clean)
+--
+----------------------------------------------------------------------------------------------------
+");
             this.Write("\r\n");
             
             #line 9 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Assoc\VNaviForeignKey.tt"

@@ -6,20 +6,10 @@ using System.Linq;
 using DbParallel.DataAccess;
 using T4SQL.MetaData;
 
-namespace T4SQL.SqlBuilder
+namespace T4SQL.SqlBuilder.DataAccess
 {
-	internal static class DbPackage
+	public static partial class DbPackage
 	{
-		public static DbAccess CreateConnection()
-		{
-			return new DbAccess(EngineConfig.DbProviderFactory, EngineConfig.ConnectionString);
-		}
-
-		private static string GetProcedure(string sp)
-		{
-			return EngineConfig.DatabasePackage + sp;
-		}
-
 		public static DbmsEnvironment GetDbServerEnv(this DbAccess dbAccess)
 		{
 			const string sp = "GET_DB_SERVER_ENV";
@@ -52,7 +42,7 @@ namespace T4SQL.SqlBuilder
 				outPollInterval = parameters.AddOutput("outPoll_Interval").SetDbType(DbType.Byte);
 			});
 
-			EngineConfig.EnginePollInterval = outPollInterval.Parameter<byte>() * 1000;
+			ConfigHelper.EnginePollInterval = outPollInterval.Parameter<byte>() * 1000;
 		}
 
 		private static EngineMain.ServiceMode Ping(DbAccess dbAccess, string sp)
