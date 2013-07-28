@@ -81,7 +81,7 @@ namespace T4SQL.MetaData
 			return false;
 		}
 
-		public bool DetectLoopback(string constraintName)		// Call before the constraintName to be added into the tree
+		public bool DetectCycle(string constraintName)		// Call before the constraintName to be added into the tree
 		{
 			if (string.IsNullOrWhiteSpace(constraintName))
 				return DetectLoopback();

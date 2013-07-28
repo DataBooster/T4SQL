@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\wikipage_home.htm = Documents\wikipage_home.htm
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{0BD1299C-6AE3-407C-844D-F69B90037846}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EngineServiceSetup", "EngineServiceSetup\EngineServiceSetup.vdproj", "{56858E6D-F88E-4876-A784-5A244216A979}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSTemplates", "VSTemplates", "{AD2C96A3-8A0E-4D50-A703-CDDC43D11284}"
@@ -61,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{304335BC
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs23
 		SccLocalPath0 = .
@@ -81,26 +79,22 @@ Global
 		SccProjectTopLevelParentUniqueName4 = T4SQLTemplateLibrary.sln
 		SccProjectName4 = T4Templates
 		SccLocalPath4 = T4Templates
-		SccProjectUniqueName5 = DataAccess\\DataAccess.csproj
+		SccProjectUniqueName5 = EngineServiceSetup\\EngineServiceSetup.vdproj
 		SccProjectTopLevelParentUniqueName5 = T4SQLTemplateLibrary.sln
-		SccProjectName5 = DataAccess
-		SccLocalPath5 = DataAccess
-		SccProjectUniqueName6 = EngineServiceSetup\\EngineServiceSetup.vdproj
+		SccProjectName5 = EngineServiceSetup
+		SccLocalPath5 = EngineServiceSetup
+		SccProjectUniqueName6 = Databases\\SqlServer\\T4SQLDB.sqlproj
 		SccProjectTopLevelParentUniqueName6 = T4SQLTemplateLibrary.sln
-		SccProjectName6 = EngineServiceSetup
-		SccLocalPath6 = EngineServiceSetup
-		SccProjectUniqueName7 = Databases\\SqlServer\\T4SQLDB.sqlproj
+		SccProjectName6 = Databases/SqlServer
+		SccLocalPath6 = Databases\\SqlServer
+		SccProjectUniqueName7 = Databases\\SqlServer\\Test\\Test\u0020(SQL\u0020Server).sqlproj
 		SccProjectTopLevelParentUniqueName7 = T4SQLTemplateLibrary.sln
-		SccProjectName7 = Databases/SqlServer
-		SccLocalPath7 = Databases\\SqlServer
-		SccProjectUniqueName8 = Databases\\SqlServer\\Test\\Test\u0020(SQL\u0020Server).sqlproj
+		SccProjectName7 = Databases/SqlServer/Test
+		SccLocalPath7 = Databases\\SqlServer\\Test
+		SccProjectUniqueName8 = T4SQL.Base\\T4SQL.Base.csproj
 		SccProjectTopLevelParentUniqueName8 = T4SQLTemplateLibrary.sln
-		SccProjectName8 = Databases/SqlServer/Test
-		SccLocalPath8 = Databases\\SqlServer\\Test
-		SccProjectUniqueName9 = T4SQL.Base\\T4SQL.Base.csproj
-		SccProjectTopLevelParentUniqueName9 = T4SQLTemplateLibrary.sln
-		SccProjectName9 = T4SQL.Base
-		SccLocalPath9 = T4SQL.Base
+		SccProjectName8 = T4SQL.Base
+		SccLocalPath8 = T4SQL.Base
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,10 +117,6 @@ Global
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BD1299C-6AE3-407C-844D-F69B90037846}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BD1299C-6AE3-407C-844D-F69B90037846}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56858E6D-F88E-4876-A784-5A244216A979}.Debug|Any CPU.ActiveCfg = Debug
 		{56858E6D-F88E-4876-A784-5A244216A979}.Debug|Any CPU.Build.0 = Debug
 		{56858E6D-F88E-4876-A784-5A244216A979}.Release|Any CPU.ActiveCfg = Release
@@ -156,13 +146,12 @@ Global
 		{C8E89649-607A-4A1D-94BB-F1B0235DCC67} = {FA4FA921-3536-4E85-9CEE-72DAF1E5C1F1}
 		{6D6E838A-0F40-4FAC-8285-78B2A1B2674A} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
 		{D3654AF1-D7DF-4F54-8603-7BCC6DBCF4A6} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
-		{0BD1299C-6AE3-407C-844D-F69B90037846} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
 		{56858E6D-F88E-4876-A784-5A244216A979} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
 		{101DC4B5-0E5B-48A6-9A60-4A7C4D78AFD8} = {7C95919A-CA9C-44B7-AAFD-045F1E31AEF6}
+		{AD2C96A3-8A0E-4D50-A703-CDDC43D11284} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{A5DD7958-181E-4D43-BE49-BAE5005ADB6D} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{55837841-3D2A-411D-960F-323C12668088} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
-		{AD2C96A3-8A0E-4D50-A703-CDDC43D11284} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{15675A2B-48D5-484F-B908-82A8E744A6C0} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
 	EndGlobalSection
 EndGlobal

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Collections.Generic;
 using DbParallel.DataAccess;
+using T4SQL.SqlBuilder.DataAccess;
 
 namespace T4SQL.SqlBuilder
 {
@@ -86,7 +87,7 @@ namespace T4SQL.SqlBuilder
 						LogEvent(e.Message, EventLogEntryType.Error, e.Source);
 					}
 
-					Thread.Sleep(EngineConfig.EnginePollInterval);
+					Thread.Sleep(ConfigHelper.EnginePollInterval);
 				}
 			});
 		}

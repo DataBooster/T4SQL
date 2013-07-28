@@ -103,32 +103,24 @@ namespace T4SQL.MetaData
 
 		public string BuildJoinClause()
 		{
-			int cntJoin;
-			return BuildJoinClause(_RootTable, out cntJoin);
+			return BuildJoinClause(_RootTable);
 		}
 
-		private string BuildJoinClause(DbmsRelationTree startTable, out int cntJoin)
+		private string BuildJoinClause(DbmsRelationTree startTable)
 		{
 			StringBuilder joinClause = new StringBuilder();
 
 			joinClause.AppendFormat(startTable.TableName);
 			joinClause.Append(" ");
 			joinClause.AppendLine(startTable.LinkProperty.Alias);
-			cntJoin = 1;
 
 			foreach (DbmsForeignKey fk in startTable.ForeignKeys)	// INNER JOIN first
 				if (!fk.IsNullable)									// ForeignKeyColumns is not null
-				{
 					AppendJoinSource(joinClause, fk);
-					cntJoin++;
-				}
 
 			foreach (DbmsForeignKey fk in startTable.ForeignKeys)	// Then LEFT JOIN
 				if (fk.IsNullable)									// ForeignKeyColumns is nullable
-				{
 					AppendJoinSource(joinClause, fk);
-					cntJoin++;
-				}
 
 			return joinClause.ToString();
 		}
@@ -139,22 +131,22 @@ namespace T4SQL.MetaData
 			string pkTableAlias = foreignKey.PrimaryUniqueKeyBaseTable.LinkProperty.Alias;
 			List<DbmsColumn> fkColumns = foreignKey.ForeignKeyColumns;
 			List<DbmsColumn> pkColumns = foreignKey.PrimaryUniqueKeyColumns;
-			int cntJoin, nCols = foreignKey.ForeignKeyColumns.Count;
-			string insideJoin = BuildJoinClause(foreignKey.PrimaryUniqueKeyBaseTable, out cntJoin);
+			int nCols = foreignKey.ForeignKeyColumns.Count;
+			bool parentheses = foreignKey.PrimaryUniqueKeyBaseTable.ForeignKeys.Count > 0;
 
 			if (foreignKey.IsNullable)
 				joinClause.Append("LEFT JOIN");
 			else
 				joinClause.Append("INNER JOIN");
 
-			if (cntJoin > 1)
+			if (parentheses)
 				joinClause.AppendLine(" (");
 			else
 				joinClause.AppendLine();
 
-			joinClause.Append(insideJoin.PushIndent());
+			joinClause.Append(BuildJoinClause(foreignKey.PrimaryUniqueKeyBaseTable).PushIndent());
 
-			if (cntJoin > 1)
+			if (parentheses)
 				joinClause.Append(") ");
 
 			joinClause.Append("ON (");

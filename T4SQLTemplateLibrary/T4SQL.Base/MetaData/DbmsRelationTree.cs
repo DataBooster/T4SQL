@@ -55,14 +55,14 @@ namespace T4SQL.MetaData
 		}
 
 		public void AddForeignKeyColumn(string constraintName, string foreignKeyColumn, bool foreignKeyNullable,
-			string referencedTable, string referencedColumn, bool referencedNullable, bool detectLoopback = true)
+			string referencedTable, string referencedColumn, bool referencedNullable, bool detectCycle = true)
 		{
 			DbmsForeignKey fk = _ForeignKeys.LastOrDefault(s => constraintName.Equals(s.ConstraintName, StringComparison.OrdinalIgnoreCase));
 
 			if (fk == null)
 			{
-				if (detectLoopback && _ParentForeignKey != null)
-					if (_ParentForeignKey.DetectLoopback(constraintName))
+				if (detectCycle && _ParentForeignKey != null)
+					if (_ParentForeignKey.DetectCycle(constraintName))
 						return;
 
 				fk = new DbmsForeignKey(constraintName, this, referencedTable);
@@ -87,8 +87,7 @@ namespace T4SQL.MetaData
 					return _Columns;
 				else
 				{
-					var pkCols = _ParentForeignKey.PrimaryUniqueKeyColumns.Select(c => c.ColumnName);
-
+					IEnumerable<string> pkCols = _ParentForeignKey.PrimaryUniqueKeyColumns.Select(c => c.ColumnName);
 					return _Columns.Where(c => !pkCols.Contains(c.ColumnName, StringComparer.OrdinalIgnoreCase));
 				}
 			}
