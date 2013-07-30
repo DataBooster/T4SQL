@@ -5,8 +5,10 @@ namespace T4SQL.SqlBuilder.DataAccess
 {
 	public static partial class ConfigHelper
 	{
-		private static string _ConnectionSettingKey = "T4SQLDB";
-		private static string _PackageSettingKey = "Engine_Package";
+		#region Setting key names defined in your config file, can be overridden in partial OnInitializing()
+		private static string _ConnectionSettingKey = "T4SQL.SqlBuilder.MainConnection";
+		private static string _PackageSettingKey = "T4SQL.SqlBuilder.MainPackage";
+		#endregion
 
 		#region Properties
 		private static DbProviderFactory _DbProviderFactory;
@@ -30,7 +32,7 @@ namespace T4SQL.SqlBuilder.DataAccess
 
 		static ConfigHelper()
 		{
-			ConfigInit();
+			OnInitializing();
 
 			#region Default Initialization
 			ConnectionStringSettings connSetting = ConfigurationManager.ConnectionStrings[_ConnectionSettingKey];
@@ -41,8 +43,11 @@ namespace T4SQL.SqlBuilder.DataAccess
 			if (_DatabasePackage == null)
 				_DatabasePackage = string.Empty;
 			#endregion
+
+			OnInitialized();
 		}
 
-		static partial void ConfigInit();
+		static partial void OnInitializing();
+		static partial void OnInitialized();
 	}
 }

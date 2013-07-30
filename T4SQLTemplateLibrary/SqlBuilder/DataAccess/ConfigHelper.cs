@@ -12,7 +12,7 @@ namespace T4SQL.SqlBuilder.DataAccess
 			set { _EnginePollInterval = value; }
 		}
 
-		static partial void ConfigInit()
+		static partial void OnInitializing()
 		{
 			_ConnectionSettingKey = "T4SQLDB";
 			_PackageSettingKey = "Engine_Package";
