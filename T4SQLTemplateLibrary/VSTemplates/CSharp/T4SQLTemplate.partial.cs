@@ -21,9 +21,10 @@ namespace $rootnamespace$
 			TemplateSpec spec = new TemplateSpec();
 
 			// <ToDo> Specify all properties to be used in the template:
-			spec.AddProperty("ObjectView", "dbo.VW_ObjectView", null, "The full name of object view");
-			spec.AddProperty("SourceView", "dbo.[SomeTableOrView]", null, "Source Table Or View");
-//	...	...	spec.AddProperty("PropertyName", "DefaultValue", null, "Property description ... (Max 1024 Chars)");
+			spec.AddProperty("ObjectView", "schema.ObjectView", null, "{+}The full name of object view");
+			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
+//	...	...	spec.AddProperty("CustomPropertyName", "ExampleValue", null, "{+}Customization is necessary property description ... (Max 1024 Chars)");
+//	...	...	spec.AddProperty("OptionPropertyName", "DefaultValue", null, "[*]Default can be acceptable property description ... (Max 1024 Chars)");
 			// </ToDo>
 
 			return spec;

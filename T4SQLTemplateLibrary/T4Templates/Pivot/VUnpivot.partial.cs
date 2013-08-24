@@ -16,12 +16,12 @@ namespace T4SQL.Pivot
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
-			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "Non-pivoted columns");
-			spec.AddProperty("ValueColumn", "MEASURE_COL", null, "Specify a name for each output column that will hold measure values");
-			spec.AddProperty("PivotColumn", "TYPE_COL", null, "Specify a name for each output column that will hold descriptor values");
-			spec.AddProperty("UnpivotColumns", "*", null, "Specify the input data columns whose names will become values in the output columns");
+			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
+			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "{+}Non-pivoted columns");
+			spec.AddProperty("ValueColumn", "MEASURE_COL", null, "{+}Specify a name for each output column that will hold measure values");
+			spec.AddProperty("PivotColumn", "TYPE_COL", null, "{+}Specify a name for each output column that will hold descriptor values");
+			spec.AddProperty("UnpivotColumns", "*", null, "[*]Specify the input data columns whose names will become values in the output columns");
 
 			return spec;
 		}

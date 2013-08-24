@@ -80,6 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="test.schema.sql" />
+    <Build Include="Tables\test.date_time_points.sql" />
+    <Build Include="Tables\test.date_time_ranges.sql" />
+    <Build Include="Tables\test.pivot_discrete_attrib.sql" />
+    <Build Include="Tables\test.grouping_flat_values.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac">

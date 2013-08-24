@@ -16,13 +16,13 @@ namespace T4SQL.Date
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
-			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("DateColumn", "DATE_", null, "The date column of daily source table or view");
-			spec.AddProperty("SelectColumns", "*", null, "* or a comma-separated list of select columns - exclude the date column");
-			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
-			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");
-			spec.AddProperty("EndDateNext", "0", null, "0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
+			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
+			spec.AddProperty("DateColumn", "DATE_", null, "{+}The date column of daily source table or view");
+			spec.AddProperty("SelectColumns", "*", null, "[*] * or a comma-separated list of select columns - exclude the date column");
+			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "{+}Time range Start Date column");
+			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "{+}Time range End Date column");
+			spec.AddProperty("EndDateNext", "0", null, "[*] 0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
 
 			return spec;
 		}
