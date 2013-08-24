@@ -51,10 +51,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{7C9591
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA}"
 	ProjectSection(SolutionItems) = preProject
-		T4SQL.Base\NuGet\Download NuGet Command-Line.htm = T4SQL.Base\NuGet\Download NuGet Command-Line.htm
 		T4SQL.Base\NuGet\Install.ps1 = T4SQL.Base\NuGet\Install.ps1
 		T4SQL.Base\NuGet\pack.bat = T4SQL.Base\NuGet\pack.bat
 		T4SQL.Base\NuGet\Readme.txt = T4SQL.Base\NuGet\Readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F939D93A-F5D6-44B3-80BD-139FA7655866}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nupkg", "nupkg", "{EFA2A4E4-F055-4068-A437-3E9310E27D73}"
+	ProjectSection(SolutionItems) = preProject
+		T4SQL.Base\NuGet\nupkg\Download NuGet Command-Line.htm = T4SQL.Base\NuGet\nupkg\Download NuGet Command-Line.htm
 	EndProjectSection
 EndProject
 Global
@@ -153,5 +164,6 @@ Global
 		{55837841-3D2A-411D-960F-323C12668088} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA} = {FF43D7CC-1C03-4685-936F-69853A5315F4}
 		{15675A2B-48D5-484F-B908-82A8E744A6C0} = {AD2C96A3-8A0E-4D50-A703-CDDC43D11284}
+		{EFA2A4E4-F055-4068-A437-3E9310E27D73} = {304335BC-9CD9-4D9C-B87B-CE9FBBACAFFA}
 	EndGlobalSection
 EndGlobal

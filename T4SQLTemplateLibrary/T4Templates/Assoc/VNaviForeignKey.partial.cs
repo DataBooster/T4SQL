@@ -22,9 +22,9 @@ namespace T4SQL.Assoc
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ObjectView", null, "The full name of object view");
-			spec.AddProperty("ForeignKeyBaseTable", "dbo.ForeignKeyBaseTable", null, "Foreign Key Base Table");
-			spec.AddProperty("AliasFormat", "{0}${1}", null, "Only apply when column name is duplicate - {0}: Table; {1}: ColumnName");
+			spec.AddProperty("ObjectView", "dbo.VW_ObjectView", null, "{+}The full name of object view");
+			spec.AddProperty("ForeignKeyBaseTable", "dbo.ForeignKeyBaseTable", null, "{+}Foreign Key Base Table");
+			spec.AddProperty("AliasFormat", "{0}${1}", null, "[*]Only apply when column name is duplicate - {0}: Table; {1}: ColumnName");
 
 			return spec;
 		}

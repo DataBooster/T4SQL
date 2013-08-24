@@ -16,14 +16,14 @@ namespace T4SQL.Pivot
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
-			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("SourceFilter", "", null, "Search conditions");
-			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "Non-pivoted columns");
-			spec.AddProperty("AggregateFunction", "MAX({0})", null, "Aggregation function");
-			spec.AddProperty("ValueColumn", "AGG_VAL_COL", null, "Column being aggregated - Is the value column of the PIVOT operator");
-			spec.AddProperty("PivotColumn", "PIV_COL", null, "Column that contains the values that will become column headers - Is the pivot column of the PIVOT operator");
-			spec.AddProperty("ValueList", "[Val 1] AS VAL_COL1, [Val 2], Val3", null, "List the values in the PivotColumn that will become the column names of the output table");
+			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
+			spec.AddProperty("SourceFilter", "", null, "[*]Search conditions");
+			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "{+}Non-pivoted columns");
+			spec.AddProperty("AggregateFunction", "MAX({0})", null, "[*]Aggregation function");
+			spec.AddProperty("ValueColumn", "AGG_VAL_COL", null, "{+}Column being aggregated - Is the value column of the PIVOT operator");
+			spec.AddProperty("PivotColumn", "PIV_COL", null, "{+}Column that contains the values that will become column headers - Is the pivot column of the PIVOT operator");
+			spec.AddProperty("ValueList", "[Val 1] AS VAL_COL1, [Val 2], Val3", null, "{+}List the values in the PivotColumn that will become the column names of the output table");
 
 			return spec;
 		}

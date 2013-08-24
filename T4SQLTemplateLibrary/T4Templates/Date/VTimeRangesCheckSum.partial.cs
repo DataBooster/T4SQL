@@ -15,15 +15,15 @@ namespace T4SQL.Date
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "The full name of object view");
-			spec.AddProperty("SourceView", "[SomeTableOrView]", null, "Source Table Or View");
-			spec.AddProperty("KeyColumns", "COL1, COL2", null, "The key column or a comma-separated list of key columns - exclude date-range columns");
-			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "Time range Start Date column");
-			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "Time range End Date column");
-			spec.AddProperty("EndDateNext", "0", null, "0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
-			spec.AddProperty("DefaultEndDate", "CONVERT(date, GETDATE())", null, "Ultimate END_DATE as the substitute of IS NULL");
-			spec.AddProperty("InscopeDaysColumn", "INSCOPE_DAYS", null, "The total number of days between the first START_DATE and the last END_DATE");
-			spec.AddProperty("CheckSumColumn", "CHECK_SUM", null, "SUM total days of every Time Ranges");
+			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
+			spec.AddProperty("KeyColumns", "COL1, COL2", null, "{+}The key column or a comma-separated list of key columns - exclude date-range columns");
+			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "{+}Time range Start Date column");
+			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "{+}Time range End Date column");
+			spec.AddProperty("EndDateNext", "0", null, "[*] 0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
+			spec.AddProperty("DefaultEndDate", "CONVERT(date, GETDATE())", null, "[*]Ultimate END_DATE as the substitute of IS NULL");
+			spec.AddProperty("InscopeDaysColumn", "INSCOPE_DAYS", null, "[*]The total number of days between the first START_DATE and the last END_DATE");
+			spec.AddProperty("CheckSumColumn", "CHECK_SUM", null, "[*]SUM total days of every Time Ranges");
 
 			return spec;
 		}
