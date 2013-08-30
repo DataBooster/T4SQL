@@ -8,6 +8,7 @@ namespace T4SQL.SqlBuilder.DataAccess
 		#region Setting key names defined in your config file, can be overridden in partial OnInitializing()
 		private static string _ConnectionSettingKey = "T4SQL.SqlBuilder.MainConnection";
 		private static string _PackageSettingKey = "T4SQL.SqlBuilder.MainPackage";
+		private static string _AuxConnectionSettingKey = "T4SQL.SqlBuilder.AuxConnection";
 		#endregion
 
 		#region Properties
@@ -28,6 +29,18 @@ namespace T4SQL.SqlBuilder.DataAccess
 		{
 			get { return _DatabasePackage; }
 		}
+
+		private static DbProviderFactory _AuxDbProviderFactory;
+		public static DbProviderFactory AuxDbProviderFactory
+		{
+			get { return _AuxDbProviderFactory; }
+		}
+
+		private static string _AuxConnectionString;
+		public static string AuxConnectionString
+		{
+			get { return _AuxConnectionString; }
+		}
 		#endregion
 
 		static ConfigHelper()
@@ -42,6 +55,10 @@ namespace T4SQL.SqlBuilder.DataAccess
 			_DatabasePackage = ConfigurationManager.AppSettings[_PackageSettingKey];
 			if (_DatabasePackage == null)
 				_DatabasePackage = string.Empty;
+
+			connSetting = ConfigurationManager.ConnectionStrings[_AuxConnectionSettingKey];
+			_AuxDbProviderFactory = DbProviderFactories.GetFactory(connSetting.ProviderName);
+			_AuxConnectionString = connSetting.ConnectionString;
 			#endregion
 
 			OnInitialized();
