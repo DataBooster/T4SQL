@@ -16,12 +16,12 @@ namespace T4SQL.Date
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("ObjectView", "schema.VW_ObjViewName", null, "{+}The full name of object view");
 			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
 			spec.AddProperty("KeyColumns", "COL1, COL2", null, "{+}The key column or a comma-separated list of key columns - exclude the date column of time point");
 			spec.AddProperty("SourceDateColumn", "DATE_", null, "{+}Source date column of time point");
 			spec.AddProperty("AttribColumns", "*", null, "[*] * or a comma-separated list of attribute columns");
-			spec.AddProperty("DailyView", "dbo.VW_ORDINAL_DATE", null, "[*]Time Series base daily source table or view");
+			spec.AddProperty("DailyView", "T4SQL.VW_ORDINAL_DATE", null, "[*]Time Series base daily source table or view");
 			spec.AddProperty("DailyDateColumn", "DATE_", null, "[*]The date column of daily source table or view");
 
 			return spec;

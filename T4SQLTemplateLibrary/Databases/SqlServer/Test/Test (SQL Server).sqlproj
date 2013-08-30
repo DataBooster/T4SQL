@@ -84,6 +84,10 @@
     <Build Include="Tables\test.date_time_ranges.sql" />
     <Build Include="Tables\test.pivot_discrete_attrib.sql" />
     <Build Include="Tables\test.grouping_flat_values.sql" />
+    <Build Include="Tables\test.simulation.sql" />
+    <Build Include="Tables\test.sim_type.sql" />
+    <Build Include="Tables\test.prod_type.sql" />
+    <Build Include="Tables\test.grp3_class.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac">
@@ -97,5 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="InitData\1-CreateSampleWorkspace.sql" />
+    <None Include="InitData\2-GenerateTestData.sql" />
+    <None Include="InitData\3-SetupWorkitems.sql" />
+    <None Include="InitData\4-SetupWorkitemsProperties.sql" />
   </ItemGroup>
 </Project>

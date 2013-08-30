@@ -16,7 +16,7 @@ namespace T4SQL.Date
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("ObjectView", "schema.VW_ObjViewName", null, "{+}The full name of object view");
 			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
 			spec.AddProperty("DateColumn", "DATE_", null, "{+}The date column of daily source table or view");
 			spec.AddProperty("SelectColumns", "*", null, "[*] * or a comma-separated list of select columns - exclude the date column");

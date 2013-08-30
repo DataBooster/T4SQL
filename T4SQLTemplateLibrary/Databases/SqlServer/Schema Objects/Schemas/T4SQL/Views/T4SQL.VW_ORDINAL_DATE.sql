@@ -1,4 +1,4 @@
-﻿CREATE VIEW dbo.VW_ORDINAL_DATE
+﻿CREATE VIEW T4SQL.VW_ORDINAL_DATE
 AS
 SELECT
 	DAY_,
@@ -8,7 +8,7 @@ FROM
 	SELECT
 		1 - ORDINAL_NUMBER	AS DAY_
 	FROM
-		dbo.UTL_ORDINAL_NUMBER
+		T4SQL.UTL_ORDINAL_NUMBER
 )	D;
 
 ----------------------------------------------------------------------------------------------------
