@@ -73,7 +73,9 @@ AS
 		@inWorkspace_Description,
 		@inAutonomous_Owner
 	);
-	
+
+	EXEC T4SQL.META_CREATE_PROPERTY_VIEW @inWorkitem_Table, @inProperty_Table;
+
 ----------------------------------------------------------------------------------------------------
 --
 --	Copyright 2013 Abel Cheng

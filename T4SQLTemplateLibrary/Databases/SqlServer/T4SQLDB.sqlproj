@@ -277,6 +277,7 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.UTL_ORDINAL_NUMBER.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Views\T4SQL.VW_ORDINAL_DATE.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Views\T4SQL.VW_ORDINAL_NUMBER_EXPANSION.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.META_CREATE_PROPERTY_VIEW.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
