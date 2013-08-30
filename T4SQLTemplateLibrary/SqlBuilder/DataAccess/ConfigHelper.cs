@@ -16,6 +16,7 @@ namespace T4SQL.SqlBuilder.DataAccess
 		{
 			_ConnectionSettingKey = "T4SQLDB";
 			_PackageSettingKey = "Engine_Package";
+			_AuxConnectionSettingKey = null;
 		}
 	}
 }
