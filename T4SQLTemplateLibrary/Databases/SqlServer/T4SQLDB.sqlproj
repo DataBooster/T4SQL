@@ -109,30 +109,6 @@
     <Folder Include="Properties\" />
     <Folder Include="Schema Objects\" />
     <Folder Include="Schema Objects\Schemas\" />
-    <Folder Include="Schema Objects\Schemas\dbo\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Defaults\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Functions\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Rules\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Data Types\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Types CLR\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\XML Schema Collections\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Service Broker\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Service Broker\Queues\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Synonyms\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\Constraints\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\Indexes\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\Keys\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\Triggers\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Tables\Statistics\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Views\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Views\Indexes\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Views\Triggers\" />
-    <Folder Include="Schema Objects\Schemas\dbo\Views\Statistics\" />
     <Folder Include="Schema Objects\Database Level Objects\" />
     <Folder Include="Schema Objects\Database Level Objects\Assemblies\" />
     <Folder Include="Schema Objects\Database Level Objects\Database Triggers\" />
@@ -291,15 +267,6 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_REGISTER_TEMPLATE_SPEC.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.UTL_ORDINAL_NUMBER.table.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.VW_ORDINAL_NUMBER_EXPANSION.view.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.VW_ORDINAL_DATE.view.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_DB_SERVER_ENV.proc.sql">
       <SubType>Code</SubType>
     </Build>
@@ -307,6 +274,9 @@
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.CMD_PRINT_ALL_LINES.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.META_CREATE_WORKSPACE.sql" />
     <Build Include="Schema Objects\Schemas\T4SQL\Programmability\Stored Procedures\T4SQL.ENGINE_GET_FOREIGN_KEY.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Tables\T4SQL.UTL_ORDINAL_NUMBER.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Views\T4SQL.VW_ORDINAL_DATE.sql" />
+    <Build Include="Schema Objects\Schemas\T4SQL\Views\T4SQL.VW_ORDINAL_NUMBER_EXPANSION.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
@@ -315,7 +285,7 @@
     <None Include="Scripts\Post-Deployment\2-T4SQL.WORKSPACE_ENTRY.data.sql">
       <SubType>NotInBuild</SubType>
     </None>
-    <None Include="Scripts\Post-Deployment\3-dbo.UTL_ORDINAL_NUMBER.data.sql">
+    <None Include="Scripts\Post-Deployment\3-T4SQL.UTL_ORDINAL_NUMBER.data.sql">
       <SubType>NotInBuild</SubType>
     </None>
   </ItemGroup>

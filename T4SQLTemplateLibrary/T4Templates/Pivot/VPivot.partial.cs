@@ -16,7 +16,7 @@ namespace T4SQL.Pivot
 		{
 			TemplateSpec spec = new TemplateSpec();
 
-			spec.AddProperty("ObjectView", "dbo.VW_ViewName_ToDo", null, "{+}The full name of object view");
+			spec.AddProperty("ObjectView", "schema.VW_ObjViewName", null, "{+}The full name of object view");
 			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
 			spec.AddProperty("SourceFilter", "", null, "[*]Search conditions");
 			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "{+}Non-pivoted columns");
