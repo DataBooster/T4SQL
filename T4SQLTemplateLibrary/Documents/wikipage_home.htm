@@ -1,1 +1,41 @@
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>T4SQL Template Library WikiPage Home</title>
+</head>
+<body>
+<p><strong>Project Overview</strong></p>
+<div style="padding-left: 20px;">
+<p>T4SQL is a T4 Templates based SQL Generics.<br />In Branches-Leaves (Tree) Pattern database development, to make a distinction between <a title="Database View-plug-ins Framework" href="http://view.codeplex.com/" target="_blank">the context flowchart (Branches)</a> and <a>the particular data transformation (Leaves)</a>:</p>
+<ul>
+<li>A clear highlighted Branches graphic would help our mind to control complexity all the time. </li>
+<li>A generic encapsulated Leaves picture would help our mind to liberate ourselves from the repeat of similar labor as much as possible. </li>
+</ul>
+<p>The T4SQL acts as a Leaves Factory. It is intended for database developer to use generic SQL script library as easy as C++ or .NET Generic Class Library. A built-in Generic View Library is released with this tool, also as a sample to make your own generic SQL libraries.</p>
+</div>
+<p><strong>Project Organization</strong></p>
+<p style="padding-left: 20px;">T4SQL mainly consists of three modules: T4SQL Workspaces, Template Engine and Template Library.</p>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=724817" alt="Project Organization Chart" width="618" height="406" /></div>
+<div>&nbsp;</div>
+<p><strong>T4SQL Workspaces</strong></p>
+<div style="padding-left: 20px;">Each workspace is a set of workitems in database, includes a WORKITEM table and a PROPERTY table. Database developers usually work on database directly, some team doesn't want their stuff be seen by other teams. It's necessary to create a autonomous workspace for them.</div>
+<ul>
+<li>Workitems </li>
+</ul>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=728867" alt="" /></div>
+<div style="padding-left: 35px;">&nbsp;<br />A workitem is a single database object (e.g. a View) which needs to be created or maintained.<br />&nbsp;<br />Above TEMPLATE_NAME is the fully qualified name (including the namespace) of .NET class in Template Library. It is a crucial key for Template Engine to dispatch the specified Template to generate the object code. The TEMPLATE_NAME column is a foreign key tie to a global table T4SQL.TEMPLATE_CLASS which is maintained by Template Engine automatically (see also detail in upcoming Template Engine Section). <br />&nbsp; <br />The START_BUILD is the control switch which tells Template Engine to turn on the code generation process for that workitem. After a request is completed, the engine will save the generated code into OBJECT_CODE column (if successful) or save the error message into COMPILED_ERROR column (if failed), and reset the START_BUILD to be off.</div>
+<ul>
+<li>Working Properties </li>
+</ul>
+<div style="padding-left: 35px;">For each workitem there should be a series of working properties as parameters for engine to invoke a template. When a new workitem is added into the WORKITEM table, a trigger behind it will pre-copy all designed properties into below PROPERTY table with either ExampleValue (must be customized) or DefaultValue (leave it as it is), you only need to update them as your particular requirement environment.<br />&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=729155" alt="" /></div>
+<div style="padding-left: 35px;">&nbsp;<br />Above STRING_VALUE is the column which you need to update. It is template's responsibility to parse the text.<br />The LINK_STATE column is reserved for some case to pass the object state.<br />&nbsp;<br />In practice, it's recommended to use a writeable view (just the same name as the PROPERTY table with a "VW_" prefix) since the view can give you reference information at a glance during editing above STRING_VALUE and LINK_STATE columns, such as property description, custom is a must or not, etc.<br />&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=729402" alt="" /></div>
+<div style="padding-left: 20px;">&nbsp;<br />A utility stored procedure T4SQL.META_CREATE_WORKSPACE(&hellip;) is used for creating a new workspace, it will create a pair of WORKITEM table and PROPERTY table, including all necessary constraints (FK, PK&hellip;), triggers and a helper view for you.<br />&nbsp;<br />T4SQL.CMD_BUILD_SCRIPTS(&hellip;) is a handy stored procedure to generate all objects which match the search criteria into a single script and prints on Message Screen.<br /><img style="border: 1px solid black;" src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=730102" alt="" /><br />&nbsp;</div>
+<p><strong>Template Engine</strong></p>
+<div style="padding-left: 20px;">T4SQL Template Engine is a Windows Service which acts as the dispatch center.<br /><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=730109" alt="" /><br /><br />Please deploy installation scripts onto database side<br /><img style="border: 1px solid black;" src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=730110" alt="" /><br /><br />and run setup.exe to install T4SQL Template Engine Service in Windows server side.<br /><img style="border: 1px solid black;" src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=730111" alt="" /><br /><br />Make sure to modify the connectionStrings in T4SQL.EngineService.exe.config before start up the service.<br /><img style="border: 1px solid black;" src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&amp;DownloadId=730120" alt="" /><br /><br />T4SQL Template Engine will load all add-ins template libraries under the "Templates" subdirectory on startup.<br />When you get some new Template Libraries and want to plug them into your engine, just copy their dll files into the "Templates" subdirectory and restart the engine service. The engine will upload templates' metadata into database T4SQL.TEMPLATE_CLASS table and T4SQL.TEMPLATE_SPEC table, all new templates are ready for every workspaces to use.<br />&nbsp;</div>
+<p><strong>Template Library</strong></p>
+<div style="padding-left: 20px;">&nbsp;</div>
+<p>In development ...</p>
+</body>
+</html>
