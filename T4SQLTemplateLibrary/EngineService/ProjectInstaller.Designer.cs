@@ -41,6 +41,7 @@
 			this.templateEngineServiceInstaller.Description = "Build SQL object code of requested workitems based on T4 Templates";
 			this.templateEngineServiceInstaller.DisplayName = "T4SQL Template Engine Service";
 			this.templateEngineServiceInstaller.ServiceName = "T4SQL Template Engine";
+			this.templateEngineServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
 			this.templateEngineServiceInstaller.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.templateEngineServiceInstaller_AfterInstall);
 			// 
 			// ProjectInstaller

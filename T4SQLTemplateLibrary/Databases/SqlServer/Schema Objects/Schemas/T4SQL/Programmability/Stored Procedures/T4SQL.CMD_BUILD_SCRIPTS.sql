@@ -2,7 +2,7 @@
 (
 	@inWorkitem_Table		NVARCHAR(128),
 	@inSearch_Conditions	NVARCHAR(4000),
-	@outGenerated_Scripts	NVARCHAR(MAX)
+	@outGenerated_Scripts	NVARCHAR(MAX)	OUTPUT
 )
 AS
 	SET NOCOUNT ON

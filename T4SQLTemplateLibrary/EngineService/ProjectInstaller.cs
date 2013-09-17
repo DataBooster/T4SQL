@@ -19,7 +19,7 @@ namespace T4SQL.EngineService
 
 		private void templateEngineServiceInstaller_AfterInstall(object sender, InstallEventArgs e)
 		{
-			new ServiceController(templateEngineServiceInstaller.ServiceName).Start();
+		//	new ServiceController(templateEngineServiceInstaller.ServiceName).Start();
 		}
 	}
 }
