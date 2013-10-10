@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Test (SQL Server)</Name>
+    <Name>Test</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{c8e89649-607a-4a1d-94bb-f1b0235dcc67}</ProjectGuid>
@@ -67,7 +67,6 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
-    <Folder Include="Views" />
     <Folder Include="InitData" />
   </ItemGroup>
   <ItemGroup>
