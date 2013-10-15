@@ -21,16 +21,56 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="Schema.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\01-ENGINE_CONFIG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\02-ENGINE_SERVER.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\03-EVENT_LOG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\04-TEMPLATE_CLASS.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\05-TEMPLATE_SPEC.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\06-WORKSPACE_ENTRY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\07-SEED_WORKITEM.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\08-SEED_PROPERTY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\09-UTL_ORDINAL_NUMBER.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-Sequences\01-SEQ_WORKSPACE_ID.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\3-Views\01-VW_ORDINAL_DATE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\3-Views\02-VW_ORDINAL_NUMBER_EXPANSION.sql">
+      <SubType>Content</SubType>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\T4SQLDB.uml">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="Scripts" />
     <Folder Include="Scripts\1-Tables" />
-    <Folder Include="Scripts\2-Views" />
-    <Folder Include="Scripts\3-Packages" />
-    <Folder Include="Scripts\4-Triggers" />
-    <Folder Include="Scripts\5-InitData" />
-    <Folder Include="Scripts\6-ResetData" />
+    <Folder Include="Scripts\3-Views" />
+    <Folder Include="Scripts\4-Packages" />
+    <Folder Include="Scripts\5-Triggers" />
+    <Folder Include="Scripts\6-InitData" />
+    <Folder Include="Scripts\7-ResetData" />
+    <Folder Include="Scripts\2-Sequences" />
   </ItemGroup>
 </Project>
