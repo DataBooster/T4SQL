@@ -21,9 +21,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
-    <Content Include="Schema.sql">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Scripts\1-Tables\01-ENGINE_CONFIG.sql">
       <SubType>Content</SubType>
     </Content>
@@ -58,6 +55,21 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Scripts\3-Views\02-VW_ORDINAL_NUMBER_EXPANSION.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\4-Packages\01-META.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\4-Packages\02-ENGINE.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\4-Packages\03-CMD.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-Triggers\01-TRG_SEED_WORKITEM_IU.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\Privileges.sql">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="ModelDefinition\" />
