@@ -69,6 +69,12 @@
     <Content Include="Scripts\5-Triggers\01-TRG_SEED_WORKITEM_IU.sql">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Scripts\5-Triggers\02-TRG_WORKSPACE_ENTRY_DEL.trg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-Triggers\03-TRG_WORKSPACE_ENTRY_INS.trg">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Scripts\Privileges.sql">
       <SubType>Content</SubType>
     </Content>
