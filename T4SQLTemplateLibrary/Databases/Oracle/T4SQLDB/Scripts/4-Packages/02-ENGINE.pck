@@ -111,6 +111,15 @@ PROCEDURE LIST_DEFAULT_PROPERTY
 );
 
 
+PROCEDURE COMPILE_WORKITEM
+(
+	inWorkitem_Table	VARCHAR2,
+	inWorkitem_Name		VARCHAR2,
+	inCompiled_Error	VARCHAR2,
+	inObject_Code		CLOB
+);
+
+
 PROCEDURE LOG_SYS_ERROR
 (
 	inReference		NVARCHAR2,
@@ -458,6 +467,30 @@ BEGIN
 		D.PROPERTY_ORDER;
 
 END LIST_DEFAULT_PROPERTY;
+
+
+PROCEDURE COMPILE_WORKITEM
+(
+	inWorkitem_Table	VARCHAR2,
+	inWorkitem_Name		VARCHAR2,
+	inCompiled_Error	VARCHAR2,
+	inObject_Code		CLOB
+)	AS
+	tSQL				VARCHAR2(512);
+BEGIN
+	tSQL := 'UPDATE	' || inWorkitem_Table || '
+	SET
+		COMPILED_TIME	= SYSTIMESTAMP,
+		COMPILED_ERROR	= :Compiled_Error,
+		OBJECT_CODE		= :Object_Code,
+		START_BUILD		= ''N''
+	WHERE
+		WORKITEM_NAME	= :Workitem_Name
+';
+
+	EXECUTE IMMEDIATE tSQL USING inCompiled_Error, inObject_Code, inWorkitem_Name;
+
+END COMPILE_WORKITEM;
 
 
 PROCEDURE LOG_SYS_ERROR
