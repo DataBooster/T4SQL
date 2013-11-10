@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER T4SQL.TRG_WORKSPACE_ENTRY_INS
+﻿CREATE OR REPLACE TRIGGER T4SQL.TRG_WORKSPACE_ENTRY_INS
 BEFORE INSERT OR UPDATE ON T4SQL.WORKSPACE_ENTRY
 FOR EACH ROW
 DECLARE
@@ -41,7 +41,32 @@ BEGIN
 		RAISE_APPLICATION_ERROR(-21002, 'Tables definition of add-in workspace is not compatible with built-in workspace T4SQL.SEED_...!');
 	END IF;
 
+	IF INSERTING THEN
+		:new.WORKSPACE_ID	:= T4SQL.SEQ_WORKSPACE_ID.NEXTVAL;
+	END IF;
+
 	-- Create trigger for each new workspace to auto-copy properties' default values while inserting a new workitem.
 	T4SQL.META.CREATE_WORKITEM_TRIGGER(:new.WORKITEM_TABLE_NAME);
 END;
+
+----------------------------------------------------------------------------------------------------
+--
+--	Copyright 2013 Abel Cheng
+--	This source code is subject to terms and conditions of the Apache License, Version 2.0.
+--	See http://www.apache.org/licenses/LICENSE-2.0.
+--	All other rights reserved.
+--	You must not remove this notice, or any other, from this software.
+--
+--	Original Author:	Abel Cheng <abelcys@gmail.com>
+--	Created Date:		‎November ‎03, 2013, ‏‎1:18:48 AM
+--	Primary Host:		http://t4sql.codeplex.com
+--	Change Log:
+--	Author				Date			Comment
+--
+--
+--
+--
+--	(Keep code clean)
+--
+----------------------------------------------------------------------------------------------------
 /

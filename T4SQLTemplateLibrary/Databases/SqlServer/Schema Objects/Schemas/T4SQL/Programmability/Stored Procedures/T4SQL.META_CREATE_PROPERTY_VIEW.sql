@@ -53,7 +53,7 @@ ORDER BY
 	S.PROPERTY_ORDER,
 	S.PROPERTY_NAME
 */
-;';
+';
 
 	EXECUTE (@tDdlSql);
 

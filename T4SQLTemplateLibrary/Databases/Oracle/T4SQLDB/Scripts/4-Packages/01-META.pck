@@ -26,46 +26,52 @@ FUNCTION PARSENAME
 (
 	inQualified_Name	VARCHAR2,
 	inObject_Piece		PLS_INTEGER
-)	RETURN VARCHAR2;
+)	RETURN				VARCHAR2;
 
 
 FUNCTION EXISTS_TABLE
 (
-	inSchema_Name	VARCHAR2,
-	inTable_Name	VARCHAR2
-)	RETURN BOOLEAN;
+	inSchema_Name		VARCHAR2,
+	inTable_Name		VARCHAR2
+)	RETURN				BOOLEAN;
 
 FUNCTION EXISTS_TABLE
 (
 	inQualified_Name	VARCHAR2
-)	RETURN BOOLEAN;
+)	RETURN				BOOLEAN;
+
+
+FUNCTION QUALIFIED_NAME
+(
+	inFull_Name			VARCHAR2
+)	RETURN				VARCHAR2;
 
 
 FUNCTION MATCH_TABLE_DEFINITION
 (
-	inRef_Schema	VARCHAR2,
-	inRef_Table		VARCHAR2,
-	inTst_Schema	VARCHAR2,
-	inTst_Table		VARCHAR2
-)	RETURN BOOLEAN;
+	inRef_Schema		VARCHAR2,
+	inRef_Table			VARCHAR2,
+	inTst_Schema		VARCHAR2,
+	inTst_Table			VARCHAR2
+)	RETURN				BOOLEAN;
 
 
 PROCEDURE EXECUTE_AUTONOMOUS
 (
-	inSql_Stmt	VARCHAR2
+	inSql_Stmt			VARCHAR2
 );
 
 PROCEDURE EXECUTE_AUTONOMOUS
 (
-	inSql_Stmt	CLOB
+	inSql_Stmt			CLOB
 );
 
 
 PROCEDURE GET_TABLE_IN_TRIGGER
 (
-	inCall_Stack	VARCHAR2,		-- DBMS_UTILITY.FORMAT_CALL_STACK
-	outTab_Schema	OUT VARCHAR2,
-	outTab_Name		OUT VARCHAR2
+	inCall_Stack		VARCHAR2,		-- DBMS_UTILITY.FORMAT_CALL_STACK
+	outTab_Schema		OUT VARCHAR2,
+	outTab_Name			OUT VARCHAR2
 );
 
 
@@ -92,10 +98,10 @@ PROCEDURE CREATE_PROPERTY_VIEW
 
 PROCEDURE CREATE_WORKSPACE
 (
-	inWorkitem_Table			VARCHAR2,
-	inProperty_Table			VARCHAR2,
-	inWorkspace_Description		NVARCHAR2,
-	inAutonomous_Owner			NVARCHAR2
+	inWorkitem_Table		VARCHAR2,
+	inProperty_Table		VARCHAR2,
+	inWorkspace_Description	NVARCHAR2,
+	inAutonomous_Owner		NVARCHAR2
 );
 
 
@@ -108,7 +114,7 @@ FUNCTION PARSENAME
 (
 	inQualified_Name	VARCHAR2,
 	inObject_Piece		PLS_INTEGER
-)	RETURN VARCHAR2
+)	RETURN				VARCHAR2
 IS
 	tName				VARCHAR2(64);
 BEGIN
@@ -136,7 +142,7 @@ FUNCTION EXISTS_TABLE
 (
 	inSchema_Name	VARCHAR2,
 	inTable_Name	VARCHAR2
-)	RETURN BOOLEAN
+)	RETURN			BOOLEAN
 IS
 	tCount			PLS_INTEGER;
 BEGIN
@@ -155,7 +161,7 @@ END EXISTS_TABLE;
 FUNCTION EXISTS_TABLE
 (
 	inQualified_Name	VARCHAR2
-)	RETURN BOOLEAN
+)	RETURN				BOOLEAN
 IS
 	tSchema_Name		VARCHAR2(30)	:= PARSENAME(inQualified_Name, 2);
 	tTable_Name			VARCHAR2(30)	:= PARSENAME(inQualified_Name, 1);
@@ -164,13 +170,25 @@ BEGIN
 END EXISTS_TABLE;
 
 
+FUNCTION QUALIFIED_NAME
+(
+	inFull_Name		VARCHAR2
+)	RETURN			VARCHAR2
+IS
+	tSchema_Name	VARCHAR2(30)	:= PARSENAME(inFull_Name, 2);
+	tTable_Name		VARCHAR2(30)	:= PARSENAME(inFull_Name, 1);
+BEGIN
+	RETURN DBMS_ASSERT.SQL_OBJECT_NAME(tSchema_Name || '.' || tTable_Name);
+END QUALIFIED_NAME;
+
+
 FUNCTION MATCH_TABLE_DEFINITION
 (
 	inRef_Schema	VARCHAR2,
 	inRef_Table		VARCHAR2,
 	inTst_Schema	VARCHAR2,
 	inTst_Table		VARCHAR2
-)	RETURN BOOLEAN
+)	RETURN			BOOLEAN
 IS
 	tMismatched		PLS_INTEGER;
 BEGIN
@@ -304,7 +322,7 @@ AFTER INSERT OR UPDATE ON ' || inWorkitem_Table || '
 FOR EACH ROW
 BEGIN
 	T4SQL.META.COPY_PROPERTY_DEFAULT(DBMS_UTILITY.FORMAT_CALL_STACK, :new.WORKITEM_NAME, :new.TEMPLATE_NAME);
-END;');
+END');
 END CREATE_WORKITEM_TRIGGER;
 
 
@@ -345,17 +363,16 @@ ORDER BY
 	P.WORKITEM_NAME,
 	S.PROPERTY_ORDER,
 	S.PROPERTY_NAME
-
-;';
+';
 END CREATE_PROPERTY_VIEW;
 
 
 PROCEDURE CREATE_WORKSPACE
 (
-	inWorkitem_Table			VARCHAR2,
-	inProperty_Table			VARCHAR2,
-	inWorkspace_Description		NVARCHAR2,
-	inAutonomous_Owner			NVARCHAR2
+	inWorkitem_Table		VARCHAR2,
+	inProperty_Table		VARCHAR2,
+	inWorkspace_Description	NVARCHAR2,
+	inAutonomous_Owner		NVARCHAR2
 )	AS
 	tWorkitem_Schema		VARCHAR2(30)	:= PARSENAME(inWorkitem_Table, 2);
 	tWorkitem_Table			VARCHAR2(30)	:= PARSENAME(inWorkitem_Table, 1);
@@ -404,7 +421,7 @@ BEGIN
 	CONSTRAINT FK_' || tWorkitem_Table || '_CLS FOREIGN KEY (TEMPLATE_NAME)
 		REFERENCES T4SQL.TEMPLATE_CLASS(FULL_NAME)
 		ON DELETE CASCADE
-);';
+)';
 
 	EXECUTE IMMEDIATE 'CREATE TABLE ' || tQualified_Property || '
 (
@@ -417,7 +434,7 @@ BEGIN
 	CONSTRAINT FK_' || tProperty_Table || '_WI FOREIGN KEY (WORKITEM_NAME)
 		REFERENCES ' || tQualified_Workitem || '(WORKITEM_NAME)
 		ON DELETE  CASCADE
-);';
+)';
 
 	INSERT INTO T4SQL.WORKSPACE_ENTRY
 	(

@@ -240,10 +240,10 @@
     <None Include="Scripts\Post-Deployment\1-T4SQL.ENGINE_CONFIG.data.sql">
       <SubType>NotInBuild</SubType>
     </None>
-    <None Include="Scripts\Post-Deployment\2-T4SQL.WORKSPACE_ENTRY.data.sql">
+    <None Include="Scripts\Post-Deployment\3-T4SQL.WORKSPACE_ENTRY.data.sql">
       <SubType>NotInBuild</SubType>
     </None>
-    <None Include="Scripts\Post-Deployment\3-T4SQL.UTL_ORDINAL_NUMBER.data.sql">
+    <None Include="Scripts\Post-Deployment\2-T4SQL.UTL_ORDINAL_NUMBER.data.sql">
       <SubType>NotInBuild</SubType>
     </None>
     <None Include="Scripts\Post-Deployment\4-T4SQL.VW_SEED_PROPERTY.sql" />
