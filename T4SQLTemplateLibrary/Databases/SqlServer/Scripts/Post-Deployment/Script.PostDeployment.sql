@@ -10,6 +10,6 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 :r .\1-T4SQL.ENGINE_CONFIG.data.sql
-:r .\2-T4SQL.WORKSPACE_ENTRY.data.sql
-:r .\3-T4SQL.UTL_ORDINAL_NUMBER.data.sql
+:r .\2-T4SQL.UTL_ORDINAL_NUMBER.data.sql
+:r .\3-T4SQL.WORKSPACE_ENTRY.data.sql
 :r .\4-T4SQL.VW_SEED_PROPERTY.sql
