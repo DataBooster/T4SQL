@@ -78,6 +78,18 @@
     <Content Include="Scripts\5-Triggers\03-TRG_WORKSPACE_ENTRY_INS.trg">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Scripts\6-InitData\01-ENGINE_CONFIG.data.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\6-InitData\02-UTL_ORDINAL_NUMBER.data.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\6-InitData\03-WORKSPACE_ENTRY.data.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\6-InitData\04-VW_SEED_PROPERTY.sql">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Scripts\Privileges.sql">
       <SubType>Content</SubType>
     </Content>
