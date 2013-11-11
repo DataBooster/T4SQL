@@ -103,7 +103,6 @@
     <Folder Include="Scripts\4-Packages" />
     <Folder Include="Scripts\5-Triggers" />
     <Folder Include="Scripts\6-InitData" />
-    <Folder Include="Scripts\7-ResetData" />
     <Folder Include="Scripts\2-Sequences" />
   </ItemGroup>
 </Project>
