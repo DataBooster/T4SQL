@@ -314,15 +314,15 @@ PROCEDURE CREATE_WORKITEM_TRIGGER
 (
 	inWorkitem_Table	VARCHAR2
 )	AS
---	tSchema_Name		VARCHAR2(22) := PARSENAME(inWorkitem_Table, 2);
+	tSchema_Name		VARCHAR2(22) := PARSENAME(inWorkitem_Table, 2);
 	tTable_Name			VARCHAR2(22) := PARSENAME(inWorkitem_Table, 1);
 BEGIN
-	EXECUTE_AUTONOMOUS('CREATE OR REPLACE TRIGGER TRG_' || tTable_Name || '_IU
+	EXECUTE_AUTONOMOUS('CREATE OR REPLACE TRIGGER '|| tSchema_Name || '.TRG_' || tTable_Name || '_IU
 AFTER INSERT OR UPDATE ON ' || inWorkitem_Table || '
 FOR EACH ROW
 BEGIN
-	T4SQL.META.COPY_PROPERTY_DEFAULT(DBMS_UTILITY.FORMAT_CALL_STACK, :new.WORKITEM_NAME, :new.TEMPLATE_NAME);
-END');
+	T4SQL.PUB_REF.COPY_PROPERTY_DEFAULT(DBMS_UTILITY.FORMAT_CALL_STACK, :new.WORKITEM_NAME, :new.TEMPLATE_NAME);
+END;');
 END CREATE_WORKITEM_TRIGGER;
 
 
@@ -382,7 +382,7 @@ PROCEDURE CREATE_WORKSPACE
 	tQualified_Property		VARCHAR2(45);
 BEGIN
 	IF tWorkitem_Schema IS NULL OR tProperty_Schema IS NULL THEN
-		RAISE_APPLICATION_ERROR(-21741, 'Schema must be specified in qualified table name');
+		RAISE_APPLICATION_ERROR(-20741, 'Schema must be specified in qualified table name');
 	END IF;
 
 	IF LENGTH(tWorkitem_Table) > 22 THEN

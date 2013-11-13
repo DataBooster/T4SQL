@@ -69,6 +69,9 @@
     <Content Include="Scripts\4-Packages\03-CMD.pck">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Scripts\4-Packages\04-PUB_REF.pck">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Scripts\5-Triggers\01-TRG_SEED_WORKITEM_IU.sql">
       <SubType>Content</SubType>
     </Content>
@@ -90,7 +93,10 @@
     <Content Include="Scripts\6-InitData\04-VW_SEED_PROPERTY.sql">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Scripts\Privileges.sql">
+    <Content Include="Scripts\0-Privileges.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\7-Privileges.sql">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="ModelDefinition\" />
