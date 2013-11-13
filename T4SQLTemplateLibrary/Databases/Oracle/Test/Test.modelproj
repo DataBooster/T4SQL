@@ -24,9 +24,6 @@
     <Content Include="Scripts\2-InitData\1-CreateSampleWorkspace.sql">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Scripts\Privileges.sql">
-      <SubType>Content</SubType>
-    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\Test.uml">
       <SubType>Content</SubType>

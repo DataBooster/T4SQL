@@ -8,7 +8,7 @@ DECLARE
 	tProperty_Table			VARCHAR2(30)	:= T4SQL.META.PARSENAME(:new.PROPERTY_TABLE_NAME, 1);
 BEGIN
 	IF tWorkitem_Schema IS NULL OR tProperty_Schema IS NULL THEN
-		RAISE_APPLICATION_ERROR(-21741, 'Schema must be specified in qualified table name');
+		RAISE_APPLICATION_ERROR(-20741, 'Schema must be specified in qualified table name');
 	END IF;
 
 	IF LENGTH(tWorkitem_Table) > 22 THEN
@@ -29,7 +29,7 @@ BEGIN
 
 	IF UPDATING AND :old.WORKITEM_TABLE_NAME = 'T4SQL.SEED_WORKITEM' AND :old.PROPERTY_TABLE_NAME = 'T4SQL.SEED_PROPERTY'
 		AND (:new.WORKITEM_TABLE_NAME <> 'T4SQL.SEED_WORKITEM' OR :new.PROPERTY_TABLE_NAME <> 'T4SQL.SEED_PROPERTY') THEN
-		RAISE_APPLICATION_ERROR(-21001, 'Built-in workspace T4SQL.SEED_... cannot be removed!');
+		RAISE_APPLICATION_ERROR(-20101, 'Built-in workspace T4SQL.SEED_... cannot be removed!');
 	END IF;
 
 	:new.WORKITEM_TABLE_NAME	:= tWorkitem_Schema || '.' || tWorkitem_Table;
@@ -38,7 +38,7 @@ BEGIN
 	-- Compare new workspace with SEED workspace to check compatibility of table definitions.
 	IF NOT T4SQL.META.MATCH_TABLE_DEFINITION('T4SQL', 'SEED_WORKITEM', tWorkitem_Schema, tWorkitem_Table) OR
 		NOT T4SQL.META.MATCH_TABLE_DEFINITION('T4SQL', 'SEED_PROPERTY', tProperty_Schema, tProperty_Table) THEN
-		RAISE_APPLICATION_ERROR(-21002, 'Tables definition of add-in workspace is not compatible with built-in workspace T4SQL.SEED_...!');
+		RAISE_APPLICATION_ERROR(-20102, 'Tables definition of add-in workspace is not compatible with built-in workspace T4SQL.SEED_...!');
 	END IF;
 
 	IF INSERTING THEN

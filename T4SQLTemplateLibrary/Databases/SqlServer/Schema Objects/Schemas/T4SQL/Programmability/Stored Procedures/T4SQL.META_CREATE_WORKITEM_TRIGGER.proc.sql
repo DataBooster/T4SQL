@@ -4,7 +4,7 @@
 )
 AS
     SET NOCOUNT ON;
-	DECLARE @tDdlSql NVARCHAR(1024);
+	DECLARE @tDdlSql NVARCHAR(1024), @tSchema NVARCHAR(64);
 
 	IF NOT EXISTS
 	(
@@ -18,7 +18,14 @@ AS
 			AND	T.parent_class	= 1
 	)
 	BEGIN
-		SET @tDdlSql = N'CREATE TRIGGER TRG_' + PARSENAME(@inWorkitem_Table, 1) + N'_INS
+		SET @tSchema = PARSENAME(@inWorkitem_Table, 2);
+
+		IF @tSchema IS NULL
+			SET @tSchema = N''
+		ELSE
+			SET @tSchema = @tSchema + N'.';
+
+		SET @tDdlSql = N'CREATE TRIGGER ' + @tSchema + 'TRG_' + PARSENAME(@inWorkitem_Table, 1) + N'_IU
 ON ' + @inWorkitem_Table + N'
 AFTER INSERT, UPDATE
 AS
@@ -30,7 +37,7 @@ BEGIN
 	SELECT I.WORKITEM_NAME, I.TEMPLATE_NAME FROM inserted I;
 
 	EXEC T4SQL.META_COPY_PROPERTY_DEFAULT @@PROCID, @tWorkitems;
-END';
+END;';
 
 		EXECUTE (@tDdlSql);
 	END;
