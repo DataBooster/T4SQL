@@ -21,7 +21,43 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="Scripts\1-Tables\01-test.date_time_points.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\02-test.date_time_ranges.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\03-test.sim_type.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\04-test.simulation.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\05-test.prod_type.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\06-test.grp3_class.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\07-test.grouping_flat_values.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\08-test.pivot_discrete_attrib.sql">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Scripts\2-InitData\1-CreateSampleWorkspace.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-InitData\2-GenerateTestData.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-InitData\3-SetupWorkitems.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-InitData\4-SetupWorkitemsProperties.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\Privileges.sql">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="ModelDefinition\" />
