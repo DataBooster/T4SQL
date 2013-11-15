@@ -250,7 +250,7 @@ PROCEDURE GET_TABLE_IN_TRIGGER
 	outTab_Schema	OUT VARCHAR2,
 	outTab_Name		OUT VARCHAR2
 )	AS
-	tTrigger		VARCHAR2(64)	:= RTRIM(REGEXP_SUBSTR(inCall_Stack, '[^[:space:]]+[:space:]*$'), CHR(10));
+	tTrigger		VARCHAR2(64)	:= REGEXP_SUBSTR(inCall_Stack, '^\s*\d+\s+\d+\s+(\w+\.TRG_\w+)\s*$', modifier => 'm', subexpression => 1);
 	tTrg_Schema		VARCHAR2(30)	:= REGEXP_SUBSTR(tTrigger, '^[^.]+');
 	tTrg_Name		VARCHAR2(30)	:= REGEXP_SUBSTR(tTrigger, '[^.]+$');
 BEGIN
@@ -427,7 +427,7 @@ BEGIN
 (
 	WORKITEM_NAME	NVARCHAR2(32)	NOT NULL,
 	PROPERTY_NAME	NVARCHAR2(64)	NOT NULL,
-	STRING_VALUE	NVARCHAR2(2000)	NOT NULL,
+	STRING_VALUE	VARCHAR2(4000)	NOT NULL,
 	LINK_STATE		NVARCHAR2(256),
 
 	CONSTRAINT PK_' || tProperty_Table || ' PRIMARY KEY (WORKITEM_NAME, PROPERTY_NAME),
