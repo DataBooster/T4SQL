@@ -24,7 +24,7 @@ where
 order by
 	1, 2, 3
 ;
-
+/
 
 declare
 	tExists	PLS_INTEGER;
@@ -38,7 +38,7 @@ begin
 		values (1, 'What-If Simulation');
 	end if;
 end;
-
+/
 
 insert into test.simulation (id_, sim_desc, sim_type, creator)
 select
