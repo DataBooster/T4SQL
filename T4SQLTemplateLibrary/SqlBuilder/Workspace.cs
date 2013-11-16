@@ -72,7 +72,7 @@ namespace T4SQL.SqlBuilder
 			dbAccess.LoadWorkingProperties(_Property_Table_Name, row =>
 				{
 					SetWorkingProperty(row.Field<string>("WORKITEM_NAME"), row.Field<string>("PROPERTY_NAME"),
-						row.Field<string>("STRING_VALUE"), row.Field<string>("LINK_STATE"));
+						row.Field<string>("STRING_VALUE") ?? string.Empty, row.Field<string>("LINK_STATE") ?? string.Empty);
 				});
 
 			foreach (Workitem wi in _Workitems)

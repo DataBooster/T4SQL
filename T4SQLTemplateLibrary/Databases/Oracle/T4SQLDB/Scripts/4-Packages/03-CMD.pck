@@ -47,7 +47,7 @@ TYPE NAME_ARRAY IS TABLE OF NVARCHAR2(32) INDEX BY PLS_INTEGER;
 	tHas_Condition			BOOLEAN;
 	tStart_Build			CHAR(1);
 	tObject_Code			CLOB;
-	tCompiled_Error			NVARCHAR2(2000);
+	tCompiled_Error			VARCHAR2(4000);
 BEGIN
 	tSQL	:= 'SELECT WORKITEM_NAME FROM ' || inWorkitem_Table;
 

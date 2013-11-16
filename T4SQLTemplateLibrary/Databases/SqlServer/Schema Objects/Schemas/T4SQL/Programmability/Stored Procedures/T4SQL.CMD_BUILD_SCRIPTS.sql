@@ -47,11 +47,11 @@ AS
 	WAITFOR DELAY '00:00:06';
 
 	DECLARE @tI INT, @tAttempts INT, @tWorkitem_Name NVARCHAR(32), @tParmDef NVARCHAR(512);
-	DECLARE @tStart_Build BIT, @tObject_Code NVARCHAR(MAX), @tCompiled_Error NVARCHAR(2000);
+	DECLARE @tStart_Build BIT, @tObject_Code NVARCHAR(MAX), @tCompiled_Error NVARCHAR(4000);
 
 	SET @tSQL = N'SELECT @outStart_Build = START_BUILD, @outObject_Code = OBJECT_CODE, @outCompiled_Error = COMPILED_ERROR FROM '
 				+ @inWorkitem_Table + N' WHERE WORKITEM_NAME = @inWorkitem_Name';
-	SET @tParmDef = N'@inWorkitem_Name NVARCHAR(32), @outStart_Build BIT OUTPUT, @outObject_Code NVARCHAR(MAX) OUTPUT, @outCompiled_Error NVARCHAR(2000) OUTPUT';
+	SET @tParmDef = N'@inWorkitem_Name NVARCHAR(32), @outStart_Build BIT OUTPUT, @outObject_Code NVARCHAR(MAX) OUTPUT, @outCompiled_Error NVARCHAR(4000) OUTPUT';
 	SET	@outGenerated_Scripts	= N'';
 	SET @tI = 1;
 

@@ -2,7 +2,7 @@
 (
 	@inWorkitem_Table	NVARCHAR(128),
 	@inWorkitem_Name	NVARCHAR(32),
-	@inCompiled_Error	NVARCHAR(2000),
+	@inCompiled_Error	NVARCHAR(4000),
 	@inObject_Code		NVARCHAR(MAX)
 )
 AS
@@ -19,7 +19,7 @@ AS
 		WORKITEM_NAME	= @Workitem_Name
 ';
 
-	SET	@ParmDefinition = N'@Compiled_Error NVARCHAR(2000), @Object_Code NVARCHAR(MAX), @Workitem_Name NVARCHAR(32)';
+	SET	@ParmDefinition = N'@Compiled_Error NVARCHAR(4000), @Object_Code NVARCHAR(MAX), @Workitem_Name NVARCHAR(32)';
 
 	EXECUTE sp_executesql @tSQL, @ParmDefinition, @Compiled_Error = @inCompiled_Error, @Object_Code = @inObject_Code, @Workitem_Name = @inWorkitem_Name;
 	
