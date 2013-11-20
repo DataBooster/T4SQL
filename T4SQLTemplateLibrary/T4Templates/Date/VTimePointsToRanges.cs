@@ -280,9 +280,74 @@ GO
             
             #line default
             #line hidden
-            this.Write("\r\n\t*\r\nFROM\r\n\t");
+            this.Write("\r\n");
             
-            #line 6 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            #line 4 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+
+	string tEndDateCol = IsEndDateNext ? DateColumn : string.Format("({0} - 1)", DateColumn);
+
+            
+            #line default
+            #line hidden
+            this.Write("\t");
+            
+            #line 7 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(SelectColumns.InsertLeft()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t");
+            
+            #line 8 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
+            
+            #line default
+            #line hidden
+            this.Write("\t\tAS ");
+            
+            #line 8 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(RangeStartDateColumn));
+            
+            #line default
+            #line hidden
+            this.Write(",\r\n\tLEAD(");
+            
+            #line 9 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(tEndDateCol));
+            
+            #line default
+            #line hidden
+            this.Write(", 1");
+            
+            #line 9 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(DefaultEndDate.IsNullString() ? "" : ", " + DefaultEndDate));
+            
+            #line default
+            #line hidden
+            this.Write(") OVER (PARTITION BY ");
+            
+            #line 9 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Key_Columns));
+            
+            #line default
+            #line hidden
+            this.Write(" ORDER BY ");
+            
+            #line 9 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(DateColumn));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n\t\t\t\t\t\t\t\tAS ");
+            
+            #line 10 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
+            this.Write(this.ToStringHelper.ToStringWithCulture(RangeEndDateColumn));
+            
+            #line default
+            #line hidden
+            this.Write("\r\nFROM\r\n\t");
+            
+            #line 12 "E:\Projects\T4SQL\T4SQLTemplateLibrary\T4Templates\Date\VTimePointsToRanges.Oracle.sql"
             this.Write(this.ToStringHelper.ToStringWithCulture(SourceView));
             
             #line default

@@ -1,4 +1,4 @@
-
+--	Run in test schema
 
 insert into test.date_time_points (date_, catalog_id, position_id, value_, other_col)
 select

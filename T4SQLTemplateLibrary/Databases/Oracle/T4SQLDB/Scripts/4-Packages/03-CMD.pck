@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE T4SQL.CMD IS
+CREATE OR REPLACE PACKAGE T4SQL.CMD AUTHID CURRENT_USER IS
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -75,6 +75,7 @@ BEGIN
 	END IF;
 
 	EXECUTE IMMEDIATE tSQL;
+	COMMIT;
 
 	tSQL	:= 'SELECT START_BUILD, OBJECT_CODE, COMPILED_ERROR FROM ' || inWorkitem_Table || ' WHERE WORKITEM_NAME = :workitem_name';
 

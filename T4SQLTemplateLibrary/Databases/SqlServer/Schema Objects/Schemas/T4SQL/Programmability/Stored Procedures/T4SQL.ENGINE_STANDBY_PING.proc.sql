@@ -23,7 +23,9 @@ AS
 			SET	@outSwitch_To_Mode	= N'Primary';
 		ELSE
 			SET	@outSwitch_To_Mode	= N'Standby';
-	END;
+	END
+	ELSE
+		SET	@outSwitch_To_Mode	= N'Standby';
 
 	EXEC T4SQL.ENGINE_SERVICE_PING 0;
 

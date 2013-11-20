@@ -1,3 +1,5 @@
+--	Run after your T4SQL Template Engine (either Windows Service or Console Test) has started.
+
 DECLARE
 	tExists	PLS_INTEGER;
 BEGIN
