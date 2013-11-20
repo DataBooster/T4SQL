@@ -135,7 +135,7 @@ END ENGINE;
 CREATE OR REPLACE PACKAGE BODY T4SQL.ENGINE IS
 
 
-g_Polling_Interval	NUMBER(3);
+g_Polling_Interval	NUMBER;
 
 
 FUNCTION GET_POLL_INTERVAL
@@ -143,7 +143,7 @@ RETURN	NUMBER
 AS
 BEGIN
 	IF g_Polling_Interval IS NULL THEN
-		SELECT	NUMBER_VALUE		INTO g_Polling_Interval
+		SELECT	NUMBER_VALUE / 86400.0		INTO g_Polling_Interval
 		FROM	T4SQL.ENGINE_CONFIG
 		WHERE	ELEMENT_NAME = 'POLL_INTERVAL';
 	END IF;
@@ -208,6 +208,8 @@ BEGIN
 		ELSE
 			outSwitch_To_Mode	:= 'Standby';
 		END IF;
+	ELSE
+		outSwitch_To_Mode	:= 'Standby';
 	END IF;
 
 	SERVICE_PING('N');
