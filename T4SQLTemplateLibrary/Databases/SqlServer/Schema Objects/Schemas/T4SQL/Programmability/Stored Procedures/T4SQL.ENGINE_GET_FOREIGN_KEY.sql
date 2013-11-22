@@ -14,7 +14,7 @@ AS
 	SELECT
 		@outTable_Schema	= S.name,
 		@outTable_Name		= T.name,
-		@outTable_Name		= QUOTENAME(S.name) + N'.' + QUOTENAME(T.name)
+		@outQualified_Name	= QUOTENAME(S.name) + N'.' + QUOTENAME(T.name)
 	FROM
 		sys.schemas		S,
 		sys.objects		T

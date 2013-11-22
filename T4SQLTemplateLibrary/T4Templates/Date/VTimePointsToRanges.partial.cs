@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace T4SQL.Date
 {
@@ -24,7 +25,7 @@ namespace T4SQL.Date
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "{+}Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "{+}Time range End Date column");
 			spec.AddProperty("EndDateNext", "0", null, "[*] 0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
-			spec.AddProperty("DefaultEndDate", "CAST('2999-12-31' AS DATE)", null, "[*]Ultimate END_DATE as the substitute of IS NULL");
+			spec.AddProperty("DefaultEndDate", "2999-12-31", null, "[*]Ultimate END_DATE as the substitute of IS NULL");
 
 			return spec;
 		}
@@ -42,9 +43,29 @@ namespace T4SQL.Date
 		public string DateColumn { get { return this.GetPropertyValue("DateColumn"); } }
 		public string RangeStartDateColumn { get { return this.GetPropertyValue("RangeStartDateColumn"); } }
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
-		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
 		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitColumns(); } }
+
+		public string DefaultEndDate
+		{
+			get
+			{
+				string defaultEndDate = this.GetPropertyValue("DefaultEndDate");
+
+				if (string.IsNullOrWhiteSpace(defaultEndDate))
+					return string.Empty;
+				else
+				{
+					Regex rgDate = new Regex(@"\s*'?(?<dt>\d{4}-\d{2}-\d{2})'?\s*");
+					Match mc = rgDate.Match(defaultEndDate);
+
+					if (mc.Success)
+						return string.Format(((DbmsPlatform == "Oracle") ? "TO_DATE('{0}', 'YYYY-MM-DD')" : "CAST('{0}' AS DATE)"), mc.Groups["dt"].Value);
+					else
+						return defaultEndDate;
+				}
+			}
+		}
 
 		public IEnumerable<string> SelectColumns
 		{

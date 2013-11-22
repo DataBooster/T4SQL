@@ -147,7 +147,7 @@ namespace T4SQL.SqlBuilder.DataAccess
 			foreignKeyBaseTable.TableName = outTable_Name.Parameter<string>();
 			foreignKeyBaseTable.QualifiedName = outQualified_Name.Parameter<string>();
 
-			foreignKeyBaseTable.Columns = ListTableColumns(dbAccess, foreignKeyBaseTable.TableName).ToArray();
+			foreignKeyBaseTable.Columns = ListTableColumns(dbAccess, foreignKeyBaseTable.QualifiedName).ToArray();
 
 			foreach (DbmsForeignKey fk in foreignKeyBaseTable.ForeignKeys)
 				LoadForeignKeys(dbAccess, fk.PrimaryUniqueKeyBaseTable);

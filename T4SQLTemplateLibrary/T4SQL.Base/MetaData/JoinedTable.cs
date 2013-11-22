@@ -110,7 +110,7 @@ namespace T4SQL.MetaData
 		{
 			StringBuilder joinClause = new StringBuilder();
 
-			joinClause.AppendFormat(startTable.TableName);
+			joinClause.AppendFormat(startTable.QualifiedName);
 			joinClause.Append(" ");
 			joinClause.AppendLine(startTable.LinkProperty.Alias);
 
