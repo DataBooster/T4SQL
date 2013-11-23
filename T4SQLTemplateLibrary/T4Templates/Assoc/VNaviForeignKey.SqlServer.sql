@@ -19,7 +19,7 @@ GO
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎‎July ‎03, ‎2013, ‏‎12:56:08 AM
+--	Created Date:		July 03, 2013, 12:56:08 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
