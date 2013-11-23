@@ -45,27 +45,7 @@ namespace T4SQL.Date
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
 		public IEnumerable<string> KeyColumns { get { return Key_Columns.SplitColumns(); } }
-
-		public string DefaultEndDate
-		{
-			get
-			{
-				string defaultEndDate = this.GetPropertyValue("DefaultEndDate");
-
-				if (string.IsNullOrWhiteSpace(defaultEndDate))
-					return string.Empty;
-				else
-				{
-					Regex rgDate = new Regex(@"\s*'?(?<dt>\d{4}-\d{2}-\d{2})'?\s*");
-					Match mc = rgDate.Match(defaultEndDate);
-
-					if (mc.Success)
-						return string.Format(((DbmsPlatform == "Oracle") ? "TO_DATE('{0}', 'YYYY-MM-DD')" : "CAST('{0}' AS DATE)"), mc.Groups["dt"].Value);
-					else
-						return defaultEndDate;
-				}
-			}
-		}
+		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate").ConstantDateExpr(DbmsPlatform); } }
 
 		public IEnumerable<string> SelectColumns
 		{

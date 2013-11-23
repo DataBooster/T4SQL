@@ -21,7 +21,7 @@ namespace T4SQL.Date
 			spec.AddProperty("RangeStartDateColumn", "START_DATE", null, "{+}Time range Start Date column");
 			spec.AddProperty("RangeEndDateColumn", "END_DATE", null, "{+}Time range End Date column");
 			spec.AddProperty("EndDateNext", "0", null, "[*] 0: [START_DATE <= Time Range <= END_DATE]; 1: [START_DATE <= Time Range < END_DATE)");
-			spec.AddProperty("DefaultEndDate", "CONVERT(date, GETDATE())", null, "[*]Ultimate END_DATE as the substitute of IS NULL");
+			spec.AddProperty("DefaultEndDate", "", null, "[*]Ultimate END_DATE as the substitute of IS NULL");
 			spec.AddProperty("InscopeDaysColumn", "INSCOPE_DAYS", null, "[*]The total number of days between the first START_DATE and the last END_DATE");
 			spec.AddProperty("CheckSumColumn", "CHECK_SUM", null, "[*]SUM total days of every Time Ranges");
 
@@ -42,8 +42,20 @@ namespace T4SQL.Date
 		public string RangeEndDateColumn { get { return this.GetPropertyValue("RangeEndDateColumn"); } }
 		public bool IsEndDateNext { get { return this.GetPropertyValue("EndDateNext").IsTrueString(); } }
 		public string InscopeDaysColumn { get { return this.GetPropertyValue("InscopeDaysColumn"); } }
-		public string DefaultEndDate { get { return this.GetPropertyValue("DefaultEndDate"); } }
 		public string CheckSumColumn { get { return this.GetPropertyValue("CheckSumColumn"); } }
+
+		public string DefaultEndDate
+		{
+			get
+			{
+				string defaultEndDate = this.GetPropertyValue("DefaultEndDate").ConstantDateExpr(DbmsPlatform);
+
+				if (defaultEndDate.Length == 0)
+					return (DbmsPlatform == "Oracle") ? "TRUNC(SYSDATE)" : "CONVERT(date, GETDATE())";
+				else
+					return defaultEndDate;
+			}
+		}
 
 		#endregion
 	}
