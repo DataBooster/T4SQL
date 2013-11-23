@@ -126,7 +126,7 @@ END;
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎April ‎10, ‎2013, ‏‎6:48:17 PM
+--	Created Date:		April 10, 2013, 6:48:17 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

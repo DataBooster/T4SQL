@@ -22,7 +22,7 @@ WITH READ ONLY;
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎October ‎14, ‎2013, ‏‎10:48:10 PM
+--	Created Date:		October 14, 2013, 10:48:10 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

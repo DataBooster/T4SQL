@@ -106,7 +106,7 @@ namespace T4SQL.Grouping
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎‎June ‎14, ‎2013, ‏‎12:24:44 AM
+//	Created Date:		June 14, 2013, 12:24:44 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

@@ -85,7 +85,7 @@ AS
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎June ‎26, ‎2013, ‏‎11:30:13 PM
+--	Created Date:		June 26, 2013, 11:30:13 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

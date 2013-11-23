@@ -33,7 +33,7 @@ AS
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎March ‎24, ‎2013, ‏‎6:54:14 PM
+--	Created Date:		March 24, 2013, 6:54:14 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

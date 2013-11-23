@@ -45,7 +45,7 @@ namespace T4SQL.MetaData
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎July ‎02, ‎2013, ‏‎1:07:19 AM
+//	Created Date:		July 02, 2013, 1:07:19 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

@@ -21,7 +21,7 @@ STORAGE (INITIAL 16K NEXT 8K BUFFER_POOL KEEP);
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎October ‎12, ‎2013, ‏‎12:21:08 AM
+--	Created Date:		October 12, 2013, 12:21:08 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

@@ -63,7 +63,7 @@ namespace T4SQL.Date
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎May ‎19, ‎2013, ‏‎11:59:24 PM
+//	Created Date:		May 19, 2013, 11:59:24 PM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment
