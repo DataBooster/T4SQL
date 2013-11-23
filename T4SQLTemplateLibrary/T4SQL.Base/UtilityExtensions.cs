@@ -250,7 +250,7 @@ namespace T4SQL
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		April ‎05, ‎2013, ‏‎12:02:15 AM
+//	Created Date:		April 05, 2013, 12:02:15 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

@@ -66,7 +66,7 @@ ORDER BY
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎‎August ‎30, ‎2013, 3:39:13 PM
+--	Created Date:		August 30, 2013, 3:39:13 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

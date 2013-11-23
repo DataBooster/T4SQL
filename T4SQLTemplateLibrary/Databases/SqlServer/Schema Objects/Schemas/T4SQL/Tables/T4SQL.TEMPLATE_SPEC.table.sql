@@ -26,7 +26,7 @@ CREATE INDEX IX_TEMPLATE_SPEC_ORDER ON T4SQL.TEMPLATE_SPEC (CLASS_NAME, PROPERTY
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎March ‎19, ‎2013, ‏‎8:53:42 PM
+--	Created Date:		March 19, 2013, 8:53:42 PM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

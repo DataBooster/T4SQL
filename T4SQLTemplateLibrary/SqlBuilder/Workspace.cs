@@ -94,7 +94,7 @@ namespace T4SQL.SqlBuilder
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎‎April ‎24, ‎2013, ‏‎11:12:18 AM
+//	Created Date:		April 24, 2013, 11:12:18 AM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment

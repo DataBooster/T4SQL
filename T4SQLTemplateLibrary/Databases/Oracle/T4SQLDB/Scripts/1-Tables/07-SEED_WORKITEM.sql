@@ -28,7 +28,7 @@ STORAGE (INITIAL 16K NEXT 8K);
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		‎October ‎14, ‎2013, ‏‎1:19:39 AM
+--	Created Date:		October 14, 2013, 1:19:39 AM
 --	Primary Host:		http://t4sql.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
