@@ -8,7 +8,7 @@ namespace T4SQL
 
 		static MiscExtensions()
 		{
-			_DateStrRgx = new Regex(@"\s*'?(?<dt>\d{4}-\d{2}-\d{2})'?\s*");
+			_DateStrRgx = new Regex(@"^\s*'?(?<dt>\d{4}-\d{2}-\d{2})'?\s*$");
 		}
 
 		public static string ConstantDateExpr(this string strDate, string dbmsPlatform = "SQL Server")
@@ -37,7 +37,7 @@ namespace T4SQL
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		‎November 22, 2013, 11:51:26 PM
+//	Created Date:		November 22, 2013, 11:51:26 PM
 //	Primary Host:		http://t4sql.codeplex.com
 //	Change Log:
 //	Author				Date			Comment
