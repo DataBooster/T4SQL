@@ -53,7 +53,8 @@ namespace T4SQL.Pivot
 		{
 			get
 			{
-				return Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("NonPivotedColumns"))
+				return (DbmsPlatform == "Oracle") ? "*" :
+					Context.DbServerEnv.ListTableColumns(SourceView, this.GetPropertyValue("NonPivotedColumns"))
 					.ExceptColumns(new string[] { ValueColumn, PivotColumn }).InsertLeft() + Value_List;
 			}
 		}

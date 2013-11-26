@@ -107,7 +107,7 @@ where
 	and	WORKITEM_NAME	= 'testVPivot';
 
 update	test.sample_properties
-set		STRING_VALUE	= '[FIELD_A] AS V_A, [FIELD_B] AS V_B, FIELD_C AS V_C, FIELD_D as V_D, FIELD_E, FIELD_F, FIELD_G, FIELD_H'
+set		STRING_VALUE	= '''FIELD_A'' AS V_A, ''FIELD_B'' AS V_B, ''FIELD_C'' AS V_C, ''FIELD_D'' as V_D, ''FIELD_E'' as V_E, ''FIELD_F'' as V_F, ''FIELD_G'' as V_G, ''FIELD_H'' as V_H'
 where
 		PROPERTY_NAME	= 'ValueList'
 	and	WORKITEM_NAME	= 'testVPivot';
