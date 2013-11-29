@@ -140,6 +140,10 @@ set		STRING_VALUE	= 'value_'
 where	PROPERTY_NAME	= 'ValueColumn'
 	and	WORKITEM_NAME	= 'testVUnpivot';
 
+update	test.sample_properties
+set		STRING_VALUE	= 'V_A as ''FIELD_A'', V_B as ''FIELD_B'', V_C as ''FIELD_C'', V_D, V_E, V_F, V_G, V_H'
+where	PROPERTY_NAME	= 'UnpivotColumns'
+	and	WORKITEM_NAME	= 'testVUnpivot';
 
 --  testVGroupingSets
 update	test.sample_properties
