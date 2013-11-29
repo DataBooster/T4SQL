@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace T4SQL.Pivot
 {
-	[Description("Unpivot")]
+	[Description("Unpivot - transposing columns into rows")]
 	public partial class VUnpivot : ITemplate, ITemplateProperties
 	{
 		#region Implement ITemplate Properties
@@ -19,9 +19,9 @@ namespace T4SQL.Pivot
 			spec.AddProperty("ObjectView", "schema.VW_ObjViewName", null, "{+}The full name of object view");
 			spec.AddProperty("SourceView", "schema.SomeTableOrView", null, "{+}Source Table Or View");
 			spec.AddProperty("NonPivotedColumns", "COL1, COL2, COL3", null, "{+}Non-pivoted columns");
-			spec.AddProperty("ValueColumn", "MEASURE_COL", null, "{+}Specify a name for each output column that will hold measure values");
-			spec.AddProperty("PivotColumn", "TYPE_COL", null, "{+}Specify a name for each output column that will hold descriptor values");
-			spec.AddProperty("UnpivotColumns", "*", null, "[*]Specify the input data columns whose names will become values in the output columns");
+			spec.AddProperty("ValueColumn", "MEASURE_COL", null, "{+}Specify a name for each output column to represent the unpivoted measure values");
+			spec.AddProperty("PivotColumn", "TYPE_COL", null, "{+}Specify a name for each output column that will hold descriptor values (unpivot_for_clause)");
+			spec.AddProperty("UnpivotColumns", "*", null, "[*]Specify the input data columns whose names will become values in the output columns - the list of pivoted columns (not values) to be unpivoted");
 
 			return spec;
 		}

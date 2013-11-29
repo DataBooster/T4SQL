@@ -103,6 +103,14 @@
       <DependentUpon>VGroupingSets.tt</DependentUpon>
     </Compile>
     <Compile Include="MiscExtensions.cs" />
+    <Compile Include="Pivot\VFullPivot.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VFullPivot.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pivot\VFullPivot.partial.cs">
+      <DependentUpon>VFullPivot.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pivot\VPivot.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -155,6 +163,10 @@
     <None Include="Grouping\VGroupingSets.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VGroupingSets.cs</LastGenOutput>
+    </None>
+    <None Include="Pivot\VFullPivot.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VFullPivot.cs</LastGenOutput>
     </None>
     <None Include="Pivot\VPivot.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -210,6 +222,12 @@
     </Content>
     <Content Include="Grouping\VGroupingSets.SqlServer.sql">
       <DependentUpon>VGroupingSets.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VFullPivot.Oracle.sql">
+      <DependentUpon>VFullPivot.tt</DependentUpon>
+    </Content>
+    <Content Include="Pivot\VFullPivot.SqlServer.sql">
+      <DependentUpon>VFullPivot.tt</DependentUpon>
     </Content>
     <Content Include="Pivot\VPivot.Oracle.sql">
       <DependentUpon>VPivot.tt</DependentUpon>
