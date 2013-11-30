@@ -33,5 +33,8 @@ BEGIN
 		insert into test.sample_workspace (WORKITEM_NAME, TEMPLATE_NAME, WORKITEM_DESCRIPTION, WORKITEM_USER, BUILD_ORDER)
 		VALUES ('testVNaviForeignKey', 'T4SQL.Assoc.VNaviForeignKey', 'Test example of T4SQL.Assoc.VNaviForeignKey', 'test', 90);
 
+		insert into test.sample_workspace (WORKITEM_NAME, TEMPLATE_NAME, WORKITEM_DESCRIPTION, WORKITEM_USER, BUILD_ORDER)
+		VALUES ('testVFullPivot', 'T4SQL.Pivot.VFullPivot', 'Test example of T4SQL.Pivot.VFullPivot', 'test', 100);
+
 	END IF;
 END;

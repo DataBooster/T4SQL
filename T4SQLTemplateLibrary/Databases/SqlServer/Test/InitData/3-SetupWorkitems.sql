@@ -17,5 +17,6 @@ begin
 		(N'testVPivot', 'T4SQL.Pivot.VPivot', N'Test example of T4SQL.Pivot.VPivot', N'test', 60),
 		(N'testVUnpivot', 'T4SQL.Pivot.VUnpivot', N'Test example of T4SQL.Pivot.VUnpivot', N'test', 70),
 		(N'testVGroupingSets', 'T4SQL.Grouping.VGroupingSets', N'Test example of T4SQL.Grouping.VGroupingSets', N'test', 80),
-		(N'testVNaviForeignKey', 'T4SQL.Assoc.VNaviForeignKey', N'Test example of T4SQL.Assoc.VNaviForeignKey', N'test', 90)
+		(N'testVNaviForeignKey', 'T4SQL.Assoc.VNaviForeignKey', N'Test example of T4SQL.Assoc.VNaviForeignKey', N'test', 90),
+		(N'testVFullPivot', 'T4SQL.Pivot.VFullPivot', N'Test example of T4SQL.Pivot.VFullPivot', N'test', 100)
 end
