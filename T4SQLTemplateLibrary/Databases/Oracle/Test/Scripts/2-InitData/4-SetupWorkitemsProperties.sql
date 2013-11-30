@@ -182,3 +182,35 @@ update	test.sample_properties
 set		STRING_VALUE	= 'test.grouping_flat_values'
 where	PROPERTY_NAME	= 'ForeignKeyBaseTable'
 	and	WORKITEM_NAME	= 'testVNaviForeignKey';
+
+
+--	testVFullPivot
+update	test.sample_properties
+set		STRING_VALUE	= 'test.vw_full_pivot'
+where	PROPERTY_NAME	= 'ObjectView'
+	and	WORKITEM_NAME	= 'testVFullPivot';
+
+update	test.sample_properties
+set		STRING_VALUE	= 'test.pivot_discrete_attrib'
+where	PROPERTY_NAME	= 'SourceView'
+	and	WORKITEM_NAME	= 'testVFullPivot';
+
+update	test.sample_properties
+set		STRING_VALUE	= 'product_id'
+where	PROPERTY_NAME	= 'JunctionColumns'
+	and	WORKITEM_NAME	= 'testVFullPivot';
+
+update	test.sample_properties
+set		STRING_VALUE	= 'attrib_code'
+where	PROPERTY_NAME	= 'PivotColumn'
+	and	WORKITEM_NAME	= 'testVFullPivot';
+
+update	test.sample_properties
+set		STRING_VALUE	= 'value_'
+where	PROPERTY_NAME	= 'MeasureColumn'
+	and	WORKITEM_NAME	= 'testVFullPivot';
+
+update	test.sample_properties
+set		STRING_VALUE	= '''FIELD_A'' AS V_A, ''FIELD_B'' AS V_B, ''FIELD_C'' AS V_C, ''FIELD_D'' as V_D, ''FIELD_E'' as V_E, ''FIELD_F'' as V_F, ''FIELD_G'' as V_G, ''FIELD_H'' as V_H'
+where	PROPERTY_NAME	= 'ValueAliasList'
+	and	WORKITEM_NAME	= 'testVFullPivot';

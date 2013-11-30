@@ -56,8 +56,7 @@ FROM
 #>
 	LEFT JOIN
 	CTE_<#= i #>		C<#= i #>
-	ON
-	(<#= string.Join(" AND ", JunctionColumns.Select(c => string.Format("J.{0} = C{1}.{0}", c, i))) #>)
+	ON	(<#= string.Join(" AND ", JunctionColumns.Select(c => string.Format("J.{0} = C{1}.{0}", c, i))) #>)
 <#
 	}
 #>
