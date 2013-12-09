@@ -57,6 +57,9 @@
     <Content Include="Scripts\2-InitData\4-SetupWorkitemsProperties.sql">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Scripts\2-InitData\5-PreviewWorkitems.sql">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Scripts\Privileges.sql">
       <SubType>Content</SubType>
     </Content>
