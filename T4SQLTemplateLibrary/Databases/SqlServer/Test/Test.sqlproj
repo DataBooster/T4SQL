@@ -103,5 +103,6 @@
     <None Include="InitData\2-GenerateTestData.sql" />
     <None Include="InitData\3-SetupWorkitems.sql" />
     <None Include="InitData\4-SetupWorkitemsProperties.sql" />
+    <None Include="InitData\5-PreviewWorkitems.sql" />
   </ItemGroup>
 </Project>

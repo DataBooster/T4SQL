@@ -11,11 +11,11 @@ namespace T4SQL.ConsoleTest
 
 			engineMain.Start();
 
-			engineMain.WriteDebug("Press the Escape (Esc) key to quit the Template Engine at any time:");
+			Console.WriteLine("Press the Escape (Esc) key to quit the Template Engine at any time:");
 
 			while (Console.ReadKey().Key != ConsoleKey.Escape) ;
 
-			engineMain.WriteDebug("Stopping...");
+			Console.WriteLine("Stopping...");
 			engineMain.Stop();
 		}
 	}

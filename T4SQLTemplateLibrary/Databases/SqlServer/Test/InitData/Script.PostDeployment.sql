@@ -14,3 +14,4 @@ Post-Deployment Script Template
 :r .\2-GenerateTestData.sql
 :r .\3-SetupWorkitems.sql
 :r .\4-SetupWorkitemsProperties.sql
+:r .\5-PreviewWorkitems.sql
