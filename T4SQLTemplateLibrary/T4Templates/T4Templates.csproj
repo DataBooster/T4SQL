@@ -102,6 +102,14 @@
     <Compile Include="Grouping\VGroupingSets.partial.cs">
       <DependentUpon>VGroupingSets.tt</DependentUpon>
     </Compile>
+    <Compile Include="Inspection\VCheckUniqueness.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCheckUniqueness.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inspection\VCheckUniqueness.partial.cs">
+      <DependentUpon>VCheckUniqueness.tt</DependentUpon>
+    </Compile>
     <Compile Include="MiscExtensions.cs" />
     <Compile Include="Pivot\VFullPivot.cs">
       <AutoGen>True</AutoGen>
@@ -164,6 +172,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VGroupingSets.cs</LastGenOutput>
     </None>
+    <None Include="Inspection\VCheckUniqueness.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>VCheckUniqueness.cs</LastGenOutput>
+    </None>
     <None Include="Pivot\VFullPivot.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>VFullPivot.cs</LastGenOutput>
@@ -223,6 +235,12 @@
     <Content Include="Grouping\VGroupingSets.SqlServer.sql">
       <DependentUpon>VGroupingSets.tt</DependentUpon>
     </Content>
+    <Content Include="Inspection\VCheckUniqueness.Oracle.sql">
+      <DependentUpon>VCheckUniqueness.tt</DependentUpon>
+    </Content>
+    <Content Include="Inspection\VCheckUniqueness.SqlServer.sql">
+      <DependentUpon>VCheckUniqueness.tt</DependentUpon>
+    </Content>
     <Content Include="Pivot\VFullPivot.Oracle.sql">
       <DependentUpon>VFullPivot.tt</DependentUpon>
     </Content>
@@ -242,6 +260,7 @@
       <DependentUpon>VUnpivot.tt</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
