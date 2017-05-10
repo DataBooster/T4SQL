@@ -1,0 +1,284 @@
+<div class="wikidoc">
+<div><strong>Project Description</strong></div>
+<div style="padding-left:20px">T4SQL is a SQL Code Generation implemented by <a title="T4 Text Templates" href="http://msdn.microsoft.com/en-us/library/ee844259.aspx" target="_blank">
+Preprocessed T4 Text Templates</a> (C# or Visual Basic).<br>
+Two initiative scenarios of using T4SQL:
+<ol>
+<li>When designing a knowledge-based data analysis tool, the T4SQL can act as a generic method base subsystem which manages SQL-level objects with programmability in database (SQL Server or Oracle);
+</li><li>When building a database application, if you prefer to separate particular data transformation logics from the business framework logics, to have a cleaner code. The T4SQL can act as a method-factory, designed for database developers to use generic SQL
+ script library as easy as OOP Generic Class Library.<br>
+<br>
+In Branches-Leaves (Tree) pattern database development, to make a distinction between
+<a title="Database View-plug-ins Framework" href="http://view.codeplex.com/" target="_blank">
+the context flowchart (Branches)</a> and <a>the particular data transformation (Leaves)</a>:
+<ul>
+<li>Business context logics look like a deciduous tree in winter. A clear highlighted Branches graphic would help our mind to control complexity all the time.
+</li><li>A generic encapsulated Leaves picture would help our mind to liberate ourselves from the repeat of similar labor as much as possible. The T4SQL can be used as a Leaves Factory.
+</li></ul>
+Driven by minimized configured parameters and metadata in the practical environment, every generated object is early binding rather than dynamic SQL. This allows database engine optimizer to prepare execution plans in advance and makes unit testing clearer
+ and easier. </li></ol>
+<p>A built-in Generic View Library is shipped with the release, also as a sample to make your own generic SQL libraries.</p>
+</div>
+<p><strong>Project Organization</strong></p>
+<p style="padding-left:20px">T4SQL mainly consists of three modules: <span style="color:#0000ff">
+T4SQL Workspaces</span>, <span style="color:#0000ff">Template Engine</span> and <span style="color:#0000ff">
+Template Library</span>.</p>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=724817" alt="Project Organization Chart" width="618" height="406"></div>
+<div>&nbsp;</div>
+<p><strong>T4SQL Workspaces</strong></p>
+<div style="padding-left:20px">Each workspace is a set of workitems in database, includes a
+<span style="color:#008080">WORKITEM</span> table and a <span style="color:#008080">
+PROPERTY</span> table. Database developers usually work on database directly, some team doesn't want their stuff be seen by other teams. It's necessary to create a autonomous workspace for them.</div>
+<ul>
+<li><span style="color:#008080">Workitems</span> </li></ul>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=728867" alt=""></div>
+<div style="padding-left:35px">&nbsp;<br>
+A workitem is a single database object (e.g. a View) which needs to be created or maintained.<br>
+&nbsp;<br>
+Above <span style="color:#0000ff">TEMPLATE_NAME</span> is the fully qualified name (including the namespace) of .NET class in Template Library. It is a crucial key for Template Engine to dispatch the specified Template to generate the object code. The
+<span style="color:#0000ff">TEMPLATE_NAME</span> column is a foreign key tie to a global table
+<span style="color:#0000ff">T4SQL.TEMPLATE_CLASS</span> which is maintained by Template Engine automatically (see also detail in upcoming Template Engine Section).
+<br>
+&nbsp;<br>
+The START_BUILD is the control switch which tells Template Engine to turn on the code generation process for that workitem. After a request is completed, the engine will save the generated code into OBJECT_CODE column (if successful) or save the error message
+ into COMPILED_ERROR column (if failed), and reset the START_BUILD to be off.</div>
+<ul>
+<li><span style="color:#008080">Working Properties</span> </li></ul>
+<div style="padding-left:35px">For each workitem there should be a series of working properties as parameters for engine to invoke a template. When a new workitem is added into the
+<span style="color:#008080">WORKITEM</span> table, a trigger behind it will pre-copy all designed properties into below
+<span style="color:#008080">PROPERTY</span> table with either <span style="color:#0000ff">
+ExampleValue</span> (must be customized) or <span style="color:#0000ff">DefaultValue</span> (can leave it as it is), you only need to update them as your particular requirement environment.<br>
+&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=729155" alt=""></div>
+<div style="padding-left:35px">&nbsp;<br>
+Above STRING_VALUE is the column which you need to update. It is template's responsibility to parse the text.<br>
+The LINK_STATE column is reserved for some case to pass the object state.<br>
+&nbsp;<br>
+In practice, it's recommended to use a writeable view (just the same name as the <span style="color:#008080">
+PROPERTY</span> table with a &quot;VW_&quot; prefix) since the view can give you reference information at a glance during editing above STRING_VALUE and LINK_STATE columns, such as property description, custom is a must or not, etc.<br>
+&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=729402" alt=""></div>
+<div style="padding-left:20px">&nbsp;<br>
+A utility stored procedure T4SQL.META_<span style="color:#0000ff">CREATE_WORKSPACE</span>(&hellip;) is used for creating a new workspace, it will create a pair of
+<span style="color:#008080">WORKITEM</span> table and <span style="color:#008080">
+PROPERTY</span> table, including all necessary constraints (FK, PK&hellip;), triggers and a helper view for you.<br>
+&nbsp;<br>
+T4SQL.CMD_<span style="color:#0000ff">BUILD_SCRIPTS</span>(&hellip;) is a handy stored procedure to generate all objects which match the search criteria into a single script and prints on Message Screen.<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=730102" alt="" style="border:1px solid black"><br>
+&nbsp;</div>
+<p><strong>Template Engine</strong></p>
+<div style="padding-left:20px">T4SQL Template Engine is a Windows Service which acts as the dispatch center.<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=730109" alt=""><br>
+<br>
+Please deploy installation scripts onto database side<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=730110" alt="" style="border:1px solid black"><br>
+<br>
+and run setup.exe to install T4SQL Template Engine Service in Windows server side.<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=730111" alt="" style="border:1px solid black"><br>
+<br>
+Make sure to modify the connectionStrings in T4SQL.EngineService.exe.config before start up the service.<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=730120" alt="" style="border:1px solid black">
+<ul>
+<li>Different config for SQL Server
+<table cellspacing="6" cellpadding="0" style="background-color:#ececec">
+<tbody>
+<tr>
+<td><span style="color:blue">&lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:blue">&gt;</span><br>
+&nbsp; &nbsp; <span style="color:blue">&lt;</span><span style="color:#a31515">add</span>
+<span style="color:red">name</span><span style="color:blue">=</span>&quot;<span style="color:blue">T4SQLDB</span>&quot;
+<span style="color:red">providerName</span><span style="color:blue">=</span>&quot;<span style="color:blue">System.Data.SqlClient</span>&quot;
+<span style="color:red">connectionString</span><span style="color:blue">=</span>&quot;<span style="color:blue">Data Source=.\SQLEXPRESS;Initial Catalog=T4SQLDB;Integrated Security=True</span>&quot;
+<span style="color:blue">/&gt;</span><br>
+<span style="color:blue">&lt;/</span><span style="color:#a31515">connectionStrings</span><span style="color:blue">&gt;</span><br>
+<span style="color:blue">&lt;</span><span style="color:#a31515">appSettings</span><span style="color:blue">&gt;</span><br>
+&nbsp; &nbsp; <span style="color:blue">&lt;</span><span style="color:#a31515">add</span>
+<span style="color:red">key</span><span style="color:blue">=</span>&quot;<span style="color:blue">Engine_Package</span>&quot;
+<span style="color:red">value</span><span style="color:blue">=</span>&quot;<span style="color:blue">T4SQL.ENGINE_</span>&quot;
+<span style="color:blue">/&gt;</span><br>
+<span style="color:blue">&lt;/</span><span style="color:#a31515">appSettings</span><span style="color:blue">&gt;</span></td>
+</tr>
+</tbody>
+</table>
+</li><li>Different config for Oracle
+<table cellspacing="6" cellpadding="0" style="background-color:#ececec">
+<tbody>
+<tr>
+<td><span style="color:blue">&lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:blue">&gt;</span><br>
+&nbsp; &nbsp; <span style="color:blue">&lt;</span><span style="color:#a31515">add</span>
+<span style="color:red">name</span><span style="color:blue">=</span>&quot;<span style="color:blue">T4SQLDB</span>&quot;
+<span style="color:red">providerName</span><span style="color:blue">=</span>&quot;<span style="color:blue">Oracle.ManagedDataAccess.Client</span>&quot;
+<span style="color:red">connectionString</span><span style="color:blue">=</span>&quot;<span style="color:blue">Data Source=ORCL;User Id=/</span>&quot;
+<span style="color:blue">/&gt;</span><br>
+<span style="color:blue">&lt;/</span><span style="color:#a31515">connectionStrings</span><span style="color:blue">&gt;</span><br>
+<span style="color:blue">&lt;</span><span style="color:#a31515">appSettings</span><span style="color:blue">&gt;</span><br>
+&nbsp; &nbsp; <span style="color:blue">&lt;</span><span style="color:#a31515">add</span>
+<span style="color:red">key</span><span style="color:blue">=</span>&quot;<span style="color:blue">Engine_Package</span>&quot;
+<span style="color:red">value</span><span style="color:blue">=</span>&quot;<span style="color:blue">T4SQL.ENGINE.</span>&quot;
+<span style="color:blue">/&gt;</span><br>
+<span style="color:blue">&lt;/</span><span style="color:#a31515">appSettings</span><span style="color:blue">&gt;</span></td>
+</tr>
+</tbody>
+</table>
+</li></ul>
+T4SQL Template Engine will load all add-ins template libraries under the &quot;Templates&quot; subdirectory on startup.<br>
+When you get some new Template Libraries and want to plug them into your engine, just copy their .dll files into the &quot;Templates&quot; subdirectory and restart the engine service. The engine will upload templates' metadata into database T4SQL.TEMPLATE_CLASS table
+ and T4SQL.TEMPLATE_SPEC table, all new templates are ready for every workspaces to use.<br>
+&nbsp;</div>
+<p><strong>Template Library</strong></p>
+<div style="padding-left:20px">T4SQL Template Library is a library of T4SQL Templates, each T4SQL Template Library presents as an add-in .dll for T4SQL Template Engine to load. A built-in T4SQL Template Library is shipped with the T4SQL Template Engine, including
+ about ten T4SQL Templates in the initial release. <br>
+&nbsp;<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=731742" alt="" style="border:1px solid black"><br>
+&nbsp;<br>
+You would be interested in being a Supplier of T4SQL Template Libraries. The following section introduces how to author a T4SQL Template.<br>
+&nbsp;</div>
+<p><strong>Template Authoring</strong></p>
+<div style="padding-left:20px">Every T4SQL Template is made by <a title="Run-Time Text Generation with T4 Text Templates" href="http://msdn.microsoft.com/en-us/library/ee844259.aspx" target="_blank">
+Preprocessed T4 Text Template</a>. To author a T4SQL Template, you can start with a .NET class which is generated by a Preprocessed T4 Text Template. A T4 Text Template becomes a T4SQL Template when its partial class conforms to a standard for T4SQL Template
+ interaction. This standard is provided through the ITemplate interface. Any class that implements the ITemplate interface is a T4SQL Template.</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=731744" alt=""><br>
+&nbsp;</div>
+<div style="padding-left:20px">In practice, there is a NuGet package <a href="http://www.nuget.org/packages/T4SQL.Base" target="_blank">
+T4SQL.Base</a> which prepares all necessary scaffolding for you.<br>
+&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=731750" alt=""></div>
+<div style="padding-left:20px">&nbsp;<br>
+Once the <a href="http://www.nuget.org/packages/T4SQL.Base" target="_blank">T4SQL.Base</a> package is installed into your class library project, the
+<span style="color:#000080">T4SQL.Base.dll</span> will be added into project references, at the same time a Visual Studio Item Template &quot;<strong>T4SQL Template</strong>&quot; will be installed as well if it does not yet exist, this is a &quot;template of template&quot; to
+ make the template authoring as simple as possible.<br>
+&nbsp;</div>
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=731751" alt=""></div>
+<ul>
+<li>T4SQL.Base.dll, this class library provides:
+<ul>
+<li><span style="color:#0000ff">ITemplate</span> interface (for code generation) and
+<span style="color:#0000ff">ITemplateProperties</span> interface (for publishing T4SQL Template properties metadata to database side workspaces).
+</li><li>Utility extension methods for string parse, collections, etc. </li><li>Database metadata retrieval, such as:<br>
+Expanding or infering <span style="color:#0000ff">*</span> to a explicit column list of a table;<br>
+Traversing foreign key relation-chain for a root table. </li></ul>
+</li></ul>
+<ul>
+<li>Visual Studio Item Template:
+<ol>
+<li>Add a new T4SQL Template item into the class library project,<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=732804" alt=""><br>
+Notes:<br>
+Please remain the file name extension <strong>.tt</strong> unchanged, and don't contain any spaces or punctuation in the main part of the file name. For example &quot;My T4SQL Template.tt&quot; would be incorrect, but &quot;MyT4SQLTemplate.tt&quot; is correct. The file name will
+ be used as a class name in the generated code.<br>
+&nbsp; </li><li>When you save the <strong>.tt</strong> file, four subsidiary files <strong>.cs</strong>,
+<strong>.partial.cs</strong>, <strong>.SqlServer.sql</strong> and <strong>.Oracle.sql</strong> will be generated. To see these files in Solution Explorer, expand the
+<strong>.tt</strong> file node.
+<div><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=732092" alt="" style="border:1px solid black"></div>
+<table border="1" cellspacing="0" cellpadding="4">
+<tbody>
+<tr style="background-color:#eeeeee">
+<td>&nbsp;File</td>
+<td>Description</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;<strong>.tt</strong></td>
+<td>Don't need to make any changes in this master file unless you want to support more databases other than SQL Server and Oracle.</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;<strong>.cs</strong></td>
+<td>This code is generated by TextTemplatingFilePreprocessor, you can't do anything in this file.</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;<strong>.Oracle.sql</strong></td>
+<td>The SQL text template for Oracle.</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;<strong>.partial.cs</strong></td>
+<td>This is a critical work on C# code, it's recommended to encapsulate all necessary variables and complex text preprocessor (which will be used in your T4 SQL text templates - .Oracle.sql and .SqlServer.sql) into this partial class, to achieve a better separation
+ between the text presentation and the underlying logic. The scaffolding code will give you some sample for quick start.</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;<strong>.SqlServer.sql</strong></td>
+<td>The SQL text template for SQL Server.</td>
+</tr>
+</tbody>
+</table>
+A good way to create a T4 SQL text template is to convert an existing tested example of the SQL script.<br>
+<br>
+The following figure shows their internal relationships:<br>
+<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=733880" alt=""><br>
+<br>
+&nbsp; </li><li>Since .SqlServer.sql file and .Oracle.sql file are included in .tt file, Visual Studio TextTemplatingFilePreprocessor can't detect any change in these .sql files. So after you make changes in .SqlServer.sql and/or .Oracle.sql file(s), please always re-generate
+ .cs file by right-click the .tt file, and then click <strong>Run Custom Tool</strong> before Build or Rebuild the project.<br>
+<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=t4sql&DownloadId=734616" alt="" style="border:1px solid black"><br>
+&nbsp; </li></ol>
+</li><li>Naming Conventions </li></ul>
+<div style="padding-left:35px">Although the scaffolding code initialized by Visual Studio Item Template - T4SQL Template is a database view object as default, however the object type is not limited to view. Your T4SQL Template can generate any database object
+ types.<br>
+<br>
+The following are naming conventions for T4SQL Template class name (.tt file name).
+<div style="padding-left:35px">
+<table border="0" cellspacing="0" cellpadding="3">
+<tbody>
+<tr>
+<td>Prefix &nbsp;</td>
+<td>Object Type</td>
+</tr>
+<tr>
+<td>V</td>
+<td>View</td>
+</tr>
+<tr>
+<td>P</td>
+<td>PL/SQL Package (Oracle) &nbsp;</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Stored Procedure</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Function</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Table</td>
+</tr>
+</tbody>
+</table>
+</div>
+Considering for compatibility with multiple database platforms (i.e. SQL Server and Oracle), It is recommended to limit object names in 30 characters.<br>
+<br>
+For namespaces, just be well-organized and meaningful.<br>
+Database side developers will use the fully-qualified name <span style="color:#808080">
+(Namespaces.ClassName)</span> as T4SQL Template name in their T4SQL workspaces, so it&rsquo;s necessary to keep names simple.<br>
+&nbsp;</div>
+<p><strong>Samples</strong></p>
+<ul>
+<li>T4SQL Workspaces Samples<br>
+Enclosed in distribution files, a separate setup script <strong>test_create.sql</strong> is used to install a complete workspaces sample in the
+<span style="color:#ff0000">test</span> schema, which includes workspace creation, workitem/properties settings and some example tables to test built-in T4SQL Templates.<br>
+&nbsp; </li><li>Template Authoring Samples<br>
+The built-in T4SQL Template Library is also a straightforward sample of template authoring. Please download the source code from
+<a title="Source Code" href="http://t4sql.codeplex.com/SourceControl/latest" target="_blank">
+[SOURCE CODE]</a> tab. </li></ul>
+<p><strong>Template Library Reference</strong></p>
+<p style="padding-left:20px">At the moment, please refer to result data of test.VW_sample_properties and source code of the built-in T4SQL Template Library.</p>
+<p><strong>System Requirements</strong></p>
+<ul>
+<li>Supported Databases:
+<ul>
+<li>SQL Server 2008 or later versions </li><li>Oracle <span style="color:#808080">(dev and test on version 11g R1 and R2)</span>
+</li></ul>
+</li><li>Runtime Service:
+<ul>
+<li>.NET Framework 4.0 Client Profile or higher versions </li></ul>
+</li><li>Source Code:
+<ul>
+<li>Visual Studio 2010 <a title="Microsoft Visual Studio 2010 Service Pack 1" href="http://www.microsoft.com/en-us/download/details.aspx?id=23691" target="_blank">
+SP1</a> or later versions </li><li><a title="Microsoft SQL Server Data Tools" href="http://msdn.microsoft.com/en-us/data/hh297027" target="_blank">SQL Server Data Tools (SSDT)</a>
+</li><li><a title="Installing NuGet" href="http://docs.nuget.org/docs/start-here/installing-nuget" target="_blank">NuGet Package Manager</a>
+</li></ul>
+</li></ul>
+<p><strong>Contributions</strong></p>
+<ul>
+<li>Welcome all feedback through the CodePlex project (through to-do templates list, comments, patches, or items in the Issue Tracker);
+</li><li>Looking for Clean-Style Developers, Testers and Editors. </li></ul>
+</div><div class="ClearBoth"></div>
